@@ -1,6 +1,6 @@
 #include "scene_menu.h"
 #include "../components/cmp_text.h"
-#include "../game.h"
+#include "../drop_pod_game.h"
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 
@@ -21,7 +21,7 @@ void MenuScene::Update(const double& dt) {
   // cout << "Menu Update "<<dt<<"\n";
 
   if (sf::Keyboard::isKeyPressed(Keyboard::Space)) {
-    Engine::ChangeScene(&level1);
+    Engine::ChangeScene(&planetLevel);
   }
 
   Scene::Update(dt);

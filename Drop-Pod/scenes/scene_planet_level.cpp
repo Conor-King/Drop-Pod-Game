@@ -1,5 +1,5 @@
 #include "scene_planet_level.h"
-#include "../game.h"
+#include "../drop_pod_game.h"
 #include <LevelSystem.h>
 #include <iostream>
 using namespace std;
