@@ -59,16 +59,22 @@ target_link_libraries(lib_ecm PRIVATE lib_maths)
 
 ################### Add Practicals Below ##########################
 
-#### Drop-Pod ####
+###### Drop-Pod #######
+
 file(GLOB_RECURSE SOURCES Drop-Pod/*.cpp Drop-Pod/*.h)
-add_executable(Drop_Pod ${SOURCES})
-target_include_directories(Drop_Pod PRIVATE ${SFML_INCS})
+file(GLOB_RECURSE CMPNTS Drop-Pod/components/*.cpp Drop-Pod/components/*.h)
+file(GLOB_RECURSE SCENES Drop-Pod/scenes/*.cpp Drop-Pod/scenes/*.h)
+add_executable(Drop_Pod ${SOURCES} ${RESOURCE_FILES})
+source_group("components" FILES ${CMPNTS})
+source_group("resources" FILES ${RESOURCE_FILES})
+#target_include_directories(Drop_Pod SYSTEM PRIVATE ${SFML_INCS} ${B2D_INCS})
 target_link_libraries(Drop_Pod lib_engine)
+set(EXECUTABLES ${EXECUTABLES} Drop_Pod)
+
+add_dependencies(Drop_Pod copy_resources)
 
 set_target_properties(Drop_Pod 
     PROPERTIES VS_DEBUGGER_WORKING_DIRECTORY
     ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/$(Configuration)
 )
-
-add_dependencies(Drop_Pod copy_resources)
 
