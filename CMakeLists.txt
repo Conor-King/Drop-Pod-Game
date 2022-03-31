@@ -19,7 +19,7 @@ add_custom_target(copy_resources ALL COMMAND ${CMAKE_COMMAND}
 
 #### Add External Dependencies ####
 # SFML - graphics library
-add_subdirectory("lib/sfml")
+add_subdirectory("lib/sfml" EXCLUDE_FROM_ALL)
 #include_directories("lib/sfml/include")
 set(SFML_INCS "lib/sfml/include")
 link_directories("${CMAKE_BINARY_DIR}/lib/sfml/lib")
