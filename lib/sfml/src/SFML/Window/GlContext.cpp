@@ -34,6 +34,7 @@
 #include <memory>
 #include <mutex>
 #include <optional>
+#include <ostream>
 #include <string>
 #include <unordered_map>
 #include <utility>
@@ -274,7 +275,7 @@ namespace
                     const char* extension = extensionString;
 
                     while (*extensionString && (*extensionString != ' '))
-                        extensionString++;
+                        ++extensionString;
 
                     extensions.emplace_back(extension, extensionString);
                 }
@@ -342,7 +343,7 @@ void GlContext::initResource()
         if (sharedContext)
         {
             // Increment the resources counter
-            resourceCount++;
+            ++resourceCount;
 
             return;
         }
@@ -359,7 +360,7 @@ void GlContext::initResource()
     }
 
     // Increment the resources counter
-    resourceCount++;
+    ++resourceCount;
 }
 
 
@@ -374,7 +375,7 @@ void GlContext::cleanupResource()
     std::scoped_lock lock(mutex);
 
     // Decrement the resources counter
-    resourceCount--;
+    --resourceCount;
 
     // If there's no more resource alive, we can trigger the global context cleanup
     if (resourceCount == 0)
@@ -411,7 +412,7 @@ void GlContext::acquireTransientContext()
         transientContext = std::make_unique<TransientContext>();
 
     // Increase the reference count
-    transientContext->referenceCount++;
+    ++transientContext->referenceCount;
 }
 
 
@@ -428,7 +429,7 @@ void GlContext::releaseTransientContext()
     assert(transientContext);
 
     // Decrease the reference count
-    transientContext->referenceCount--;
+    --transientContext->referenceCount;
 
     // If this is the last TransientContextLock that is released
     // destroy the state object
@@ -925,7 +926,7 @@ void GlContext::checkSettings(const ContextSettings& requestedSettings)
     {
         if ((std::strcmp(vendorName, "Microsoft Corporation") == 0) && (std::strcmp(rendererName, "GDI Generic") == 0))
         {
-            err() << "Warning: Detected \"Microsoft Corporation GDI Generic\" OpenGL implementation" << std::endl
+            err() << "Warning: Detected \"Microsoft Corporation GDI Generic\" OpenGL implementation" << '\n'
                   << "The current OpenGL implementation is not hardware-accelerated" << std::endl;
         }
     }
@@ -940,8 +941,8 @@ void GlContext::checkSettings(const ContextSettings& requestedSettings)
         (m_settings.depthBits         <  requestedSettings.depthBits)         ||
         (!m_settings.sRgbCapable      && requestedSettings.sRgbCapable))
     {
-        err() << "Warning: The created OpenGL context does not fully meet the settings that were requested" << std::endl;
-        err() << "Requested: version = " << requestedSettings.majorVersion << "." << requestedSettings.minorVersion
+        err() << "Warning: The created OpenGL context does not fully meet the settings that were requested" << '\n'
+              << "Requested: version = " << requestedSettings.majorVersion << "." << requestedSettings.minorVersion
               << " ; depth bits = " << requestedSettings.depthBits
               << " ; stencil bits = " << requestedSettings.stencilBits
               << " ; AA level = " << requestedSettings.antialiasingLevel
@@ -949,8 +950,8 @@ void GlContext::checkSettings(const ContextSettings& requestedSettings)
               << " ; core = " << ((requestedSettings.attributeFlags & ContextSettings::Core) != 0)
               << " ; debug = " << ((requestedSettings.attributeFlags & ContextSettings::Debug) != 0)
               << " ; sRGB = " << requestedSettings.sRgbCapable
-              << std::noboolalpha << std::endl;
-        err() << "Created: version = " << m_settings.majorVersion << "." << m_settings.minorVersion
+              << std::noboolalpha << '\n'
+              << "Created: version = " << m_settings.majorVersion << "." << m_settings.minorVersion
               << " ; depth bits = " << m_settings.depthBits
               << " ; stencil bits = " << m_settings.stencilBits
               << " ; AA level = " << m_settings.antialiasingLevel

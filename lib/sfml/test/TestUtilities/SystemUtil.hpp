@@ -16,9 +16,11 @@
 // String conversions for doctest framework
 namespace sf
 {
+    class Angle;
     class String;
     class Time;
 
+    std::ostream& operator <<(std::ostream& os, const sf::Angle& angle);
     std::ostream& operator <<(std::ostream& os, const sf::String& string);
     std::ostream& operator <<(std::ostream& os, sf::Time time);
 
@@ -37,8 +39,33 @@ namespace sf
     }
 }
 
-// Work around GCC 8.x bug with `<filesystem>`.
-#if !defined(__GNUC__) || (__GNUC__ >= 9)
+// Utilities for approximate equality
+struct ApproxVec
+{
+    ApproxVec(double x, double y)
+        : vector(static_cast<float>(x), static_cast<float>(y)) {}
+
+    explicit ApproxVec(const sf::Vector2f& v)
+        : vector(v) {}
+
+    sf::Vector2f vector;
+};
+
+// Utilities for approximate equality
+struct ApproxDeg
+{
+    ApproxDeg(double degrees)
+        : degrees(static_cast<float>(degrees)) {}
+
+    float degrees;
+};
+
+bool operator==(const sf::Vector2f& lhs, const ApproxVec& rhs);
+bool operator==(const sf::Angle& lhs, const ApproxDeg& rhs);
+
+std::ostream& operator <<(std::ostream& os, const ApproxVec& approx);
+std::ostream& operator <<(std::ostream& os, const ApproxDeg& approx);
+
 namespace sf::Testing
 {
     class TemporaryFile
@@ -61,6 +88,5 @@ namespace sf::Testing
         const std::string& getPath() const;
     };
 }
-#endif // !defined(__GNUC__) || (__GNUC__ >= 9)
 
 #endif // SFML_TESTUTILITIES_SYSTEM_HPP

@@ -28,6 +28,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/Texture.hpp>
 #include <SFML/Graphics/RenderTarget.hpp>
+#include <SFML/Graphics/Font.hpp>
 #include <algorithm>
 #include <cmath>
 
@@ -115,6 +116,22 @@ m_fontTextureId      (0)
 {
 
 }
+
+
+////////////////////////////////////////////////////////////
+Text::Text(const Text&) = default;
+
+
+////////////////////////////////////////////////////////////
+Text& Text::operator=(const Text&) = default;
+
+
+////////////////////////////////////////////////////////////
+Text::Text(Text&&) noexcept = default;
+
+
+////////////////////////////////////////////////////////////
+Text& Text::operator=(Text&&) noexcept = default;
 
 
 ////////////////////////////////////////////////////////////
@@ -358,20 +375,22 @@ FloatRect Text::getGlobalBounds() const
 
 
 ////////////////////////////////////////////////////////////
-void Text::draw(RenderTarget& target, RenderStates states) const
+void Text::draw(RenderTarget& target, const RenderStates& states) const
 {
     if (m_font)
     {
         ensureGeometryUpdate();
 
-        states.transform *= getTransform();
-        states.texture = &m_font->getTexture(m_characterSize);
+        RenderStates statesCopy(states);
+
+        statesCopy.transform *= getTransform();
+        statesCopy.texture = &m_font->getTexture(m_characterSize);
 
         // Only draw the outline if there is something to draw
         if (m_outlineThickness != 0)
-            target.draw(m_outlineVertices, states);
+            target.draw(m_outlineVertices, statesCopy);
 
-        target.draw(m_vertices, states);
+        target.draw(m_vertices, statesCopy);
     }
 }
 
@@ -405,7 +424,7 @@ void Text::ensureGeometryUpdate() const
     bool  isBold             = m_style & Bold;
     bool  isUnderlined       = m_style & Underlined;
     bool  isStrikeThrough    = m_style & StrikeThrough;
-    float italicShear        = (m_style & Italic) ? 0.209f : 0.f; // 12 degrees in radians
+    float italicShear        = (m_style & Italic) ? sf::degrees(12).asRadians() : 0.f;
     float underlineOffset    = m_font->getUnderlinePosition(m_characterSize);
     float underlineThickness = m_font->getUnderlineThickness(m_characterSize);
 

@@ -25,6 +25,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <SFML/System/Angle.hpp>
 #include <SFML/Window/SensorImpl.hpp>
 #include <SFML/Window/iOS/SFAppDelegate.hpp>
 
@@ -35,7 +36,7 @@ namespace
 
     float toDegrees(float radians)
     {
-        return radians * 180.f / 3.141592654f;
+        return sf::radians(radians).asDegrees();
     }
 }
 
@@ -93,7 +94,7 @@ bool SensorImpl::open(Sensor::Type sensor)
     m_enabled = false;
 
     // Set the refresh rate (use the maximum allowed)
-    static const NSTimeInterval updateInterval = 1. / 60.;
+    constexpr NSTimeInterval updateInterval = 1. / 60.;
     switch (sensor)
     {
         case Sensor::Accelerometer:
@@ -219,11 +220,11 @@ void SensorImpl::setEnabled(bool enabled)
             {
                 if (deviceMotionEnabledCount == 0)
                     [[SFAppDelegate getInstance].motionManager startDeviceMotionUpdates];
-                deviceMotionEnabledCount++;
+                ++deviceMotionEnabledCount;
             }
             else
             {
-                deviceMotionEnabledCount--;
+                --deviceMotionEnabledCount;
                 if (deviceMotionEnabledCount == 0)
                     [[SFAppDelegate getInstance].motionManager stopDeviceMotionUpdates];
             }
