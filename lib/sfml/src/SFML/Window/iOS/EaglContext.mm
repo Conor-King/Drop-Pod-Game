@@ -30,13 +30,10 @@
 #include <SFML/Window/iOS/SFView.hpp>
 #include <SFML/System/Err.hpp>
 #include <SFML/System/Sleep.hpp>
-#include <SFML/System/Time.hpp>
 #include <OpenGLES/EAGL.h>
 #include <OpenGLES/EAGLDrawable.h>
 #include <QuartzCore/CAEAGLLayer.h>
 #include <dlfcn.h>
-#include <ostream>
-
 
 #if defined(__APPLE__)
     #if defined(__clang__)
@@ -273,7 +270,7 @@ void EaglContext::display()
     // therefore we fake it with a manual framerate limit
     if (m_vsyncEnabled)
     {
-        constexpr Time frameDuration = seconds(1.f / 60.f);
+        static const Time frameDuration = seconds(1.f / 60.f);
         sleep(frameDuration - m_clock.getElapsedTime());
         m_clock.restart();
     }

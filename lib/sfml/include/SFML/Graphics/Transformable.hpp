@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2022 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2021 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -30,7 +30,6 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.hpp>
 #include <SFML/Graphics/Transform.hpp>
-#include <SFML/System/Angle.hpp>
 
 
 namespace sf
@@ -76,12 +75,12 @@ public:
     /// See the rotate function to add an angle based on the previous rotation instead.
     /// The default rotation of a transformable object is 0.
     ///
-    /// \param angle New rotation
+    /// \param angle New rotation, in degrees
     ///
     /// \see rotate, getRotation
     ///
     ////////////////////////////////////////////////////////////
-    void setRotation(Angle angle);
+    void setRotation(float angle);
 
     ////////////////////////////////////////////////////////////
     /// \brief set the scale factors of the object
@@ -129,12 +128,12 @@ public:
     ///
     /// The rotation is always in the range [0, 360].
     ///
-    /// \return Current rotation
+    /// \return Current rotation, in degrees
     ///
     /// \see setRotation
     ///
     ////////////////////////////////////////////////////////////
-    Angle getRotation() const;
+    float getRotation() const;
 
     ////////////////////////////////////////////////////////////
     /// \brief get the current scale of the object
@@ -183,10 +182,10 @@ public:
     /// object.setRotation(object.getRotation() + angle);
     /// \endcode
     ///
-    /// \param angle Angle of rotation
+    /// \param angle Angle of rotation, in degrees
     ///
     ////////////////////////////////////////////////////////////
-    void rotate(Angle angle);
+    void rotate(float angle);
 
     ////////////////////////////////////////////////////////////
     /// \brief Scale the object
@@ -233,7 +232,7 @@ private:
     ////////////////////////////////////////////////////////////
     Vector2f          m_origin;                     //!< Origin of translation/rotation/scaling of the object
     Vector2f          m_position;                   //!< Position of the object in the 2D world
-    Angle             m_rotation;                   //!< Orientation of the object
+    float             m_rotation;                   //!< Orientation of the object, in degrees
     Vector2f          m_scale;                      //!< Scale of the object
     mutable Transform m_transform;                  //!< Combined transformation of the object
     mutable bool      m_transformNeedUpdate;        //!< Does the transform need to be recomputed?
@@ -292,11 +291,10 @@ private:
 /// \code
 /// class MyEntity : public sf::Transformable, public sf::Drawable
 /// {
-///     void draw(sf::RenderTarget& target, const sf::RenderStates& states) const override
+///     void draw(sf::RenderTarget& target, sf::RenderStates states) const override
 ///     {
-///         sf::RenderStates statesCopy(states);
-///         statesCopy.transform *= getTransform();
-///         target.draw(..., statesCopy);
+///         states.transform *= getTransform();
+///         target.draw(..., states);
 ///     }
 /// };
 ///

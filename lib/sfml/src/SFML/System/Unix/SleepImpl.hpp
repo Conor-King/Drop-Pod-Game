@@ -29,9 +29,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.hpp>
+#include <SFML/System/Time.hpp>
 
-
-namespace sf { class Time; }
 
 namespace sf::priv
 {

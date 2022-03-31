@@ -1,5 +1,4 @@
 #include <SFML/System/Clock.hpp>
-#include <SFML/System/Time.hpp>
 #include "SystemUtil.hpp"
 #include <thread>
 

@@ -35,7 +35,7 @@ namespace sf
 View::View() :
 m_center             (),
 m_size               (),
-m_rotation           (),
+m_rotation           (0),
 m_viewport           ({0, 0}, {1, 1}),
 m_transformUpdated   (false),
 m_invTransformUpdated(false)
@@ -48,7 +48,7 @@ m_invTransformUpdated(false)
 View::View(const FloatRect& rectangle) :
 m_center             (),
 m_size               (),
-m_rotation           (),
+m_rotation           (0),
 m_viewport           ({0, 0}, {1, 1}),
 m_transformUpdated   (false),
 m_invTransformUpdated(false)
@@ -61,7 +61,7 @@ m_invTransformUpdated(false)
 View::View(const Vector2f& center, const Vector2f& size) :
 m_center             (center),
 m_size               (size),
-m_rotation           (),
+m_rotation           (0),
 m_viewport           ({0, 0}, {1, 1}),
 m_transformUpdated   (false),
 m_invTransformUpdated(false)
@@ -98,9 +98,11 @@ void View::setSize(const Vector2f& size)
 
 
 ////////////////////////////////////////////////////////////
-void View::setRotation(Angle angle)
+void View::setRotation(float angle)
 {
-    m_rotation = angle.wrapUnsigned();
+    m_rotation = std::fmod(angle, 360.f);
+    if (m_rotation < 0)
+        m_rotation += 360.f;
 
     m_transformUpdated    = false;
     m_invTransformUpdated = false;
@@ -121,7 +123,7 @@ void View::reset(const FloatRect& rectangle)
     m_center.y = rectangle.top + rectangle.height / 2.f;
     m_size.x   = rectangle.width;
     m_size.y   = rectangle.height;
-    m_rotation = Angle::Zero;
+    m_rotation = 0;
 
     m_transformUpdated    = false;
     m_invTransformUpdated = false;
@@ -143,7 +145,7 @@ const Vector2f& View::getSize() const
 
 
 ////////////////////////////////////////////////////////////
-Angle View::getRotation() const
+float View::getRotation() const
 {
     return m_rotation;
 }
@@ -164,7 +166,7 @@ void View::move(const Vector2f& offset)
 
 
 ////////////////////////////////////////////////////////////
-void View::rotate(Angle angle)
+void View::rotate(float angle)
 {
     setRotation(m_rotation + angle);
 }
@@ -184,7 +186,7 @@ const Transform& View::getTransform() const
     if (!m_transformUpdated)
     {
         // Rotation components
-        float angle  = m_rotation.asRadians();
+        float angle  = m_rotation * 3.141592654f / 180.f;
         float cosine = std::cos(angle);
         float sine   = std::sin(angle);
         float tx     = -m_center.x * cosine - m_center.y * sine + m_center.x;

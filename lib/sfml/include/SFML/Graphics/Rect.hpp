@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2022 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2021 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -29,7 +29,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Vector2.hpp>
-#include <optional>
 
 
 namespace sf
@@ -88,7 +87,7 @@ public:
     ///
     /// \return True if the point is inside, false otherwise
     ///
-    /// \see findIntersection
+    /// \see intersects
     ///
     ////////////////////////////////////////////////////////////
     constexpr bool contains(const Vector2<T>& point) const;
@@ -98,12 +97,28 @@ public:
     ///
     /// \param rectangle Rectangle to test
     ///
-    /// \return Intersection rectangle if intersecting, std::nullopt otherwise
+    /// \return True if rectangles overlap, false otherwise
     ///
     /// \see contains
     ///
     ////////////////////////////////////////////////////////////
-    constexpr std::optional<Rect<T>> findIntersection(const Rect<T>& rectangle) const;
+    constexpr bool intersects(const Rect<T>& rectangle) const;
+
+    ////////////////////////////////////////////////////////////
+    /// \brief Check the intersection between two rectangles
+    ///
+    /// This overload returns the overlapped rectangle in the
+    /// \a intersection parameter.
+    ///
+    /// \param rectangle    Rectangle to test
+    /// \param intersection Rectangle to be filled with the intersection
+    ///
+    /// \return True if rectangles overlap, false otherwise
+    ///
+    /// \see contains
+    ///
+    ////////////////////////////////////////////////////////////
+    constexpr bool intersects(const Rect<T>& rectangle, Rect<T>& intersection) const;
 
     ////////////////////////////////////////////////////////////
     /// \brief Get the position of the rectangle's top-left corner
@@ -220,9 +235,9 @@ using FloatRect = Rect<float>;
 /// bool b2 = r2.contains(3, 1); // false
 ///
 /// // Test the intersection between r1 and r2
-/// std::optional<sf::IntRect> result = r1.findIntersection(r2);
-/// // result.has_value() == true
-/// // result.value() == (4, 2, 16, 3)
+/// sf::IntRect result;
+/// bool b3 = r1.intersects(r2, result); // true
+/// // result == (4, 2, 16, 3)
 /// \endcode
 ///
 ////////////////////////////////////////////////////////////

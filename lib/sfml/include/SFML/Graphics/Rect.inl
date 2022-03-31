@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2022 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2021 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -81,7 +81,16 @@ constexpr bool Rect<T>::contains(const Vector2<T>& point) const
 
 ////////////////////////////////////////////////////////////
 template <typename T>
-constexpr std::optional<Rect<T>> Rect<T>::findIntersection(const Rect<T>& rectangle) const
+constexpr bool Rect<T>::intersects(const Rect<T>& rectangle) const
+{
+    Rect<T> intersection;
+    return intersects(rectangle, intersection);
+}
+
+
+////////////////////////////////////////////////////////////
+template <typename T>
+constexpr bool Rect<T>::intersects(const Rect<T>& rectangle, Rect<T>& intersection) const
 {
     // Not using 'std::min' and 'std::max' to avoid depending on '<algorithm>'
     const auto min = [](T a, T b){ return (a < b) ? a : b; };
@@ -110,11 +119,13 @@ constexpr std::optional<Rect<T>> Rect<T>::findIntersection(const Rect<T>& rectan
     // If the intersection is valid (positive non zero area), then there is an intersection
     if ((interLeft < interRight) && (interTop < interBottom))
     {
-        return Rect<T>({interLeft, interTop}, {interRight - interLeft, interBottom - interTop});
+        intersection = Rect<T>({interLeft, interTop}, {interRight - interLeft, interBottom - interTop});
+        return true;
     }
     else
     {
-        return std::nullopt;
+        intersection = Rect<T>({0, 0}, {0, 0});
+        return false;
     }
 }
 
