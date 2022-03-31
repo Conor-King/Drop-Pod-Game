@@ -8,14 +8,6 @@
 #include "scenes/scene_level_select.h"
 #include "scenes/scene_planet_level.h"
 #include "scenes/scene_spaceship_level.h"
-#include <SFML/Graphics.hpp>
-#include "player.h"
-
-constexpr uint16_t gameWidth = 800;
-constexpr uint16_t gameHeight = 600;
-
-
-
 
 extern MenuScene menu;
 extern SettingsScene settings;

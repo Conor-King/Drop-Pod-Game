@@ -30,7 +30,7 @@ add_subdirectory("lib/b2d/Box2D")
 set(B2D_INCS "lib/b2d/Box2D/")
 link_directories("${CMAKE_BINARY_DIR}/lib/sfml/lib")
 
-####Engine and library####
+#### Add Engine and our own library projects####
 
 file(GLOB_RECURSE RESOURCE_FILES "res/*.*")
 ## Engine ##
@@ -57,7 +57,7 @@ target_include_directories(lib_ecm INTERFACE "${CMAKE_SOURCE_DIR}/lib_ecm" )
 target_link_libraries(lib_ecm PRIVATE lib_maths)
 
 
-#############################################
+################### Add Practicals Below ##########################
 
 ###### Drop-Pod #######
 
