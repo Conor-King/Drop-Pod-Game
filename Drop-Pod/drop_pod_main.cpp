@@ -2,6 +2,7 @@
 #include "drop_pod_game.h"
 #include "scenes/scene_menu.h"
 
+
 using namespace std;
 
 MenuScene menu;
@@ -15,4 +16,8 @@ SpaceshipLevelScene spaceshipLevel;
 
 int main() {
   Engine::Start(1280, 720, "Drop Pod", &menu);
+
+
+
 }
+
