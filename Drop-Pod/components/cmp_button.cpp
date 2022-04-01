@@ -1,4 +1,4 @@
-#include"button.h"		
+#include"cmp_button.h"		
 #include<SFML/Window.hpp>
 
 
