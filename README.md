@@ -1,7 +1,7 @@
 # Drop-Pod-Game
 C++ game for games engineering coursework.
 
-If starting on a new computer or redownloading the repo from scratch. Open git bash shell in drop-pod-game directory and run command:
+If starting on a new computer or redownloading the repo from scratch and lib/sfml and/or lib/b2d is empty. Open git bash shell in drop-pod-game directory and run command:
 
 git submodule update --init --recursive
 
