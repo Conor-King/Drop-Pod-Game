@@ -10,8 +10,8 @@
 
 enum button_states{BUTOON_IDLE = 0, BUTTON_HOVER, BUTTON_ACTIVE};
 
-class Button
-{
+class Button : public Component {
+
 private:
 	sf::RectangleShape shape;
 	sf::Text _text;
@@ -25,15 +25,21 @@ private:
 	sf::Color hoverColor;
 	sf::Color activeColor;
 public:
-	Button(float x,float y, float width, float height,sf::Font* font, std::string text, sf::Color idleColor,sf::Color hoverColor,sf::Color activeColor );
+	Button() = delete;
+	explicit Button(Entity* p);
+	/*explicit Button(Entity* p, float x, float y, float width, float height, sf::Font* font, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);*/
+	void update(double dt) override;
 
-		~Button();
+	void render() override;
+
+	~Button() override = default;
+		
 
 
 		const bool isPressed() const;
 
-		void update(sf::Vector2f mousePos);
-		void Renderer::queue(sf::RenderTarget* target);
+		/*void update(sf::Vector2f mousePos);
+		void Renderer::queue(sf::RenderTarget* target);*/
 
 };
 
