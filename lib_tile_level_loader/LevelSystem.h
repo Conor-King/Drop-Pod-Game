@@ -17,13 +17,17 @@ public:
 
   typedef unsigned char Tile;
 
+  static sf::Texture floorTexture;
+  static sf::IntRect floorTextureRect;
+
   enum TILES {
     EMPTY = ' ',
     START = 's',
     END = 'e',
     WALL = 'w',
     ENEMY = 'n',
-    WAYPOINT = '+'
+    WAYPOINT = '+',
+    FLOOR = 'f'
   };
 
   static Tile getTile(sf::Vector2ul);
@@ -49,6 +53,8 @@ public:
   static const sf::Vector2f& getOffset();
 
   static float getTileSize();
+
+  static void setTextureMap(sf::IntRect section, std::string path);
 
 protected:
   static std::unique_ptr<Tile[]> _tiles;
