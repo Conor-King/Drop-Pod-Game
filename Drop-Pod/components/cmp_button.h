@@ -15,7 +15,7 @@ class Button : public Component {
 private:
 	sf::RectangleShape shape;
 	sf::Text _text;
-	sf::Font* font;
+	sf::Font font;
 
 	short unsigned buttonState;
 	bool presed;

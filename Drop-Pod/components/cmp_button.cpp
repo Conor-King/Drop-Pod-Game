@@ -3,14 +3,20 @@
 #include <system_renderer.h>
 #include <system_resources.h>
 
+using namespace sf;
+using namespace std;
+
+unique_ptr<Button> button;
 
 void Button::update(double dt) {}
 
-void Button::render() { Renderer::queue(&_text); }
+void Button::render() {
+	Renderer::queue(&shape);
+	Renderer::queue(&_text);
+}
 
 //Button::Button(Entity* p,float x, float y, float width, float height, sf::Font* font, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
-Button::Button(Entity* p)
-	: Component(p){
+Button::Button(Entity* p) : Component(p){
 
 	float x =10.f ;
 	float y =10.f ;
@@ -30,7 +36,9 @@ Button::Button(Entity* p)
 	/*this->_text.setFont(*this->font);*/
 	this->_text.setString(text);
 	this->_text.setFillColor(sf::Color::Green);
-	this->_text.setCharacterSize(12); 
+	this->_text.setCharacterSize(20); 
+	font.loadFromFile("res/fonts/font.ttf");
+	this->_text.setFont(font);
 	/*this->_text.setPosition(sf::Vector2f(
 		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->_text.getGlobalBounds().width / 2.f,
 		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->_text.getGlobalBounds().height / 2.f
