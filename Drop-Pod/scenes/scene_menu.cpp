@@ -23,7 +23,7 @@ void MenuScene::Update(const double& dt) {
 
   if (sf::Keyboard::isKeyPressed(Keyboard::Space)) {
     Engine::ChangeScene(&planetLevel);
-    ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/tileset.png");
+    ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
   }
 
   Scene::Update(dt);

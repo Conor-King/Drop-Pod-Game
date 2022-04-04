@@ -2,14 +2,16 @@
 #include "../drop_pod_game.h"
 #include <LevelSystem.h>
 #include <iostream>
+
 using namespace std;
 using namespace sf;
 
+View view;
+float speed = 200;
 
 void PlanetLevelScene::Load() {
 
     ls::loadLevelFile("res/levels/maze.txt");
-    
 
     // print the level to the console
     for (size_t y = 0; y < ls::getHeight(); y++) {
@@ -18,11 +20,35 @@ void PlanetLevelScene::Load() {
         }
         cout << endl;
     }
+
+    view.reset(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
+    Engine::setView(view);
+
+    setLoaded(true);
 }
 
 void PlanetLevelScene::UnLoad() { }
 
 void PlanetLevelScene::Update(const double& dt) {
+
+    // Moving the window to test the stitching.
+    float directY = 0.f;
+    float directX = 0.f;
+
+    if (Keyboard::isKeyPressed(Keyboard::A)) {
+        directX--;
+    }
+    if (Keyboard::isKeyPressed(Keyboard::D)) {
+        directX++;
+    }
+    if (Keyboard::isKeyPressed(Keyboard::W)) {
+        directY--;
+    }
+    if (Keyboard::isKeyPressed(Keyboard::S)) {
+        directY++;
+    }
+    Engine::moveView(Vector2f(directX * speed * dt, directY * speed * dt));
+
 
     Scene::Update(dt);
 }

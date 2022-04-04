@@ -33,7 +33,7 @@ public:
 		const bool isPressed() const;
 
 		void update(sf::Vector2f mousePos);
-		void Renderer::queue(sf::RenderTarget* target);
+		//void Renderer::queue(sf::RenderTarget* target);
 
 };
 

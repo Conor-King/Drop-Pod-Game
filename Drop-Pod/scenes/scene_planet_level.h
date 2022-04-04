@@ -5,7 +5,8 @@
 class PlanetLevelScene : public Scene {
 public:
 
-
+	sf::View view;
+	float speed;
 
   void Load() override;
 
