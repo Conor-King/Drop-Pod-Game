@@ -8,7 +8,7 @@
 #include <system_renderer.h>
 #include <system_resources.h>
 
-enum button_states{BUTOON_IDLE = 0, BUTTON_HOVER, BUTTON_ACTIVE};
+enum button_states{BUTTON_IDLE = 0, BUTTON_HOVER, BUTTON_ACTIVE};
 
 class Button : public Component {
 
@@ -26,8 +26,8 @@ private:
 	sf::Color activeColor;
 public:
 	Button() = delete;
-	explicit Button(Entity* p);
-	/*explicit Button(Entity* p, float x, float y, float width, float height, sf::Font* font, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);*/
+	/*explicit Button(Entity* p);*/
+	explicit Button(Entity* p, float x, float y, float width, float height, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 	void update(double dt) override;
 
 	void render() override;

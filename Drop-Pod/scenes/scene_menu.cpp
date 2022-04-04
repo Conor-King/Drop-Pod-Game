@@ -13,7 +13,9 @@ void MenuScene::Load() {
   cout << "Menu Load \n";
   {
       auto btn = makeEntity();
-      auto b = btn->addComponent<Button>();
+      auto b = btn->addComponent<Button>(450,200,250,100,"test text",sf::Color::White, sf::Color::Green, sf::Color::Red);
+      //CurrentScene.Size.Width / 2
+      //CurrentScene.Size.Height / 2
   }
 
   /*{
