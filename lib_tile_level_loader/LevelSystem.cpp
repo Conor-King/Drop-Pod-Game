@@ -183,10 +183,45 @@ void LevelSystem::buildSprites(bool optimise) {
 }
 
 void LevelSystem::render(RenderWindow& window) {
-  for (auto& t : _sprites) {
-    window.draw(*t);
-  }
+
+    // Renders tiles from the level file only if they are on the screen.
+    View view = window.getView();
+    auto res = view.getSize();
+    auto center = view.getCenter();
+
+    for (auto& t : _sprites) {
+        if (t->getPosition().x < center.x - (res.x * 0.6) || t->getPosition().x > center.x + (res.x * 0.6) && 
+            t->getPosition().y < center.y - (res.y * 0.6) || t->getPosition().y > center.y + (res.y * 0.6)) {
+            continue;
+        }
+        else {
+            window.draw(*t);
+        }
+    }
+        
+    // Possible algorithm for Rendering the on screen tiles only.
+
+//define tileResolutionX as the number of tiles per row
+//define tileResolutionY as the number of tiles per column
+//define screenResolutionX as the width of the window you are rendering to
+//define screenResolutionY as the height of the window you are rendering to
+//
+//xOffset = player.x - floor(tileResolutionX / 2)->This will center the map around your player's x-position
+//yOffset = player.y - floor(tileResolutionY / 2)->This will center the map around your player's y-position
+//for x = 0 to tileResolutionX - 1
+//for y = 0 to tileResolutionY - 1
+//render tile(x + xOffset, y + yOffset) at(x * (screenResolutionX / tileResolutionX), y * (screenResolutionY /
+//    tileResolutionY))->This keeps all sprite sizes relative to one another and renders them relative to the player
+//    end for
+//    end for
+
+
+    //for (auto& t : _sprites) { 
+    //    window.draw(*t);
+    //}
 }
+
+
 
 LevelSystem::Tile LevelSystem::getTile(sf::Vector2ul p) {
   if (p.x > _width || p.y > _height) {
