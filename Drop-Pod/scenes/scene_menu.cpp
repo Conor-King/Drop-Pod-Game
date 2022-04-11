@@ -31,13 +31,14 @@ void MenuScene::Load() {
 
 void MenuScene::Update(const double& dt) {
   // cout << "Menu Update "<<dt<<"\n";
-    /*if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+    if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
     {
-    }
-
-    sf::Vector2i position = sf::Mouse::getPosition(); {
+        sf::Vector2i position = sf::Mouse::getPosition();
         Engine::ChangeScene(&planetLevel);
-    }*/
+    }
+   {
+        
+    }
   /*if (sf::Keyboard::isKeyPressed(Keyboard::Space)) {
     Engine::ChangeScene(&planetLevel);
   }*/
