@@ -7,6 +7,9 @@ public:
 
 	sf::View view;
 	float speed;
+    int xCount;
+    int yCount;
+    sf::Vector2f startingCenter;
 
   void Load() override;
 

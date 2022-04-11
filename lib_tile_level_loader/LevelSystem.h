@@ -15,6 +15,8 @@ public:
   static void unload();
   static void render(sf::RenderWindow& window);
 
+  static void renderFloor(sf::RenderWindow& window);
+
   typedef unsigned char Tile;
 
   static sf::Texture floorTexture;

@@ -9,10 +9,14 @@ using namespace sf;
 
 View view;
 float speed;
+int xCount;
+int yCount;
+Vector2f startingCenter;
+
 
 void PlanetLevelScene::Load() {
 
-    ls::loadLevelFile("res/levels/maze.txt");
+    ls::loadLevelFile("res/levels/floorMap.txt");
 
     // print the level to the console
     for (size_t y = 0; y < ls::getHeight(); y++) {
@@ -22,9 +26,14 @@ void PlanetLevelScene::Load() {
         cout << endl;
     }
 
+    xCount = ls::getWidth();
+    yCount = ls::getHeight();
+
     // Setting the top left corner position and the size of the view.
-    view.reset(sf::FloatRect(0.f, 0.f, 1280.f, 720.f));
+    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
     Engine::setView(view);
+
+    startingCenter = view.getCenter();
 
     // Setting the speed of the view.
     speed = 200.f;
@@ -36,7 +45,13 @@ void PlanetLevelScene::UnLoad() { }
 
 void PlanetLevelScene::Update(const double& dt) {
 
-    
+    // This does not work as center does not change.
+    //if (Engine::GetWindow().getView().getCenter().x > startingCenter.x + 100 || Engine::GetWindow().getView().getCenter().x < startingCenter.x - 100 ||
+    //    Engine::GetWindow().getView().getCenter().y > startingCenter.y + 100 || Engine::GetWindow().getView().getCenter().y < startingCenter.y - 100)
+    //{
+    //    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
+    //
+    //}
 
     // Moving the window to test the stitching.
     float directY = 0.f;
@@ -58,15 +73,19 @@ void PlanetLevelScene::Update(const double& dt) {
         directY++;
         //printf("Move down. \n");
     }
+    if (Keyboard::isKeyPressed(Keyboard::LShift)) {
+        speed = 400.f;
+    }
+    else {
+        speed = 200.f;
+    }
     Engine::moveView(Vector2f(directX * speed * dt, directY * speed * dt));
-
-    ls::render(Engine::GetWindow()); // I don't think this should render every update.
 
     Scene::Update(dt);
 }
 
 void PlanetLevelScene::Render() { 
-    ls::render(Engine::GetWindow());
+    ls::renderFloor(Engine::GetWindow());
 }
 
 
