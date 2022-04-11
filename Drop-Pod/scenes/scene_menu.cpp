@@ -13,7 +13,18 @@ void MenuScene::Load() {
   cout << "Menu Load \n";
   {
       auto btn = makeEntity();
-      auto b = btn->addComponent<Button>(450,200,250,100,"test text",sf::Color::White, sf::Color::Green, sf::Color::Red);
+      auto b = btn->addComponent<Button>(450,200,250,100,"Go to game",sf::Color::White, sf::Color::Green, sf::Color::Red);
+      if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
+      {
+      }
+    
+      sf::Vector2i position = sf::Mouse::getPosition();
+    
+      sf::Mouse::setPosition(sf::Vector2i(450, 200), window); {
+          Engine::ChangeScene(&planetLevel);
+      }
+      auto btn2 = makeEntity();
+      auto b2 = btn2->addComponent<Button>(450, 50, 250, 100, "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
       //CurrentScene.Size.Width / 2
       //CurrentScene.Size.Height / 2
   }
