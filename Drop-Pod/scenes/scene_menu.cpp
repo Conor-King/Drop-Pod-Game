@@ -1,6 +1,7 @@
 #include "scene_menu.h"
 #include "../components/cmp_text.h"
 #include "../drop_pod_game.h"
+#include "LevelSystem.h"
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>
 #include"../components/cmp_button.h"	
@@ -41,7 +42,8 @@ void MenuScene::Update(const double& dt) {
     }
   /*if (sf::Keyboard::isKeyPressed(Keyboard::Space)) {
     Engine::ChangeScene(&planetLevel);
-  }*/
+    ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
+  }
 
   Scene::Update(dt);
 }

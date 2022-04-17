@@ -4,6 +4,13 @@
 
 class PlanetLevelScene : public Scene {
 public:
+
+	sf::View view;
+	float speed;
+    int xCount;
+    int yCount;
+    sf::Vector2f startingCenter;
+
   void Load() override;
 
   void UnLoad() override;
