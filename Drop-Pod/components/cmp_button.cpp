@@ -2,6 +2,7 @@
 #include<SFML/Window.hpp>
 #include <system_renderer.h>
 #include <system_resources.h>
+#include "engine.h"
 
 using namespace sf;
 using namespace std;
@@ -12,7 +13,7 @@ void Button::update(double dt) {
 	//Default
 	this->buttonState = BUTTON_IDLE;
 
-	Vector2f point = Vector2f(Mouse::getPosition().x, Mouse::getPosition().y);
+	Vector2f point = Vector2f(Mouse::getPosition(Engine::GetWindow()).x, Mouse::getPosition(Engine::GetWindow()).y);
 	//window - to get position
 	// Hover statement
 	if (this->shape.getGlobalBounds().contains(point))
