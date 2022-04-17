@@ -17,14 +17,16 @@ private:
 	sf::Text _text;
 	sf::Font font;
 
-	short unsigned buttonState;
-	bool presed;
-	bool hover;
-
 	sf::Color idleColor;
 	sf::Color hoverColor;
 	sf::Color activeColor;
 public:
+
+	short unsigned buttonState;
+	bool presed;
+	bool hover;
+
+
 	Button() = delete;
 	/*explicit Button(Entity* p);*/
 	explicit Button(Entity* p, float x, float y, float width, float height, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
