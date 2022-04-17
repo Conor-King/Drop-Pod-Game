@@ -15,5 +15,4 @@ SpaceshipLevelScene spaceshipLevel;
 
 int main() {
   Engine::Start(1280, 720, "Drop Pod", &menu);
-
 }
