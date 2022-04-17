@@ -4,6 +4,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>	
 #include"../components/cmp_button.h"
+#include "engine.cpp"
 
 
 using namespace std;
@@ -40,6 +41,11 @@ void MenuScene::Update(const double& dt) {
         Engine::ChangeScene(&planetLevel);
     }
 
+
+    if (button->isPressed())
+    {
+       
+    }
 
   // cout << "Menu Update "<<dt<<"\n";
     
