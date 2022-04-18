@@ -29,7 +29,7 @@ void PlanetLevelScene::Load() {
     xCount = ls::getWidth();
     yCount = ls::getHeight();
 
-    // Setting the top left corner position and the size of the view.
+    // Setting the center position and the size of the view.
     view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
     Engine::setView(view);
 
@@ -87,21 +87,3 @@ void PlanetLevelScene::Update(const double& dt) {
 void PlanetLevelScene::Render() { 
     ls::renderFloor(Engine::GetWindow());
 }
-
-
-
-// Possible algorithm for Rendering the on screen tiles only.
-
-//define tileResolutionX as the number of tiles per row
-//define tileResolutionY as the number of tiles per column
-//define screenResolutionX as the width of the window you are rendering to
-//define screenResolutionY as the height of the window you are rendering to
-//
-//xOffset = player.x - floor(tileResolutionX / 2)->This will center the map around your player's x-position
-//yOffset = player.y - floor(tileResolutionY / 2)->This will center the map around your player's y-position
-//for x = 0 to tileResolutionX - 1
-//for y = 0 to tileResolutionY - 1
-//render tile(x + xOffset, y + yOffset) at(x * (screenResolutionX / tileResolutionX), y * (screenResolutionY /
-//    tileResolutionY))->This keeps all sprite sizes relative to one another and renders them relative to the player
-//    end for
-//    end for

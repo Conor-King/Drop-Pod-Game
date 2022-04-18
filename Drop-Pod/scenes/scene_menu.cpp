@@ -46,7 +46,7 @@ void MenuScene::Update(const double& dt) {
 
     if (button->isPressed())
     {
-       
+        Engine::GetWindow().close();
     }
 
   // cout << "Menu Update "<<dt<<"\n";

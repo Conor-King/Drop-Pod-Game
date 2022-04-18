@@ -140,8 +140,8 @@ void Engine::ChangeScene(Scene* s) {
   if (!s->isLoaded()) {
     cout << "Eng: Entering Loading Screen\n";
     loadingTime =0;
-    _activeScene->LoadAsync(); // Possible change at the end.
-    //_activeScene->Load();
+    //_activeScene->LoadAsync(); // Possible change at the end.
+    _activeScene->Load();
     loading = true;
   }
 }
@@ -173,7 +173,7 @@ void Scene::setLoaded(bool b) {
 }
 
 void Scene::UnLoad() {
-  ents.list.clear(); //Todo: Fix the clearing of entities. Button problem.
+  //ents.list.clear(); //Todo: Fix the clearing of entities. Button problem.
   setLoaded(false);
 }
 
