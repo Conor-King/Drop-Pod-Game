@@ -40,6 +40,7 @@ void MenuScene::Update(const double& dt) {
     if (button2->isPressed())
     {
         Engine::ChangeScene(&planetLevel);
+        ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
     }
 
 
