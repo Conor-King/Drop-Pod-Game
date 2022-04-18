@@ -13,17 +13,23 @@ using namespace sf;
 
 shared_ptr<Button> button;
 shared_ptr<Button> button2;
+shared_ptr<Button> button3;
 
 void MenuScene::Load() {
   cout << "Menu Load \n";
+
+  auto txt = makeEntity();
+  auto t = txt->addComponent<TextComponent>(490, 180, "DROP POD");
+
   {
       auto btn = makeEntity();
-      button = btn->addComponent<Button>(450,350,250,100,"Exit",sf::Color::White, sf::Color::Green, sf::Color::Red);
-     
+      button = btn->addComponent<Button>(500, 460, 220, 80, "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
       auto btn2 = makeEntity();
-      button2 = btn2->addComponent<Button>(450, 175, 250, 100, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
-      //CurrentScene.Size.Width / 2
-      //CurrentScene.Size.Height / 2
+      button2 = btn2->addComponent<Button>(500, 360, 220, 80, "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+      auto btn3 = makeEntity();
+      button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
   }
 
@@ -37,7 +43,7 @@ void MenuScene::Load() {
 
 void MenuScene::Update(const double& dt) {
 
-    if (button2->isPressed())
+    if (button3->isPressed())
     {
         Engine::ChangeScene(&planetLevel);
         ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
