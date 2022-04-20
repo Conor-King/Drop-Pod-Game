@@ -1,0 +1,3156 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "bin/Drop_Pod.exe"
+		},
+		{
+			"path" : "bin/Drop_Pod.pdb"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"link_directories",
+			"target_link_libraries",
+			"add_dependencies"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 67,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 71,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 74,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MP /EHsc /MDd /Zi /Ob0 /Od /RTC1"
+				},
+				{
+					"fragment" : "-std:c++14"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 3,
+					"path" : "C:/University/ThirdYear/S2/gp/app/Drop-Pod-Game/engine"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/University/ThirdYear/S2/gp/app/Drop-Pod-Game/SYSTEM"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/University/ThirdYear/S2/gp/app/Drop-Pod-Game/lib/b2d/Box2D"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/University/ThirdYear/S2/gp/app/Drop-Pod-Game/lib_tile_level_loader"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/University/ThirdYear/S2/gp/app/Drop-Pod-Game/lib_maths"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/University/ThirdYear/S2/gp/app/Drop-Pod-Game/lib/sfml/include"
+				},
+				{
+					"backtrace" : 3,
+					"path" : "C:/University/ThirdYear/S2/gp/app/Drop-Pod-Game/lib_ecm"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					1
+				],
+				"standard" : "14"
+			},
+			"sourceIndexes" : 
+			[
+				0,
+				2,
+				4,
+				6,
+				9,
+				10,
+				12,
+				14,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 4,
+			"id" : "copy_resources::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "lib_engine::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "lib_ecm::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "lib_tile_level_loader::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "sfml-system::@ade90ebdf211b83bd87c"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "sfml-graphics::@8f027e26a9c49a14a54c"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "sfml-window::@344d4f502e197fb19f4c"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "sfml-audio::@f41189585cfb974df97d"
+		},
+		{
+			"backtrace" : 3,
+			"id" : "Box2D::@9ba5c0e48f6794281dce"
+		}
+	],
+	"id" : "Drop_Pod::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "/DWIN32 /D_WINDOWS /W3 /GR /EHsc /MP /EHsc /MDd /Zi /Ob0 /Od /RTC1",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "/machine:x64 /debug /INCREMENTAL /subsystem:console",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "-LIBPATH:C:\\University\\ThirdYear\\S2\\gp\\app\\Drop-Pod-Game\\out\\build\\x64-Debug\\lib\\sfml\\lib",
+				"role" : "libraryPath"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "lib_engine.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib_tile_level_loader.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib_ecm.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "Build\\bin\\Box2D.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib\\sfml\\lib\\sfml-graphics-d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib\\sfml\\lib\\sfml-window-d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib\\sfml\\lib\\sfml-audio-d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "lib\\sfml\\lib\\sfml-system-d.lib",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "Drop_Pod",
+	"nameOnDisk" : "Drop_Pod.exe",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "components",
+			"sourceIndexes" : 
+			[
+				0,
+				1,
+				2,
+				3,
+				4,
+				5,
+				6,
+				7
+			]
+		},
+		{
+			"name" : "Header Files",
+			"sourceIndexes" : 
+			[
+				8,
+				11,
+				13,
+				15,
+				17,
+				19,
+				21,
+				23,
+				25,
+				27,
+				479
+			]
+		},
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				9,
+				10,
+				12,
+				14,
+				16,
+				18,
+				20,
+				22,
+				24,
+				26
+			]
+		},
+		{
+			"name" : "resources",
+			"sourceIndexes" : 
+			[
+				28,
+				29,
+				30,
+				31,
+				32,
+				33,
+				34,
+				35,
+				36,
+				37,
+				38,
+				39,
+				40,
+				41,
+				42,
+				43,
+				44,
+				45,
+				46,
+				47,
+				48,
+				49,
+				50,
+				51,
+				52,
+				53,
+				54,
+				55,
+				56,
+				57,
+				58,
+				59,
+				60,
+				61,
+				62,
+				63,
+				64,
+				65,
+				66,
+				67,
+				68,
+				69,
+				70,
+				71,
+				72,
+				73,
+				74,
+				75,
+				76,
+				77,
+				78,
+				79,
+				80,
+				81,
+				82,
+				83,
+				84,
+				85,
+				86,
+				87,
+				88,
+				89,
+				90,
+				91,
+				92,
+				93,
+				94,
+				95,
+				96,
+				97,
+				98,
+				99,
+				100,
+				101,
+				102,
+				103,
+				104,
+				105,
+				106,
+				107,
+				108,
+				109,
+				110,
+				111,
+				112,
+				113,
+				114,
+				115,
+				116,
+				117,
+				118,
+				119,
+				120,
+				121,
+				122,
+				123,
+				124,
+				125,
+				126,
+				127,
+				128,
+				129,
+				130,
+				131,
+				132,
+				133,
+				134,
+				135,
+				136,
+				137,
+				138,
+				139,
+				140,
+				141,
+				142,
+				143,
+				144,
+				145,
+				146,
+				147,
+				148,
+				149,
+				150,
+				151,
+				152,
+				153,
+				154,
+				155,
+				156,
+				157,
+				158,
+				159,
+				160,
+				161,
+				162,
+				163,
+				164,
+				165,
+				166,
+				167,
+				168,
+				169,
+				170,
+				171,
+				172,
+				173,
+				174,
+				175,
+				176,
+				177,
+				178,
+				179,
+				180,
+				181,
+				182,
+				183,
+				184,
+				185,
+				186,
+				187,
+				188,
+				189,
+				190,
+				191,
+				192,
+				193,
+				194,
+				195,
+				196,
+				197,
+				198,
+				199,
+				200,
+				201,
+				202,
+				203,
+				204,
+				205,
+				206,
+				207,
+				208,
+				209,
+				210,
+				211,
+				212,
+				213,
+				214,
+				215,
+				216,
+				217,
+				218,
+				219,
+				220,
+				221,
+				222,
+				223,
+				224,
+				225,
+				226,
+				227,
+				228,
+				229,
+				230,
+				231,
+				232,
+				233,
+				234,
+				235,
+				236,
+				237,
+				238,
+				239,
+				240,
+				241,
+				242,
+				243,
+				244,
+				245,
+				246,
+				247,
+				248,
+				249,
+				250,
+				251,
+				252,
+				253,
+				254,
+				255,
+				256,
+				257,
+				258,
+				259,
+				260,
+				261,
+				262,
+				263,
+				264,
+				265,
+				266,
+				267,
+				268,
+				269,
+				270,
+				271,
+				272,
+				273,
+				274,
+				275,
+				276,
+				277,
+				278,
+				279,
+				280,
+				281,
+				282,
+				283,
+				284,
+				285,
+				286,
+				287,
+				288,
+				289,
+				290,
+				291,
+				292,
+				293,
+				294,
+				295,
+				296,
+				297,
+				298,
+				299,
+				300,
+				301,
+				302,
+				303,
+				304,
+				305,
+				306,
+				307,
+				308,
+				309,
+				310,
+				311,
+				312,
+				313,
+				314,
+				315,
+				316,
+				317,
+				318,
+				319,
+				320,
+				321,
+				322,
+				323,
+				324,
+				325,
+				326,
+				327,
+				328,
+				329,
+				330,
+				331,
+				332,
+				333,
+				334,
+				335,
+				336,
+				337,
+				338,
+				339,
+				340,
+				341,
+				342,
+				343,
+				344,
+				345,
+				346,
+				347,
+				348,
+				349,
+				350,
+				351,
+				352,
+				353,
+				354,
+				355,
+				356,
+				357,
+				358,
+				359,
+				360,
+				361,
+				362,
+				363,
+				364,
+				365,
+				366,
+				367,
+				368,
+				369,
+				370,
+				371,
+				372,
+				373,
+				374,
+				375,
+				376,
+				377,
+				378,
+				379,
+				380,
+				381,
+				382,
+				383,
+				384,
+				385,
+				386,
+				387,
+				388,
+				389,
+				390,
+				391,
+				392,
+				393,
+				394,
+				395,
+				396,
+				397,
+				398,
+				399,
+				400,
+				401,
+				402,
+				403,
+				404,
+				405,
+				406,
+				407,
+				408,
+				409,
+				410,
+				411,
+				412,
+				413,
+				414,
+				415,
+				416,
+				417,
+				418,
+				419,
+				420,
+				421,
+				422,
+				423,
+				424,
+				425,
+				426,
+				427,
+				428,
+				429,
+				430,
+				431,
+				432,
+				433,
+				434,
+				435,
+				436,
+				437,
+				438,
+				439,
+				440,
+				441,
+				442,
+				443,
+				444,
+				445,
+				446,
+				447,
+				448,
+				449,
+				450,
+				451,
+				452,
+				453,
+				454,
+				455,
+				456,
+				457,
+				458,
+				459,
+				460,
+				461,
+				462,
+				463,
+				464,
+				465,
+				466,
+				467,
+				468,
+				469,
+				470,
+				471,
+				472,
+				473,
+				474,
+				475,
+				476,
+				477,
+				478
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/components/cmp_button.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/components/cmp_button.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/components/cmp_enemy_ai.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/components/cmp_enemy_ai.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/components/cmp_sprite.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/components/cmp_sprite.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/components/cmp_text.cpp",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/components/cmp_text.h",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/drop_pod_game.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/drop_pod_main.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/monster.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/monster.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_char_select.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_char_select.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_level_select.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_level_select.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_menu.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_menu.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_planet_level.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_planet_level.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_profile.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_profile.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_settings.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_settings.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_shop.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_shop.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "Drop-Pod/scenes/scene_spaceship_level.cpp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 1,
+			"path" : "Drop-Pod/scenes/scene_spaceship_level.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/background_music/Cold-Moon.mp3",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/background_music/Cold-Moon_Looping.mp3",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/background_music/Light-Years_V001_Looping.mp3",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/background_music/Light-Years_v001.mp3",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/background_music/Trouble-On-Mercury.mp3",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/background_music/Trouble-on-Mercury_Looping.mp3",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/attack.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/cover.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/damaged.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/death.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/idle.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/tooth walker sprite-Sheet.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/tooth walker sprite.aseprite",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/6/tooth walker/walk.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/attack.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/charge.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/death.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/hit.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/idle.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/run.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/sci ball and chain.aseprite",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Ball and Chain Bot/transition to charge.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Eye ball Monster/EyeBall Monster-Sheet.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Eye ball Monster/EyeBall Monster.aseprite",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Eye ball Monster/EyeBall Monster.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Mutated_Bat/Death_Attack.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Mutated_Bat/Frame_Duration.txt",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Mutated_Bat/Idle_Flying.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Mutated_Bat/Mutated_Bat.aseprite",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Mutated_Bat/Mutated_Bat.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/Run.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/Trash Monster-Sheet.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/Trash Monster-Sprite V2.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/Trash Monster.aseprite",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/cover.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/death.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/idle.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/Trash Monster/zattack.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/attack.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/cover.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/damaged.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/death.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/idle.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/tooth walker sprite-Sheet.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/tooth walker sprite.aseprite",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/monsters/tooth walker/walk.gif",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Explosion/Explosion_001.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Explosion/Explosion_002.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Explosion/Explosion_003.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Hit or hurt/001.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Hit or hurt/002.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Hit or hurt/003.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Hit or hurt/004.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Hit or hurt/005.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Jump/Jump_001.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Jump/Jump_002.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Jump/Jump_003.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Jump/Jump_004.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Jump/Jump_005.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Laser_001.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Laser_002.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Laser_003.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Laser_004.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Laser_005.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Shoot_001.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Shoot_002.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Shoot_003.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Shoot_004.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Laser or Shoot/Shoot_005.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_001.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_002.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_003.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_004.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_005.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_006.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_007.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Pickup/Pickup_008.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize2.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize3.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize4.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize5.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize6.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize7.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize8.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Random/Randomize9.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_001.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_002.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_003.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_004.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_005.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_006.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_007.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_008.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_009.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/sfx/Select/Select_010.wav",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Example Map.tmx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Dirt 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Dirt 2 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Glass 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Grass 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Metal 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Sand 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Sand 2 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Stone 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Stone 2 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Floor - Stone 3 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Dirt 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Dirt 2 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Glass 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Grass 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Metal 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Sand 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Sand 2 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Stone 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Stone 2 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Floors/Tiled Tsx/Floor - Stone 3 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/License.txt",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Monochrome Dungeon Crawler RealSize(1).png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Brick 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Brick 2 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Brick 3 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Concrete 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Dirt 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Glass 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Glass 2 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Metal 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Sand 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Tiled Tsx/Wall - Stone 1 64x64.tsx",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Brick 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Brick 2 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Brick 3 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Concrete 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Dirt 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Glass 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Glass 2 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Metal 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Sand 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/Walls/Wall - Stone 1 64x64.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/boulder.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/grass.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/ruins_tileset.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/tileset.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/tiles/tileset_city.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_01.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_02.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_03.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_04.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_05.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_06.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_07.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_08.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/BeamB_09.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_01.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_02.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_03.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_04.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_05.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_06.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_07.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_08.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_09.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/b2_10.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_01.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_02.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_03.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_04.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_05.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_06.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_07.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_08.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_09.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/beams_10.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_01.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_02.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_03.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_04.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_05.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_06.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_07.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_08.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_09.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_10.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_11.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_12.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_13.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_14.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_15.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_16.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_17.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_18.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_19.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_20.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_21.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_22.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_23.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_24.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_25.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_26.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_27.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_28.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_29.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Beam, Jet/try4_30.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0014_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0015_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0016_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0017_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0018_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0019_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0020_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0021_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0022_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0023_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0024_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0025_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0026_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0027_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0028_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0029_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0030_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0031_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0032_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0033_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0034_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0035_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0036_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0037_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0038_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0039_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0040_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/Bullets/bullets1_0041_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0000_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0001_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0002_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0003_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0004_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0005_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0006_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0007_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0008_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0009_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0010_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0011_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0012_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0013_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0014_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0015_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0016_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0017_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0018_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0019_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0020_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0021_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0022_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0023_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0024_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0025_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0026_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0027_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0028_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0029_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0030_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0031_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0032_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0033_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0034_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0035_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0036_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0037_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0038_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0039_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0040_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0041_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0042_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0043_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0044_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0045_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0046_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0047_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0048_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0049_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0050_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0051_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0052_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0053_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0054_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0055_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0056_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0057_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0058_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0059_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0060_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0061_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0062_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0063_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0064_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0065_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0066_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0067_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0068_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0069_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0070_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0071_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0072_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0073_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0074_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0075_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0076_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0077_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0078_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0079_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0080_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0081_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0082_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0083_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0084_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0085_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0086_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0087_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0088_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0089_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0090_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0091_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0092_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0093_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0094_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0095_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0096_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0097_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0098_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0099_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0100_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0101_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0102_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0103_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0104_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0105_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0106_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0107_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0108_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0109_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0110_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0111_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0112_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0113_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0114_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0115_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0116_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0117_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0118_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0119_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0120_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0121_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0122_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0123_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0124_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0125_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0126_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0127_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0128_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0129_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0130_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0131_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0132_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0133_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0134_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/LaserBeams (for loop compatible)/beams_0135_Rectangle---------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/bulletGlow.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/rocket.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0000_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0001_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0002_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0003_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0004_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0005_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0006_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0007_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0008_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0009_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0010_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0011_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0012_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0013_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0014_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0015_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0016_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0017_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0018_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0019_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0020_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0021_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0022_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0023_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0024_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0025_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0026_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0027_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0028_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0029_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0030_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0031_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0032_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0033_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0034_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0035_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0036_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0037_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0038_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0039_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0040_Circle------------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0041_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0042_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0043_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0044_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0045_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0046_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0047_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0048_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0049_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0050_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0051_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0052_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0053_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0054_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0055_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0056_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0057_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0058_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0059_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0060_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0061_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0062_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0063_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/MainWeapons/weapon_0064_Package-----------------.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/beams.psd",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/beams3.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/beams3_transp.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/beamsB.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/beamsB2_transp.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/bulletPack.psd",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/lunar.psd",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/sheet1.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/sheet2.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/sheet3.png",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/assets/weapons/WeaponSheets/weaponsFULLminiSheet.psd",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/fonts/RobotoMono-Regular.ttf",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/fonts/font.ttf",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/levels/floorMap.txt",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/levels/maze.txt",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/levels/smallFloorMap.txt",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 1,
+			"path" : "res/levels/vLine.txt",
+			"sourceGroupIndex" : 3
+		},
+		{
+			"backtrace" : 3,
+			"path" : "lib_maths/maths.h",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "EXECUTABLE"
+}
