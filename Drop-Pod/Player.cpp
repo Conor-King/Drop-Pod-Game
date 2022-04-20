@@ -18,11 +18,11 @@ Player::~Player()
 }
 
 //Component functions
-void Player::createSprite(sf::Texture* texture)
-{
-	this->texture = texture;
-	this->sprite->setTexture(*this->texture);
-}
+//void Player::createSprite(sf::Texture* texture)
+//{
+//	this->texture = texture;
+//	this->sprite->setTexture(*this->texture);
+//}
 
 //Functions
 void Player::move(const float& dt, const float dir_x, const float dir_y)
@@ -47,5 +47,5 @@ void Player::update(const float& dt)
 
 void Player::render(sf::RenderTarget* target)
 {
-	target->draw(this->shape);
+	//target->draw(this->shape);
 }

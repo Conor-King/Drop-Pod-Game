@@ -17,9 +17,7 @@ protected:
 public:
 	Player();
 	virtual ~Player();
-
-	//Component functions
-
+	virtual void initVariables();
 
 	//functions
 	virtual void move(const float& dt,const float x, const float y);
