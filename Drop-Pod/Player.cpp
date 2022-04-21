@@ -1,28 +1,19 @@
 #include "Player.h"
 
-void Player::initVariables()
-{
-	this->texture = NULL;
-	this->sprite = NULL;
-	this->movementSpeed = 100.f;
-}
+
+	
+float movementSpeed = 100.f;
+
 
 Player::Player()
 {
-	this->initVariables;
+	
 	
 }
 Player::~Player()
 {
 	delete this->sprite;
 }
-
-//Component functions
-//void Player::createSprite(sf::Texture* texture)
-//{
-//	this->texture = texture;
-//	this->sprite->setTexture(*this->texture);
-//}
 
 //Functions
 void Player::move(const float& dt, const float dir_x, const float dir_y)

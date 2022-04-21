@@ -11,6 +11,9 @@ public:
     int yCount;
     sf::Vector2f startingCenter;
 
+    std::shared_ptr<sf::Texture> spritesheet;
+    
+
   void Load() override;
 
   void UnLoad() override;

@@ -83,6 +83,8 @@ public:
 
   void setVisible(bool _visible);
 
+  std::vector<std::shared_ptr<Component>> getComponents();
+
   template <typename T, typename... Targs>
   std::shared_ptr<T> addComponent(Targs... params) {
     static_assert(std::is_base_of<Component, T>::value, "T != component");
