@@ -28,20 +28,13 @@ public:
 
 
 	Button() = delete;
-	/*explicit Button(Entity* p);*/
+	
 	explicit Button(Entity* p, float x, float y, float width, float height, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 	void update(double dt) override;
-
 	void render() override;
-
 	~Button() override = default;
 		
-
-
 		const bool isPressed() const;
-
-		/*void update(sf::Vector2f mousePos);
-		void Renderer::queue(sf::RenderTarget* target);*/
 
 };
 

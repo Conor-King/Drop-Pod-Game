@@ -51,25 +51,13 @@ void Button::render() {
 }
 
 Button::Button(Entity* p,float x, float y, float width, float height, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
-/*Button::Button(Entity* p) */
 	: Component(p){
 
-	/*float x =100.f ;
-	float y =100.f ;
-	float width =150.f ;
-	float height =50.f ;
-	std::string text = "test text";*/
-
-
-
 	this->buttonState = BUTTON_IDLE;
-
-
 	this->shape.setPosition(sf::Vector2f(x, y));
 	this->shape.setSize(sf::Vector2f(width, height));
 
-	/*this->font = font;*/
-	/*this->_text.setFont(*this->font);*/
+	
 	this->_text.setString(text);
 	this->_text.setFillColor(sf::Color::Black);
 	this->_text.setCharacterSize(20); 
