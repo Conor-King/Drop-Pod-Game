@@ -12,9 +12,6 @@ git submodule status
 
 Results should show:
 
- e8d2cafa7f1300f5916a2e22f277d998a739e835 lib/b2d (heads/master)
- 2f11710abc5aa478503a7ff3f9e654bd2078ebab lib/sfml (2.5.1)
-
 
 Then compile with CMake. This will show an error for developers just ignore.
 
