@@ -107,6 +107,8 @@ void EntityManager::render() {
   }
 }
 
+void EntityManager::addEntity(shared_ptr<Entity> entity) { list.push_back(entity); }
+
 vector<shared_ptr<Entity>> EntityManager::find(const string& tag) const {
   vector<shared_ptr<Entity>> ret;
   for (auto& e : list) {
