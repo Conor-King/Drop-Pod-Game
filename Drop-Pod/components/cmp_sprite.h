@@ -38,3 +38,26 @@ public:
     _shape.reset(new T(params...));
   }
 };
+
+struct Frame {
+    sf::IntRect rect;
+    double duration;
+};
+
+class AnimationComponent : public Component {
+    friend struct Frame;
+protected:
+    std::vector<Frame> frames;
+    double totalLength;
+    double totalProgress;
+    sf::Sprite* target;
+public:
+
+    AnimationComponent() = delete;
+
+    explicit AnimationComponent(Entity* p, sf::Sprite& target);
+
+    void update(double dt) override;
+    void addFrame(Frame& frame);
+    void render();
+};
