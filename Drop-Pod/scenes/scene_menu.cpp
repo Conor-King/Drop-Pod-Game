@@ -5,7 +5,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>	
 #include"../components/cmp_button.h"
-#include "engine.cpp"
+#include "engine.h"
 #include <SFML/Audio.hpp>
 #include <iostream>
 
@@ -34,11 +34,7 @@ void MenuScene::Load() {
     button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 
-  /*{
-    auto txt = makeEntity();
-    auto t = txt->addComponent<TextComponent>(
-        "Drop Pod\nPress Space to Start");
-  }*/
+  
   setLoaded(true);
 }
 
@@ -57,13 +53,6 @@ void MenuScene::Update(const double& dt) {
     {
         Engine::GetWindow().close();
     }
-
-  // cout << "Menu Update "<<dt<<"\n";
-    
-  //if (sf::Keyboard::isKeyPressed(Keyboard::Space)) {
-  //  Engine::ChangeScene(&planetLevel);
-  //  ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
-  //}
 
   Scene::Update(dt);
 }

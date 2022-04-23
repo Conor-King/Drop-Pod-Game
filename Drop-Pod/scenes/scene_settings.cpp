@@ -2,14 +2,41 @@
 #include "../drop_pod_game.h"
 #include <LevelSystem.h>
 #include <iostream>
+#include "engine.h"
+#include"../components/cmp_button.h"
+#include "../components/cmp_text.h"
+#include <SFML/Window/Keyboard.hpp>
+#include <engine.cpp>
 using namespace std;
 using namespace sf;
 
+shared_ptr<Button> button5;
+shared_ptr<Button> button6;
+shared_ptr<Button> button7;
 
-void SettingsScene::Load() { }
+void SettingsScene::Load() {
+    cout << "Setting Load \n";
 
-void SettingsScene::UnLoad() { }
+    auto txt2 = makeEntity();
+    auto t = txt2->addComponent<TextComponent>(490, 180, "Settings");
 
-void SettingsScene::Update(const double& dt) { }
+    auto btn5 = makeEntity();
+    button5 = btn5->addComponent<Button>(380, 260, 220, 80, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-void SettingsScene::Render() { }
+    auto btn6 = makeEntity();
+    button6 = btn6->addComponent<Button>(600, 260, 220, 80, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+    auto btn7 = makeEntity();
+    button7 = btn7->addComponent<Button>(500, 460, 220, 80, "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+
+    setLoaded(true);
+}
+void SettingsScene::Update(const double& dt) {
+    if (button7->isPressed())
+    {
+        Engine::ChangeScene(&menu);
+    }
+Scene::Update(dt);
+}
+
