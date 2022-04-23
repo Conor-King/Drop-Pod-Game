@@ -41,6 +41,8 @@ void Entity::setPosition(const sf::Vector2f& _position) {
 
 float Entity::getRotation() const { return _rotation; }
 
+std::vector<std::shared_ptr<Component>> Entity::getComponents() { return _components; }
+
 void Entity::setRotation(float _rotation) { Entity::_rotation = _rotation; }
 
 bool Entity::isAlive() const { return _alive; }
@@ -104,6 +106,8 @@ void EntityManager::render() {
     }
   }
 }
+
+void EntityManager::addEntity(shared_ptr<Entity> entity) { list.push_back(entity); }
 
 vector<shared_ptr<Entity>> EntityManager::find(const string& tag) const {
   vector<shared_ptr<Entity>> ret;

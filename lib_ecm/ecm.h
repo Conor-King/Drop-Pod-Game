@@ -36,6 +36,8 @@ struct EntityManager {
   std::vector<std::shared_ptr<Entity>> find(const std::string& tag) const;
   std::vector<std::shared_ptr<Entity>>
   find(const std::vector<std::string>& tags) const;
+
+  void addEntity(std::shared_ptr<Entity> entity);
 };
 
 class Entity {
@@ -82,6 +84,8 @@ public:
   bool isVisible() const;
 
   void setVisible(bool _visible);
+
+  std::vector<std::shared_ptr<Component>> getComponents();
 
   template <typename T, typename... Targs>
   std::shared_ptr<T> addComponent(Targs... params) {

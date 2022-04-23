@@ -18,7 +18,9 @@ public:
   bool isLoaded() const;
   std::shared_ptr<Entity> makeEntity();
 
+
   EntityManager ents;
+  virtual EntityManager getEcm();
 
 protected:
   void setLoaded(bool);

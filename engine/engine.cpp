@@ -150,6 +150,8 @@ void Scene::Update(const double& dt) { ents.update(dt); }
 
 void Scene::Render() { ents.render(); }
 
+EntityManager Scene::getEcm() { return ents; }
+
 bool Scene::isLoaded() const {
   {
     std::lock_guard<std::mutex> lck(_loaded_mtx);
