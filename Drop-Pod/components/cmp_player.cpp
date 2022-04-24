@@ -1,6 +1,6 @@
 #include "cmp_player.h"
 #include <SFML/Window.hpp>
-
+#include "../drop_pod_game.h"
 using namespace std;
 using namespace sf;
 
@@ -10,7 +10,6 @@ PlayerComponent::PlayerComponent(Entity* p) : ActorMovementComponent(p) {
 	_health = 100;
 
 }
-
 
 
 void PlayerComponent::update(const double dt)
@@ -46,18 +45,3 @@ void PlayerComponent::update(const double dt)
 
 void PlayerComponent::render() {}
 
-/*const bool PlayerComponent::arrowsSwitch() const
-{
-	{
-		if (this->switchState == Arrows)
-			return true;
-		return false;
-	}
-}
-
-const bool PlayerComponent::wsadSwitch() const
-{
-	if (this->switchState == WSAD)
-		return true;
-	return false;
-}*/

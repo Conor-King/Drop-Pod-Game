@@ -1,6 +1,7 @@
 #include "engine.h"
 #include "drop_pod_game.h"
 #include "scenes/scene_menu.h"
+#include "components/cmp_player.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ PlanetLevelScene planetLevel;
 SpaceshipLevelScene spaceshipLevel;
 
 int main() {
+	
   Engine::Start(1280, 720, "Drop Pod", &menu);
-
 }
+

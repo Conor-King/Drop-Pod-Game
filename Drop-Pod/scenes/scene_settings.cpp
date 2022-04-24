@@ -2,7 +2,6 @@
 #include "../drop_pod_game.h"
 #include <LevelSystem.h>
 #include <iostream>
-
 #include"../components/cmp_button.h"
 #include "../components/cmp_text.h"
 #include <SFML/Window/Keyboard.hpp>
@@ -35,12 +34,12 @@ void SettingsScene::Load() {
 }
 void SettingsScene::Update(const double& dt) {
 
-    if (button5->isPressed()) {
-        PlayerComponent::switchState = WSAD;
+    if (button6->isPressed()) {
+        switchState = WSAD;
     }
         
-    if (button6->isPressed()) {
-        PlayerComponent::switchState = Arrows;
+    if (button5->isPressed()) {
+       switchState = Arrows;
     }
     if (button7->isPressed())
     {
