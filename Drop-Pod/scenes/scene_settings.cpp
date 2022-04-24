@@ -2,11 +2,12 @@
 #include "../drop_pod_game.h"
 #include <LevelSystem.h>
 #include <iostream>
-#include "engine.h"
+
 #include"../components/cmp_button.h"
 #include "../components/cmp_text.h"
 #include <SFML/Window/Keyboard.hpp>
 #include <engine.cpp>
+#include "../components/cmp_player.h"
 using namespace std;
 using namespace sf;
 
@@ -33,6 +34,14 @@ void SettingsScene::Load() {
     setLoaded(true);
 }
 void SettingsScene::Update(const double& dt) {
+
+    if (button5->isPressed()) {
+        PlayerComponent::switchState = WSAD;
+    }
+        
+    if (button6->isPressed()) {
+        PlayerComponent::switchState = Arrows;
+    }
     if (button7->isPressed())
     {
         Engine::ChangeScene(&menu);
