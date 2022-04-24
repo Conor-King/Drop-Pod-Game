@@ -182,7 +182,7 @@ void PlanetLevelScene::Update(const double& dt) {
         viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
     }
 
-    auto mousePos = Mouse::getPosition(Engine::GetWindow());
+    auto mousePos = Engine::GetWindow().mapPixelToCoords(Mouse::getPosition(Engine::GetWindow()));
     string mouseTextx = to_string(mousePos.x);
     string mouseTexty = to_string(mousePos.y);
     mousePosText.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
