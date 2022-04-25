@@ -3,6 +3,7 @@
 #include "../drop_pod_game.h"
 #include "../components/cmp_actor_movement.h"
 #include "../components/cmp_player.h"
+#include "../components/cmp_shooting.h"
 #include "../components/cmp_sprite.h"
 #include "../components/cmp_text.h"
 #include "system_renderer.h"
@@ -91,6 +92,8 @@ void PlanetLevelScene::Load() {
     auto pmove = player->addComponent<ActorMovementComponent>();
     auto pmovement = player->addComponent<PlayerComponent>();
 
+    auto pshooting = player->addComponent<ShootingComponent>();
+
     // Debug Text ---------------------------------------------------------------------
     viewText.setPosition(20, 20);
     viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
@@ -130,6 +133,10 @@ void PlanetLevelScene::Update(const double& dt) {
     //    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
     //
     //}
+
+    if (Keyboard::isKeyPressed(Keyboard::O)) {
+        player->GetCompatibleComponent<ShootingComponent>()[0]->Fire();
+    }
 
     // Moving the window for testing.
     float directY = 0.f;
