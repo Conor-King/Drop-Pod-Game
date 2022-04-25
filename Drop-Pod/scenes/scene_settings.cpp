@@ -10,9 +10,9 @@
 using namespace std;
 using namespace sf;
 
-shared_ptr<Button> button5;
-shared_ptr<Button> button6;
-shared_ptr<Button> button7;
+shared_ptr<Entity> btn4;
+shared_ptr<Entity> btn5;
+shared_ptr<Entity> btn6;
 
 void SettingsScene::Load() {
     cout << "Setting Load \n";
@@ -20,31 +20,34 @@ void SettingsScene::Load() {
     auto txt2 = makeEntity();
     auto t = txt2->addComponent<TextComponent>(490, 180, "Settings");
 
-    auto btn5 = makeEntity();
-    button5 = btn5->addComponent<Button>(380, 260, 220, 80, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+     btn4 = makeEntity();
+    auto button = btn4->addComponent<Button>(380, 260, 220, 80, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    auto btn6 = makeEntity();
-    button6 = btn6->addComponent<Button>(600, 260, 220, 80, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+     btn5 = makeEntity();
+    auto button2 = btn5->addComponent<Button>(600, 260, 220, 80, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    auto btn7 = makeEntity();
-    button7 = btn7->addComponent<Button>(500, 460, 220, 80, "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
+     btn6 = makeEntity();
+    auto button3 = btn6->addComponent<Button>(500, 460, 220, 80, "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 
     setLoaded(true);
 }
 void SettingsScene::Update(const double& dt) {
 
-    if (button6->isPressed()) {
+    if (btn4->GetCompatibleComponent<Button>()[0]->isPressed()) {
+        switchState = Arrows;
+    }
+    else if (btn5->GetCompatibleComponent<Button>()[0]->isPressed()) {
         switchState = WSAD;
     }
-        
-    if (button5->isPressed()) {
-       switchState = Arrows;
-    }
-    if (button7->isPressed())
+    else if (btn6->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::ChangeScene(&menu);
     }
-Scene::Update(dt);
+
+    if (!sf::Mouse::isButtonPressed(Mouse::Button::Left))
+        Button::_mouseState = BUTTON_IDLE;
+
+    Scene::Update(dt);
 }
 

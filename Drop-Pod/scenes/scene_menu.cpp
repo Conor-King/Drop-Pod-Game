@@ -13,10 +13,12 @@
 using namespace std;
 using namespace sf;
 
-shared_ptr<Button> button;
-shared_ptr<Button> button2;
-shared_ptr<Button> button3;
 //sf::Music music;
+
+shared_ptr<Entity> btn;
+shared_ptr<Entity> btn2;
+shared_ptr<Entity> btn3;
+
 
 void MenuScene::Load() {
   cout << "Menu Load \n";
@@ -24,14 +26,14 @@ void MenuScene::Load() {
       auto txt = makeEntity();
       auto t = txt->addComponent<TextComponent>(490, 180, "DROP POD");
 
-    auto btn = makeEntity();
-    button = btn->addComponent<Button>(500, 460, 220, 80, "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    btn = makeEntity();
+    auto button = btn->addComponent<Button>(500, 460, 220, 80, "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    auto btn2 = makeEntity();
-    button2 = btn2->addComponent<Button>(500, 360, 220, 80, "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    btn2 = makeEntity();
+    auto button2 = btn2->addComponent<Button>(500, 360, 220, 80, "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    auto btn3 = makeEntity();
-    button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    btn3 = makeEntity();
+    auto button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 
   
@@ -40,19 +42,25 @@ void MenuScene::Load() {
 
 void MenuScene::Update(const double& dt) {
 
-    if (button3->isPressed())
+    if (btn3->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::ChangeScene(&planetLevel);
         ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
     }
-    if (button2->isPressed())
+    else if (btn2->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::ChangeScene(&settings);
     }
-    if (button->isPressed())
+    else if (btn->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::GetWindow().close();
     }
 
+    if(!sf::Mouse::isButtonPressed(Mouse::Button::Left))
+        Button::_mouseState = BUTTON_IDLE;
+
+
+    //cout << Button::_mouseState << endl;
+   
   Scene::Update(dt);
 }

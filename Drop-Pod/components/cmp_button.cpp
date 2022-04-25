@@ -7,22 +7,29 @@
 using namespace sf;
 using namespace std;
 
-unique_ptr<Button> button;
+//unique_ptr<Button> button;
+button_states Button::_mouseState;
 
 void Button::update(double dt) {
-	//Default
-	this->buttonState = BUTTON_IDLE;
 
 	Vector2f point = Vector2f(Mouse::getPosition(Engine::GetWindow()).x, Mouse::getPosition(Engine::GetWindow()).y);
 	//window - to get position
 	// Hover statement
 	if (this->shape.getGlobalBounds().contains(point))
 	{
-		this->buttonState = BUTTON_HOVER;
 		//Pressed statement
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
-			this->buttonState = BUTTON_ACTIVE;
+			this->buttonState = BUTTON_ACTIVED;
+
+			if (_mouseState == BUTTON_IDLE)
+				_mouseState = BUTTON_ACTIVED;
+			else if (_mouseState == BUTTON_ACTIVED)
+				_mouseState = BUTTON_DOWN;
+		}
+		else
+		{
+			this->buttonState = BUTTON_HOVER;
 		}
 	}
 	else
@@ -37,10 +44,11 @@ void Button::update(double dt) {
 	case BUTTON_HOVER:
 		this->shape.setFillColor(this->hoverColor);
 		break;
-	case BUTTON_ACTIVE:
+	case BUTTON_ACTIVED:
 		this->shape.setFillColor(this->activeColor);
+		break;
 	default:
-		this->shape.setFillColor(sf::Color::Red);
+		this->shape.setFillColor(sf::Color::Cyan);
 		break;
 	}
 }
@@ -57,12 +65,13 @@ Button::Button(Entity* p,float x, float y, float width, float height, std::strin
 	this->shape.setPosition(sf::Vector2f(x, y));
 	this->shape.setSize(sf::Vector2f(width, height));
 
+	//_mouseState = BUTTON_IDLE;
 	
 	this->_text.setString(text);
 	this->_text.setFillColor(sf::Color::Black);
 	this->_text.setCharacterSize(20); 
-	font.loadFromFile("res/fonts/font.ttf");
-	this->_text.setFont(font);
+	font = Resources::get<sf::Font>("font.ttf");
+	this->_text.setFont(*font);
 	this->_text.setPosition(sf::Vector2f(
 		this->shape.getPosition().x + (this->shape.getGlobalBounds().width / 2.f) - this->_text.getGlobalBounds().width / 2.f,
 		this->shape.getPosition().y + (this->shape.getGlobalBounds().height / 2.f) - this->_text.getGlobalBounds().height / 2.f
@@ -78,8 +87,12 @@ Button::Button(Entity* p,float x, float y, float width, float height, std::strin
 
 const bool Button::isPressed() const
 {
-	if (this->buttonState == BUTTON_ACTIVE)
-		return true;
+	if (this->buttonState == BUTTON_ACTIVED)
+	{
+		if(_mouseState == BUTTON_ACTIVED)
+			return true;
+	}
+		
 	return false;
 }
 
