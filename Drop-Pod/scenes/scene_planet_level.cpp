@@ -14,6 +14,13 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
 
+/* Todo:
+* Return to menu
+* Add timer
+* 
+* 
+*/
+
 using namespace std;
 using namespace sf;
 
@@ -95,6 +102,10 @@ void PlanetLevelScene::Load() {
     auto pmovement = player->addComponent<PlayerComponent>();
 
     auto pshooting = player->addComponent<ShootingComponent>();
+
+    // Enemies entity -----------------------------------------------------------------
+
+
 
 
 

@@ -18,10 +18,12 @@ int main() {
 
 }
 
-/* todo:
+/* Todo:
 * itch.io page
 * resolution change / change the render to suit with the map.
 * show controls?
+* Victory Text/screen
+* Save the settings preferences
 * 
 * 
 * 
