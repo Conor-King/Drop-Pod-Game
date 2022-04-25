@@ -17,3 +17,15 @@ int main() {
   Engine::Start(1280, 720, "Drop Pod", &menu);
 
 }
+
+/* todo:
+* itch.io page
+* resolution change / change the render to suit with the map.
+* show controls?
+* 
+* 
+* 
+* 
+* 
+* 
+*/

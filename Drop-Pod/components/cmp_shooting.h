@@ -7,16 +7,16 @@
 class Bullet : sf::Sprite {
 protected:
 	void _update(const double dt);
-	std::shared_ptr<float> angleshot;
+	bool isVisible;
 	sf::Vector2f mousePos;
+	float angle;
 	
 public:
-
 	static void update(const double dt);
 	static void render();
 	static void fire(const sf::Vector2f& pos);
 	static void init();
-	static void setAngle(float angle, Bullet b);
+	static void setAngle(float a, Bullet& b);
 
 	~Bullet() = default;
 	Bullet();
@@ -25,13 +25,11 @@ public:
 class ShootingComponent : public ActorMovementComponent {
 protected:
 
-	static std::vector<Bullet> bullets;
-	static unsigned char bulletCount;
+	std::vector<Bullet> bullets;
+	unsigned int bulletCount;
+	float angleshot;
 
 public:
-
-	
-
 	ShootingComponent() = delete;
 
 	explicit ShootingComponent(Entity* p);

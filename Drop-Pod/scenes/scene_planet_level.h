@@ -18,6 +18,8 @@ public:
 
     std::shared_ptr<Entity> player;
     std::shared_ptr<sf::Texture> spritesheet;
+
+    float fireTime;
     
 
   void Load() override;

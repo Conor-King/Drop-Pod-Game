@@ -38,6 +38,8 @@ Text mousePosText;
 Text playerPosText;
 Text centerPosText;
 
+float fireTime = 0.f;
+
 void PlanetLevelScene::Load() {
 
     ecm = Scene::getEcm();
@@ -94,6 +96,8 @@ void PlanetLevelScene::Load() {
 
     auto pshooting = player->addComponent<ShootingComponent>();
 
+
+
     // Debug Text ---------------------------------------------------------------------
     viewText.setPosition(20, 20);
     viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
@@ -133,9 +137,12 @@ void PlanetLevelScene::Update(const double& dt) {
     //    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
     //
     //}
+    
+    fireTime -= dt;
 
-    if (Keyboard::isKeyPressed(Keyboard::O)) {
+    if (fireTime <= 0 && Keyboard::isKeyPressed(Keyboard::O)) {
         player->GetCompatibleComponent<ShootingComponent>()[0]->Fire();
+        fireTime = 0.5f;
     }
 
     // Moving the window for testing.
