@@ -21,8 +21,8 @@ shared_ptr<Button> button3;
 void MenuScene::Load() {
   cout << "Menu Load \n";
 
-      auto txt = makeEntity();
-      auto t = txt->addComponent<TextComponent>(490, 180, "DROP POD");
+    auto txt = makeEntity();
+    auto t = txt->addComponent<TextComponent>(490, 180, "DROP POD");
 
     auto btn = makeEntity();
     button = btn->addComponent<Button>(500, 460, 220, 80, "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);

@@ -2,9 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdlib.h>
 
-
 EnemyFollowPlayer::EnemyFollowPlayer(Monster& self, Player& player) {
-
 }
 
 
@@ -15,6 +13,7 @@ EnemyFollowPlayer::~EnemyFollowPlayer()
 void EnemyFollowPlayer::updatePath(const float& dt)
 {
 	sf::Vector2f moveVec;
+
 	moveVec.x = player.getPosition().x - self.getPosition().x;
 	moveVec.y = player.getPosition().y - self.getPosition().y;
 

@@ -44,7 +44,7 @@ Sprite* target;
 AnimationComponent::AnimationComponent(Entity* p, Sprite& target) : Component(p){
     this->target = &target;
     totalProgress = 0.f;
-    //totalLength = 0.f;
+    totalLength = 0.f;
 }
 
 void AnimationComponent::addFrame(Frame& frame) {

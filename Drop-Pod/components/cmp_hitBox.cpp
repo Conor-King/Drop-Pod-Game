@@ -1,4 +1,3 @@
-
 #include "cmp_hitBox.h"
 
 HitBox::HitBox(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height) : sprite(sprite), offsetX(offset_x), offsetY(offset_y)
@@ -13,7 +12,6 @@ HitBox::HitBox(sf::Sprite& sprite, float offset_x, float offset_y, float width, 
 	this->hitbox.setFillColor(sf::Color::Transparent);
 	this->hitbox.setOutlineThickness(-1.f);
 	this->hitbox.setOutlineColor(sf::Color::Green);
-}
 
 HitBox::~HitBox()
 {
@@ -48,7 +46,9 @@ void HitBox::setPosition(const float x, const float y)
 {
 }
 
+
 //Checks if the hitbox intersects with another hitbox
+
 bool HitBox::collides(const sf::FloatRect& frect)
 {
     return false;

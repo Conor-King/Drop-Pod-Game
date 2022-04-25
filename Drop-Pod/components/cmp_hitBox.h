@@ -1,4 +1,5 @@
 #pragma once
+
 #include <SFML/Graphics.hpp>
 
 class HitBox
@@ -6,7 +7,9 @@ class HitBox
 private:
 	sf::Sprite& sprite;
 	sf::RectangleShape hitbox;
+
 	sf::FloatRect nextPosition;
+
 	float offsetX;
 	float offsetY;
 
