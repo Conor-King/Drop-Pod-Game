@@ -1,4 +1,4 @@
-#include "monster.h"
+#include "cmp_monster.h"
 
 void Monster::initVariables()
 {

@@ -1,4 +1,4 @@
-#include "HitBox.h"
+#include "cmp_hitBox.h"
 
 HitBox::HitBox(sf::Sprite& sprite, float offset_x, float offset_y, float width, float height)
 {

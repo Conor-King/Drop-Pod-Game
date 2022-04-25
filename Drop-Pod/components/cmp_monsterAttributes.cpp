@@ -1,4 +1,4 @@
-#include "monsterAttributes.h"
+#include "cmp_monsterAttributes.h"
 
 void monsterAttributes::loseHP(const int hp)
 {
