@@ -7,7 +7,9 @@ class HitBox
 private:
 	sf::Sprite& sprite;
 	sf::RectangleShape hitbox;
-	sf::FloatRect nextPos;
+
+	sf::FloatRect nextPosition;
+
 	float offsetX;
 	float offsetY;
 

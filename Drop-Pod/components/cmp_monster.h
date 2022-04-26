@@ -16,6 +16,4 @@ public:
 
 	//Component functions
 	void setTexture(sf::Texture& texture);
-
-
 };
