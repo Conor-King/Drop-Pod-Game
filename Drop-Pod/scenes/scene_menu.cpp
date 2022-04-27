@@ -13,7 +13,7 @@
 using namespace std;
 using namespace sf;
 
-//sf::Music music;
+sf::Music music;
 
 shared_ptr<Entity> btn;
 shared_ptr<Entity> btn2;
@@ -35,7 +35,9 @@ void MenuScene::Load() {
     btn3 = makeEntity();
     auto button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-
+    if (!music.openFromFile("res/assets/background_music/Cold-Moon.mp3"))
+         printf("music broken"); // error
+    music.play();
   
   setLoaded(true);
 }
