@@ -17,7 +17,7 @@ extern CharSelectScene charSelect;
 extern LevelSelectScene levelSelect;
 extern PlanetLevelScene planetLevel;
 extern SpaceshipLevelScene spaceshipLevel;
-static short unsigned switchState;
+extern short unsigned switchState;
 
 
 
