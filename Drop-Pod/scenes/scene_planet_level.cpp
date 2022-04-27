@@ -90,13 +90,16 @@ void PlanetLevelScene::Load() {
     psprite->getSprite().setScale(2, 2);
 
     auto panimation = player->addComponent<AnimationComponent>(player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite());
-    for (auto i = 0; i < 7; i++)
+
+
+    // This creates an annoying error to figure out.
+    /*for (auto i = 0; i < 7; i++)
     {
         Frame tempFrame;
         tempFrame.rect = IntRect(Vector2i(150 * i, 0), Vector2i(150, 150));
         tempFrame.duration = 0.1;
         panimation->addFrame(tempFrame);
-    }
+    }*/
 
     auto pmove = player->addComponent<ActorMovementComponent>();
     auto pmovement = player->addComponent<PlayerComponent>();
@@ -195,7 +198,7 @@ void PlanetLevelScene::Update(const double& dt) {
     if (viewToggle)
     {
         Engine::moveView(Vector2f(directX * speed * dt, directY * speed * dt));
-        viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+        //viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
     }
     else {
         gameView = Engine::GetWindow().getView();
@@ -204,7 +207,7 @@ void PlanetLevelScene::Update(const double& dt) {
         gameView.setCenter(player->getPosition() + offset);
         Engine::setView(gameView);
         //Engine::moveView(Vector2f(player->getPosition()));
-        viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+        //viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
     }
 
     auto mousePos = Engine::GetWindow().mapPixelToCoords(Mouse::getPosition(Engine::GetWindow()));
