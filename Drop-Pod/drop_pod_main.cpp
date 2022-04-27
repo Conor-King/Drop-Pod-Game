@@ -13,6 +13,7 @@ CharSelectScene charSelect;
 LevelSelectScene levelSelect;
 PlanetLevelScene planetLevel;
 SpaceshipLevelScene spaceshipLevel;
+short unsigned switchState;
 
 int main() {
 	
