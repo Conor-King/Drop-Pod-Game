@@ -80,13 +80,13 @@ void PlanetLevelScene::Load() {
     psprite->getSprite().setScale(2, 2);
 
     auto panimation = player->addComponent<AnimationComponent>(player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite());
-    for (auto i = 0; i < 7; i++)
+  /*  for (auto i = 0; i < 7; i++)
     {
         Frame tempFrame;
         tempFrame.rect = IntRect(Vector2i(150 * i, 0), Vector2i(150, 150));
         tempFrame.duration = 0.1;
         panimation->addFrame(tempFrame);
-    }
+    }*/
 
     auto pmove = player->addComponent<ActorMovementComponent>();
     auto pmovement = player->addComponent<PlayerComponent>();
