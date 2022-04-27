@@ -45,6 +45,26 @@ void PlayerComponent::update(const double dt)
 		break;
 	}
 
+	// Check if the player is moving.
+	if (directX != 0 || directY != 0)
+	{
+		_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->setMoving(true);
+	}
+	else
+	{
+		_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->setMoving(false);
+	}
+
+	// Check the direction of the player.
+	if (directX < 0)
+	{
+		_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->setDirection(true);
+	}
+	else
+	{
+		_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->setDirection(false);
+	}
+
 	auto speed = _parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getSpeed();
 	_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->move(Vector2f(directX * speed * dt, directY * speed * dt));
 }

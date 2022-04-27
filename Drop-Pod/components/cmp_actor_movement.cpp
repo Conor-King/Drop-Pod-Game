@@ -8,7 +8,7 @@ using namespace std;
 void ActorMovementComponent::update(double dt) {}
 
 ActorMovementComponent::ActorMovementComponent(Entity* p)
-    : Component(p), _speed(300.0f) {}
+    : Component(p), _speed(300.0f), _moving(false), _direction(false) {}
 
 bool ActorMovementComponent::validMove(const sf::Vector2f& pos) {
     return (LevelSystem::getTileAt(pos) != LevelSystem::WALL);
@@ -26,12 +26,14 @@ void ActorMovementComponent::move(float x, float y) {
     move(Vector2f(x, y));
 }
 
-float ActorMovementComponent::getSpeed() const
-{
-    return _speed;
-}
+float ActorMovementComponent::getSpeed() const { return _speed; }
 
-void ActorMovementComponent::setSpeed(float speed)
-{
-    _speed = speed;
-}
+void ActorMovementComponent::setSpeed(float speed) { _speed = speed; }
+
+bool ActorMovementComponent::getMoving() const { return _moving; }
+
+void ActorMovementComponent::setMoving(bool moving) { _moving = moving; }
+
+bool ActorMovementComponent::getDirection() { return _direction; }
+
+void ActorMovementComponent::setDirection(bool direction) { _direction = direction; }

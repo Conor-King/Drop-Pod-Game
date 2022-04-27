@@ -5,10 +5,15 @@
 using namespace std;
 using namespace sf;
 
-void SpriteComponent::setTexure(shared_ptr<Texture> tex)
+void SpriteComponent::setTexture(shared_ptr<Texture> tex)
 {
   _texture = tex;
   _sprite->setTexture(*_texture);
+}
+
+void SpriteComponent::setTextureRect(sf::IntRect rect)
+{
+    _sprite->setTextureRect(rect);
 }
 
 
@@ -39,12 +44,14 @@ Sprite& SpriteComponent::getSprite() const { return *_sprite; }
 vector<Frame> frames;
 double totalLength;
 double totalProgress;
+int frameCount;
 Sprite* target;
 
-AnimationComponent::AnimationComponent(Entity* p, Sprite& target) : Component(p){
-    this->target = &target;
+AnimationComponent::AnimationComponent(Entity* p) : Component(p){
     totalProgress = 0.f;
     totalLength = 0.f;
+    frameCount = 0;
+
 }
 
 void AnimationComponent::addFrame(Frame& frame) {
@@ -52,18 +59,37 @@ void AnimationComponent::addFrame(Frame& frame) {
     totalLength += frame.duration;
 }
 
+void AnimationComponent::setAnimation(int size, float duration, string path)
+{
+    auto temp = make_shared<Texture>();
+    if (!temp->loadFromFile(path)) {
+        printf("Animation texture problem.");
+    }
+
+    _parent->GetCompatibleComponent<SpriteComponent>()[0]->setTexture(temp);
+
+    for (auto i = 0; i < size; i++)
+    {
+        Frame tempFrame;
+        tempFrame.rect = IntRect(Vector2i(150 * i, 0), Vector2i(150, 150));
+        tempFrame.duration = duration;
+        addFrame(tempFrame);
+    }
+}
+
+
 void AnimationComponent::update(double dt) {
     totalProgress += dt;
-    double progress = totalProgress;
-    for (auto frame : frames)
+    if (totalProgress >= totalLength / frames.size())
     {
-        progress -= frame.duration;
+        frameCount++;
 
-        // This seems to be the problem. Something to do with reseting the total progress or activating the next frame....
-        if (progress <= 0.0 || &(frame) == &frames.back()) {
-            target->setTextureRect((frame).rect);
-            break;
+        if (frameCount >= frames.size()) {
+            frameCount = 0;
         }
+
+        _parent->GetCompatibleComponent<SpriteComponent>()[0]->setTextureRect(frames[frameCount].rect);
+        totalProgress = 0.f;
     }
 }
 

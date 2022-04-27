@@ -89,7 +89,7 @@ void PlanetLevelScene::Load() {
 
     IntRect spriteArea = { Vector2i(0, 0), Vector2i(150, 150) };
 
-    if (!spritetemp->loadFromFile("res/assets/man/Idle.png", spriteArea)) {
+    if (!spritetemp->loadFromFile("res/assets/man/Idle.png")) {
         cerr << "Failed to load spritesheet!" << std::endl;
     }
 
@@ -108,23 +108,14 @@ void PlanetLevelScene::Load() {
     player->setPosition(startingCenter);
 
     auto psprite = player->addComponent<SpriteComponent>();
-    psprite->setTexure(spritetemp);
+    psprite->setTexture(spritetemp);
     psprite->getSprite().setScale(2, 2);
 
-    auto panimation = player->addComponent<AnimationComponent>(player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite());
-
-
-    // This creates an annoying error to figure out.
-    /*for (auto i = 0; i < 7; i++)
-    {
-        Frame tempFrame;
-        tempFrame.rect = IntRect(Vector2i(150 * i, 0), Vector2i(150, 150));
-        tempFrame.duration = 0.1;
-        panimation->addFrame(tempFrame);
-    }*/
+    auto panimation = player->addComponent<AnimationComponent>();
+    panimation->setAnimation(8, 0.1, "res/assets/man/idle.png");
 
     auto pmove = player->addComponent<ActorMovementComponent>();
-    pmove->setSpeed(600.f);
+    pmove->setSpeed(600.f); // -----------------------------------------------------------------Player speed
 
 	auto pmovement = player->addComponent<PlayerComponent>();
 
@@ -185,7 +176,8 @@ void PlanetLevelScene::Update(const double& dt) {
     //    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
     //
     //}
-    
+
+    // Player updates -----------------------------------------------------------------------------------------------
     fireTime -= dt;
 
     if (fireTime <= 0 && Mouse::isButtonPressed(Mouse::Left)) {
@@ -195,7 +187,30 @@ void PlanetLevelScene::Update(const double& dt) {
 
     }
 
-    // Moving the window for testing.
+    // Switch between idle and moving animation for player moving.
+    if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getMoving())
+    {
+        player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, "res/assets/man/run.png");
+    }
+    else
+    {
+        player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, "res/assets/man/idle.png");
+    }
+
+    // Flip the sprite if moving left.
+    if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getDirection())
+    {
+        auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
+        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
+        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(-2.f, 2.f);
+    } else
+    {
+        auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
+        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
+        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(2.f, 2.f);
+    }
+
+    // Moving the window for testing. --------------------------------------------------------------------------------
     float directY = 0.f;
     float directX = 0.f;
 

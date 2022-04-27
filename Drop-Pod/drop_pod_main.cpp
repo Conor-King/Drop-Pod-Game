@@ -28,8 +28,4 @@ int main() {
 * Save the settings preferences
 * 
 * 
-* 
-* 
-* 
-* 
 */
