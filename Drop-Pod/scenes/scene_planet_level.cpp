@@ -100,7 +100,10 @@ void PlanetLevelScene::Load() {
     psprite->getSprite().setScale(2, 2);
 
     auto panimation = player->addComponent<AnimationComponent>(player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite());
-  /*  for (auto i = 0; i < 7; i++)
+
+
+    // This creates an annoying error to figure out.
+    /*for (auto i = 0; i < 7; i++)
     {
         Frame tempFrame;
         tempFrame.rect = IntRect(Vector2i(150 * i, 0), Vector2i(150, 150));

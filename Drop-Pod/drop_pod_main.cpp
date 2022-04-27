@@ -13,10 +13,9 @@ CharSelectScene charSelect;
 LevelSelectScene levelSelect;
 PlanetLevelScene planetLevel;
 SpaceshipLevelScene spaceshipLevel;
-short unsigned switchState;
 
 int main() {
-	switchState = WSAD;
+	
   Engine::Start(1280, 720, "Drop Pod", &menu);
 }
 

@@ -7,7 +7,7 @@
 using namespace sf;
 using namespace std;
 
-unique_ptr<Button> button;
+//unique_ptr<Button> button;
 button_states Button::_mouseState;
 
 void Button::update(double dt) {
