@@ -15,7 +15,7 @@ PlanetLevelScene planetLevel;
 SpaceshipLevelScene spaceshipLevel;
 
 int main() {
-	
+	switchState = WSAD;
   Engine::Start(1280, 720, "Drop Pod", &menu);
 }
 

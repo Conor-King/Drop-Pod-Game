@@ -3,7 +3,7 @@
 #include "cmp_actor_movement.h"
 #include <ecm.h>
 
-enum move_states { WSAD = 0, Arrows };
+enum move_states { WSAD, Arrows };
 
 
 class PlayerComponent : public ActorMovementComponent {
