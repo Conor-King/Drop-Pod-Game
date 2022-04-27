@@ -23,5 +23,6 @@ public:
 protected:
 
 	int _health;
+	float _speed;
 
 };

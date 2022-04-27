@@ -13,4 +13,7 @@ public:
     void render() override {}
     explicit ActorMovementComponent(Entity* p);
     ActorMovementComponent() = delete;
+
+    float getSpeed() const;
+    void setSpeed(float speed);
 };

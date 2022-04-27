@@ -197,10 +197,10 @@ void LevelSystem::renderFloor(RenderWindow& window) {
     auto center = view.getCenter();
 
     for (auto& t : _sprites) {
-        if (t->getPosition().x < center.x - (res.x * 0.5) || t->getPosition().x >= center.x + (res.x * 0.5)) {
+        if (t->getPosition().x < center.x - (res.x * 0.6) || t->getPosition().x >= center.x + (res.x * 0.6)) {
             continue;
         }
-        if (t->getPosition().y < center.y - (res.y * 0.5) || t->getPosition().y >= center.y + (res.y * 0.5)) {
+        if (t->getPosition().y < center.y - (res.y * 0.65) || t->getPosition().y >= center.y + (res.y * 0.5)) {
             continue;
         }
         else {

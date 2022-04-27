@@ -13,12 +13,12 @@
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/Graphics/Texture.hpp>
+#include <stdio.h>
 
 /* Todo:
 * Return to menu
-* Add timer
-* 
-* 
+* Victory text
+* Animations?
 */
 
 using namespace std;
@@ -26,32 +26,43 @@ using namespace sf;
 
 EntityManager ecm;
 
+// Views
 View gameView;
 View hudView;
 
+// Level global variables
 float speed;
 int xCount;
 int yCount;
 Vector2f startingCenter;
 bool viewToggle = false;
 
+// Player Variables
 shared_ptr<Entity> player;
 auto temp = Texture::Texture();
 auto spritetemp = make_shared<Texture>(temp);
 //shared_ptr<sf::Texture> spritesheet;
 
+// Debug Hud variables
 Text viewText;
 Text mousePosText;
 Text playerPosText;
 Text centerPosText;
 
+// Actual Hud
+float tempTime;
+int minutes;
+int seconds;
+Text timer;
+
+// Shooting Delay
 float fireTime = 0.f;
 
 void PlanetLevelScene::Load() {
 
     ecm = Scene::getEcm();
 
-    ls::loadLevelFile("res/levels/smallFloorMap.txt");
+    ls::loadLevelFile("res/levels/floorMap.txt");
 
     // print the level to the console
     for (size_t y = 0; y < ls::getHeight(); y++) {
@@ -65,7 +76,7 @@ void PlanetLevelScene::Load() {
     yCount = ls::getHeight();
 
     // Setting the center position and the size of the view.
-    gameView.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
+    gameView.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, Engine::GetWindow().getSize().x, Engine::GetWindow().getSize().y ));
     Engine::setView(gameView);
 
     startingCenter = gameView.getCenter();
@@ -73,7 +84,6 @@ void PlanetLevelScene::Load() {
     // Setting the speed of the view.
     speed = 200.f;
 
-    //spritesheet->
     IntRect spriteArea = { Vector2i(0, 0), Vector2i(150, 150) };
 
     if (!spritetemp->loadFromFile("res/assets/man/Idle.png", spriteArea)) {
@@ -83,7 +93,7 @@ void PlanetLevelScene::Load() {
     // Player Entity ---------------------------------------------------------------
     player = makeEntity();
     //player->setPosition(Vector2f(view.getSize().x * 0.5, view.getSize().y * 0.5));
-    player->setPosition(Vector2f(gameView.getSize().x - 150, gameView.getSize().y - 150));
+    player->setPosition(startingCenter);
 
     auto psprite = player->addComponent<SpriteComponent>();
     psprite->setTexure(spritetemp);
@@ -102,13 +112,25 @@ void PlanetLevelScene::Load() {
     }*/
 
     auto pmove = player->addComponent<ActorMovementComponent>();
-    auto pmovement = player->addComponent<PlayerComponent>();
+    pmove->setSpeed(600.f);
+
+	auto pmovement = player->addComponent<PlayerComponent>();
 
     auto pshooting = player->addComponent<ShootingComponent>();
 
     // Enemies entity -----------------------------------------------------------------
 
 
+
+    // HUD ----------------------------------------------------------------------------
+    tempTime = 0.f;
+    seconds = 0;
+    timer.setString("Timer: 00:00");
+    timer.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+    timer.setCharacterSize(20);
+    timer.setOrigin(timer.getGlobalBounds().width * 0.5, timer.getGlobalBounds().height * 0.5);
+    timer.setPosition(gameView.getSize().x * 0.5 - timer.getGlobalBounds().width * 0.5 - 50, 20);
+    
 
 
 
@@ -154,7 +176,7 @@ void PlanetLevelScene::Update(const double& dt) {
     
     fireTime -= dt;
 
-    if (fireTime <= 0 && Keyboard::isKeyPressed(Keyboard::O)) {
+    if (fireTime <= 0 && Mouse::isButtonPressed(Mouse::Left)) {
         player->GetCompatibleComponent<ShootingComponent>()[0]->Fire();
         fireTime = 0.5f;
     }
@@ -198,7 +220,7 @@ void PlanetLevelScene::Update(const double& dt) {
     if (viewToggle)
     {
         Engine::moveView(Vector2f(directX * speed * dt, directY * speed * dt));
-        //viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+        viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
     }
     else {
         gameView = Engine::GetWindow().getView();
@@ -207,10 +229,27 @@ void PlanetLevelScene::Update(const double& dt) {
         gameView.setCenter(player->getPosition() + offset);
         Engine::setView(gameView);
         //Engine::moveView(Vector2f(player->getPosition()));
-        //viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+        viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
     }
 
-    auto mousePos = Engine::GetWindow().mapPixelToCoords(Mouse::getPosition(Engine::GetWindow()));
+    // HUD update ----------------------------------------------------------------------------- 
+    tempTime += dt;
+    if (tempTime >= 1) { seconds++; tempTime = 0.f; }
+    if (seconds == 60) { minutes++; seconds = 0; }
+
+    string sec;
+    string min;
+    if (seconds < 10) { sec = "0" + to_string(seconds); }
+    else { sec = to_string(seconds); }
+
+    if (minutes < 10) { min = "0" + to_string(minutes); }
+    else { min = to_string(minutes); }
+
+    string s = ("Timer: " + min + ":" + sec);
+    timer.setString(s);
+
+    // Debug text update ----------------------------------------------------------------------
+    auto mousePos = Mouse::getPosition(Engine::GetWindow());
     string mouseTextx = to_string(mousePos.x);
     string mouseTexty = to_string(mousePos.y);
     mousePosText.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
@@ -239,6 +278,7 @@ void PlanetLevelScene::Render() {
     Engine::GetWindow().draw(mousePosText);
     Engine::GetWindow().draw(playerPosText);
     Engine::GetWindow().draw(centerPosText);
+    Engine::GetWindow().draw(timer);
     
 
     Engine::setView(gameView);
