@@ -35,9 +35,13 @@ void MenuScene::Load() {
     btn3 = makeEntity();
     auto button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    if (!music.openFromFile("res/assets/background_music/Cold-Moon.mp3"))
-         printf("music broken"); // error
-    music.play();
+    auto musicstatus = music.getStatus();
+    if (musicstatus == SoundSource::Stopped || musicstatus == SoundSource::Paused)
+    {
+        if (!music.openFromFile("res/assets/background_music/Cold-Moon.ogg"))
+            printf("music broken"); // error
+        music.play();
+    }
   
   setLoaded(true);
 }
@@ -48,6 +52,7 @@ void MenuScene::Update(const double& dt) {
     {
         Engine::ChangeScene(&planetLevel);
         ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
+        music.stop();
     }
     else if (btn2->GetCompatibleComponent<Button>()[0]->isPressed())
     {

@@ -43,6 +43,9 @@ auto temp = Texture::Texture();
 auto spritetemp = make_shared<Texture>(temp);
 //shared_ptr<sf::Texture> spritesheet;
 
+SoundBuffer sound_buffer;
+Sound soundShoot;
+
 // Debug Hud variables
 Text viewText;
 Text mousePosText;
@@ -89,6 +92,15 @@ void PlanetLevelScene::Load() {
     if (!spritetemp->loadFromFile("res/assets/man/Idle.png", spriteArea)) {
         cerr << "Failed to load spritesheet!" << std::endl;
     }
+
+    // Sound -----------------------------------------------------------------------
+
+    if (!sound_buffer.loadFromFile("res/assets/sfx/Laser-Shoot/Shoot_001.wav"))
+    {
+        printf("Sound effect broken");
+    }
+    soundShoot.setBuffer(sound_buffer);
+    soundShoot.setVolume(20);
 
     // Player Entity ---------------------------------------------------------------
     player = makeEntity();
@@ -179,6 +191,8 @@ void PlanetLevelScene::Update(const double& dt) {
     if (fireTime <= 0 && Mouse::isButtonPressed(Mouse::Left)) {
         player->GetCompatibleComponent<ShootingComponent>()[0]->Fire();
         fireTime = 0.5f;
+        soundShoot.play();
+
     }
 
     // Moving the window for testing.
