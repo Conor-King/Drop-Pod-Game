@@ -53,7 +53,7 @@ void MenuScene::Update(const double& dt) {
     if (btn3->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::ChangeScene(&planetLevel);
-        ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
+        ls::setTextureMap("res/assets/tiles/grass.png");
         music.stop();
     }
     else if (btn2->GetCompatibleComponent<Button>()[0]->isPressed())

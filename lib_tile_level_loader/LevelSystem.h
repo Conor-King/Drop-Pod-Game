@@ -11,68 +11,71 @@
 
 class LevelSystem {
 public:
-  static void loadLevelFile(const std::string&, float tileSize = 100.0f);
-  static void unload();
-  static void render(sf::RenderWindow& window);
+	static void loadLevelFile(const std::string&, float tileSize = 100.0f);
+	static void unload();
+	static void render(sf::RenderWindow& window);
 
-  static void renderFloor(sf::RenderWindow& window);
+	static void renderFloor(sf::RenderWindow& window);
 
-  typedef unsigned char Tile;
+	typedef unsigned char Tile;
 
-  static sf::Texture floorTexture;
-  static sf::IntRect floorTextureRect;
+	static sf::Texture floorTexture;
+	static sf::IntRect floorTextureRect;
 
-  enum TILES {
-    EMPTY = ' ',
-    START = 's',
-    END = 'e',
-    WALL = 'w',
-    ENEMY = 'n',
-    WAYPOINT = '+',
-    FLOOR = 'f'
-  };
+	static sf::Texture wallTexture;
+	static sf::IntRect wallTextureRect;
 
-  static Tile getTile(sf::Vector2ul);
+	enum TILES {
+		EMPTY = ' ',
+		START = 's',
+		END = 'e',
+		WALL = 'w',
+		ENEMY = 'n',
+		WAYPOINT = '+',
+		FLOOR = 'f'
+	};
 
-  static Tile getTileAt(sf::Vector2f);
+	static Tile getTile(sf::Vector2ul);
 
-  static bool isOnGrid(sf::Vector2f);
+	static Tile getTileAt(sf::Vector2f);
 
-  static size_t getWidth();
+	static bool isOnGrid(sf::Vector2f);
 
-  static size_t getHeight();
+	static size_t getWidth();
 
-  static sf::Vector2f getTilePosition(sf::Vector2ul);
+	static size_t getHeight();
 
-  static std::vector<sf::Vector2ul> findTiles(Tile);
+	static sf::Vector2f getTilePosition(sf::Vector2ul);
 
-  static sf::Color getColor(Tile t);
+	static std::vector<sf::Vector2ul> findTiles(Tile);
 
-  static void setColor(Tile t, sf::Color c);
+	static sf::Color getColor(Tile t);
 
-  static void setOffset(const sf::Vector2f& _offset);
+	static void setColor(Tile t, sf::Color c);
 
-  static const sf::Vector2f& getOffset();
+	static void setOffset(const sf::Vector2f& _offset);
 
-  static float getTileSize();
+	static const sf::Vector2f& getOffset();
 
-  static void setTextureMap(sf::IntRect section, std::string path);
+	static float getTileSize();
+
+	static void setTextureMap(std::string path);
 
 protected:
-  static std::unique_ptr<Tile[]> _tiles;
-  static size_t _width;
-  static size_t _height;
-  static sf::Vector2f _offset;
+	static std::unique_ptr<Tile[]> _tiles;
+	static size_t _width;
+	static size_t _height;
+	static sf::Vector2f _offset;
 
-  static std::vector<std::unique_ptr<sf::RectangleShape>> _sprites;
+	static std::vector<std::unique_ptr<sf::RectangleShape>> _sprites;
 
-  static void buildSprites(bool optimise = true);
+	static void buildSprites(bool optimise = true);
 
-  static float _tileSize; // for rendering
-  static std::map<Tile, sf::Color> _colours;
+	static float _tileSize; // for rendering
+	static std::map<Tile, sf::Color> _colours;
 
 private:
-  LevelSystem() = delete;
+	LevelSystem() = delete;
 
-  ~LevelSystem() = delete;
+	~LevelSystem() = delete;
 };

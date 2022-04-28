@@ -12,13 +12,11 @@
 #include <iostream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
-#include <SFML/Graphics/Texture.hpp>
 #include <stdio.h>
 
 /* Todo:
 * Return to menu
 * Victory text
-* Animations?
 */
 
 using namespace std;
@@ -109,13 +107,14 @@ void PlanetLevelScene::Load() {
 
     auto psprite = player->addComponent<SpriteComponent>();
     psprite->setTexture(spritetemp);
+    psprite->getSprite().setOrigin(psprite->getSprite().getLocalBounds().width * 0.5, psprite->getSprite().getLocalBounds().height * 0.5);
     psprite->getSprite().setScale(2, 2);
 
     auto panimation = player->addComponent<AnimationComponent>();
     panimation->setAnimation(8, 0.1, "res/assets/man/idle.png");
 
     auto pmove = player->addComponent<ActorMovementComponent>();
-    pmove->setSpeed(600.f); // -----------------------------------------------------------------Player speed
+    pmove->setSpeed(1000.f); // -----------------------------------------------------------------Player speed
 
 	auto pmovement = player->addComponent<PlayerComponent>();
 
@@ -254,8 +253,7 @@ void PlanetLevelScene::Update(const double& dt) {
     else {
         gameView = Engine::GetWindow().getView();
 
-        Vector2f offset(150, 150);
-        gameView.setCenter(player->getPosition() + offset);
+        gameView.setCenter(player->getPosition());
         Engine::setView(gameView);
         //Engine::moveView(Vector2f(player->getPosition()));
         viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");

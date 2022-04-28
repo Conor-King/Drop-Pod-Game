@@ -31,9 +31,11 @@ vector<std::unique_ptr<sf::RectangleShape>> LevelSystem::_sprites;
 Texture LevelSystem::floorTexture;
 IntRect LevelSystem::floorTextureRect = { Vector2i(0, 0), Vector2i(32, 32) };
 
-void LevelSystem::setTextureMap(IntRect section, string path) {
+Texture LevelSystem::wallTexture;
+IntRect LevelSystem::wallTextureRect = { Vector2i(0, 0), Vector2i(32, 32) };
+
+void LevelSystem::setTextureMap(string path) {
     floorTexture.loadFromFile(path);
-    //floorTextureRect = section;
 
 }
 
@@ -170,12 +172,24 @@ void LevelSystem::buildSprites(bool optimise) {
     auto s = make_unique<sf::RectangleShape>();
     s->setPosition(t.p);
     s->setSize(t.s);
-    s->setTexture(&floorTexture);
-    s->setTextureRect(floorTextureRect);
+
+    if (getTileAt(t.p) == 'f')
+    {
+        s->setTexture(&floorTexture);
+        s->setTextureRect(floorTextureRect);
+    }
+  	else
+    {
+        wallTexture.loadFromFile("res/assets/tiles/tileset.png");
+        s->setTexture(&wallTexture);
+        s->setTextureRect(wallTextureRect);
+    }
+    
+    _sprites.push_back(move(s));
+
     //s->setFillColor(Color::Red);
     //s->setFillColor(t.c);
     // s->setFillColor(Color(rand()%255,rand()%255,rand()%255));
-    _sprites.push_back(move(s));
   }
 
   cout << "Level with " << (_width * _height) << " Tiles, With " << nonempty
