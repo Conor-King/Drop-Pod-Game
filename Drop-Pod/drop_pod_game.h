@@ -9,6 +9,8 @@
 #include "scenes/scene_planet_level.h"
 #include "scenes/scene_spaceship_level.h"
 
+
+
 extern MenuScene menu;
 extern SettingsScene settings;
 extern ProfileScene profile;
@@ -18,7 +20,7 @@ extern LevelSelectScene levelSelect;
 extern PlanetLevelScene planetLevel;
 extern SpaceshipLevelScene spaceshipLevel;
 extern short unsigned switchState;
-
+extern short unsigned switchRes;
 
 
 

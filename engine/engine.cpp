@@ -129,6 +129,13 @@ void Engine::moveView(Vector2f movement) {
     Engine::setView(tempview);
 }
 
+void Engine::changeResolution(int x, int y)
+{
+    const sf:: Vector2u _newResolution(x, y);
+    /*Window::setSize(_newResolution);*/
+    _window->setSize(_newResolution);
+}
+
 void Engine::ChangeScene(Scene* s) {
   cout << "Eng: changing scene: " << s << endl;
   auto old = _activeScene;

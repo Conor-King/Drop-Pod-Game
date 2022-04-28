@@ -12,4 +12,9 @@ public:
     std::shared_ptr<Entity> btn4;
     std::shared_ptr<Entity> btn5;
     std::shared_ptr<Entity> btn6;
+    std::shared_ptr<Entity> btn7;
+    std::shared_ptr<Entity> btn8;
+    
 };
+
+
