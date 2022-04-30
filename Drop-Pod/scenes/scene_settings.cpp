@@ -6,7 +6,7 @@
 #include "../components/cmp_text.h"
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window.hpp>
-#include <engine.cpp>
+#include <engine.h>
 #include "../components/cmp_player.h"
 #include <SFML/Graphics.hpp>
 using namespace std;
@@ -55,7 +55,7 @@ void SettingsScene::Update(const double& dt) {
         Engine::changeResolution(1280, 720);
     }
     else if (btn7->GetCompatibleComponent<Button>()[0]->isPressed()) {
-       Engine::changeResolution(1280, 1080);
+       Engine::changeResolution(1920, 1080);
     }
 
     else if (btn8->GetCompatibleComponent<Button>()[0]->isPressed())

@@ -17,6 +17,8 @@ static bool loading = false;
 static float loadingspinner = 0.f;
 static float loadingTime;
 static RenderWindow* _window;
+static float current_x;
+static float current_y;
 
 void Loading_update(float dt, const Scene* const scn) {
   //  cout << "Eng: Loading Screen\n";
@@ -85,6 +87,8 @@ void Engine::Start(unsigned int width, unsigned int height,
   //window.setVerticalSyncEnabled(true);
   _gameName = gameName;
   _window = &window;
+  current_x = width;
+  current_y = height;
   Renderer::initialise(window);
   Physics::initialise();
   ChangeScene(scn);
@@ -129,11 +133,21 @@ void Engine::moveView(Vector2f movement) {
     Engine::setView(tempview);
 }
 
+
+// CHANGE RES PART 
 void Engine::changeResolution(int x, int y)
 {
     const sf:: Vector2u _newResolution(x, y);
     _window->setSize(_newResolution);
+    current_x = x;
+    current_y = y;
 }
+
+void Engine::reloadElements(int x, int y) {
+
+
+}
+
 
 void Engine::ChangeScene(Scene* s) {
   cout << "Eng: changing scene: " << s << endl;
