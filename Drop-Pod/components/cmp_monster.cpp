@@ -22,12 +22,12 @@ void MonsterComponent::update(double dt)
 	auto& enemyPos = _parent->getPosition();
 
 	Vector2f direction = playerPos - enemyPos;
-	Vector2f normalizeDir = direction / sqrt(pow(direction.x, 2) + pow(direction.y, 2));
+	//Vector2f normalizeDir = direction / sqrt(pow(direction.x, 2) + pow(direction.y, 2));
 
 	float xDistance = playerPos.x - enemyPos.x;
 	float yDistance = playerPos.y - enemyPos.y;
 
-	Vector2f direction = Vector2f(xDistance, yDistance);
+	//Vector2f direction = Vector2f(xDistance, yDistance);
 
 	auto hyp = sqrtf((xDistance * xDistance) + (yDistance * yDistance));
 
