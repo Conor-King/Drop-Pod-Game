@@ -26,19 +26,19 @@ void SettingsScene::Load() {
     auto t = txt2->addComponent<TextComponent>(490, 180, "Settings");
 
      btn4 = makeEntity();
-    auto button = btn4->addComponent<Button>(380, 260, 220, 80, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button = btn4->addComponent<Button>(380, 260,  "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
      btn5 = makeEntity();
-    auto button2 = btn5->addComponent<Button>(600, 260, 220, 80, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button2 = btn5->addComponent<Button>(600, 260,  "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn6 = makeEntity();
-    auto button3 = btn6->addComponent<Button>(380, 360, 220, 80, "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button3 = btn6->addComponent<Button>(380, 360,  "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn7 = makeEntity();
-    auto button4 = btn7->addComponent<Button>(600, 360, 220, 80, "1920 x 1080", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button4 = btn7->addComponent<Button>(600, 360,  "1920 x 1080", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
      btn8 = makeEntity();
-    auto button5 = btn8->addComponent<Button>(500, 460, 220, 80, "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button5 = btn8->addComponent<Button>(500, 460,  "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 
     setLoaded(true);

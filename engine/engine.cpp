@@ -132,7 +132,6 @@ void Engine::moveView(Vector2f movement) {
 void Engine::changeResolution(int x, int y)
 {
     const sf:: Vector2u _newResolution(x, y);
-    /*Window::setSize(_newResolution);*/
     _window->setSize(_newResolution);
 }
 

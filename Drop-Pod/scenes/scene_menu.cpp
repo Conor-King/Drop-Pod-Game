@@ -27,13 +27,13 @@ void MenuScene::Load() {
     auto t = txt->addComponent<TextComponent>(490, 180, "DROP POD");
 
     btn = makeEntity();
-    auto button = btn->addComponent<Button>(500, 460, 220, 80, "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button = btn->addComponent<Button>(500, 460,  "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn2 = makeEntity();
-    auto button2 = btn2->addComponent<Button>(500, 360, 220, 80, "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button2 = btn2->addComponent<Button>(500, 360,  "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn3 = makeEntity();
-    auto button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button3 = btn3->addComponent<Button>(500, 260, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 
   

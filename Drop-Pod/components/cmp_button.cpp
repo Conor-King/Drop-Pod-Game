@@ -58,12 +58,12 @@ void Button::render() {
 	Renderer::queue(&_text);
 }
 
-Button::Button(Entity* p,float x, float y, float width, float height, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
+Button::Button(Entity* p,float x, float y, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
 	: Component(p){
 
 	this->buttonState = BUTTON_IDLE;
 	this->shape.setPosition(sf::Vector2f(x, y));
-	this->shape.setSize(sf::Vector2f(width, height));
+	this->shape.setSize(sf::Vector2f(220, 80));
 
 	//_mouseState = BUTTON_IDLE;
 	
