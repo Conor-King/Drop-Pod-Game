@@ -64,7 +64,7 @@ Button::Button(Entity* p,float x, float y, std::string text, sf::Color idleColor
 	this->buttonState = BUTTON_IDLE;
 	this->shape.setPosition(sf::Vector2f(x, y));
 	this->shape.setSize(sf::Vector2f(220, 80));
-
+	this->shape.setOrigin(shape.getLocalBounds().width / 2.0f, shape.getLocalBounds().height / 2.0f);
 	//_mouseState = BUTTON_IDLE;
 	
 	this->_text.setString(text);
@@ -82,7 +82,7 @@ Button::Button(Entity* p,float x, float y, std::string text, sf::Color idleColor
 	this->idleColor = idleColor;
 
 	this->shape.setFillColor(this->idleColor);
-
+	
 }
 
 const bool Button::isPressed() const

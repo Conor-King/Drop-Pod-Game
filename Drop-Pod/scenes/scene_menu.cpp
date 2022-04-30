@@ -22,18 +22,18 @@ shared_ptr<Entity> btn3;
 
 void MenuScene::Load() {
   cout << "Menu Load \n";
-
+  
     auto txt = makeEntity();
-    auto t = txt->addComponent<TextComponent>(current_x/2.5f, current_y/5.0f, "DROP POD");
+    auto t = txt->addComponent<TextComponent>(current_x/2.0f, current_y/5.0f, "DROP POD");
 
     btn = makeEntity();
-    auto button = btn->addComponent<Button>(current_x / 2.5f, 460,  "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button = btn->addComponent<Button>(current_x / 2.0f, current_y / 1.5f,  "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn2 = makeEntity();
-    auto button2 = btn2->addComponent<Button>(current_x / 2.5f, 360,  "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button2 = btn2->addComponent<Button>(current_x / 2.0f, current_y / 2.0f,  "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn3 = makeEntity();
-    auto button3 = btn3->addComponent<Button>(current_x / 2.5f, 260, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button3 = btn3->addComponent<Button>(current_x / 2.0f, current_y / 3.0f, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 
   
