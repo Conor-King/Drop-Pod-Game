@@ -5,7 +5,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>	
 #include"../components/cmp_button.h"
-#include "engine.h"
+#include "engine.cpp"
 #include <SFML/Audio.hpp>
 #include <iostream>
 
@@ -19,21 +19,40 @@ shared_ptr<Entity> btn;
 shared_ptr<Entity> btn2;
 shared_ptr<Entity> btn3;
 
+View menuView;
+View debugView;
+
+Text mousePosText2;
+
 
 void MenuScene::Load() {
-  cout << "Menu Load \n";
+    cout << "Menu Load \n";
+
+    menuView = Engine::GetWindow().getView();
+
+    mousePosText2.setPosition(20, 20);
+    mousePosText2.setString("Mouse Pos: ");
+    mousePosText2.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+    mousePosText2.setCharacterSize(20);
+
+    RenderWindow& window = Engine::GetWindow();
+    Vector2u windowSize = window.getSize();
 
     auto txt = makeEntity();
-    auto t = txt->addComponent<TextComponent>(490, 180, "DROP POD");
+    auto pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 5.0f);
+    auto t = txt->addComponent<TextComponent>(menuView.getSize().x / 2.0f, menuView.getSize().y / 5.0f, "DROP POD");
 
     btn = makeEntity();
-    auto button = btn->addComponent<Button>(500, 460, 220, 80, "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto btnPos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 1.5f);
+    auto button = btn->addComponent<Button>(btnPos,  "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn2 = makeEntity();
-    auto button2 = btn2->addComponent<Button>(500, 360, 220, 80, "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto btn2Pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 2.f);
+    auto button2 = btn2->addComponent<Button>(btn2Pos,  "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     btn3 = makeEntity();
-    auto button3 = btn3->addComponent<Button>(500, 260, 220, 80, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto btn3Pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 3.f);
+    auto button3 = btn3->addComponent<Button>(btn3Pos, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
     auto musicstatus = music.getStatus();
     if (musicstatus == SoundSource::Stopped || musicstatus == SoundSource::Paused)
@@ -68,8 +87,21 @@ void MenuScene::Update(const double& dt) {
     if(!sf::Mouse::isButtonPressed(Mouse::Button::Left))
         Button::_mouseState = BUTTON_IDLE;
 
-
+    auto mousePos = Mouse::getPosition(Engine::GetWindow());
+    string mouseTextx = to_string(mousePos.x);
+    string mouseTexty = to_string(mousePos.y);
+    mousePosText2.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
     //cout << Button::_mouseState << endl;
    
   Scene::Update(dt);
 }
+
+void MenuScene::Render()
+{
+    Engine::setView(debugView);
+    Engine::GetWindow().draw(mousePosText2);
+
+    Engine::setView(menuView);
+    Scene::Render();
+}
+

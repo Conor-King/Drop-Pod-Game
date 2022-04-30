@@ -129,6 +129,20 @@ void Engine::moveView(Vector2f movement) {
     Engine::setView(tempview);
 }
 
+
+// CHANGE RES PART 
+void Engine::changeResolution(int x, int y)
+{
+    Vector2f _newResolution(x, y);
+    _window->create(VideoMode(_newResolution.x, _newResolution.y), "Drop Pod");
+}
+
+//void Engine::reloadElements(int x, int y) {
+//
+//
+//}
+
+
 void Engine::ChangeScene(Scene* s) {
   cout << "Eng: changing scene: " << s << endl;
   auto old = _activeScene;
