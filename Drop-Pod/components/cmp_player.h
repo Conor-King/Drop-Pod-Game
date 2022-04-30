@@ -15,7 +15,9 @@ public:
 	void update(double dt) override;
 	void render() override;
 	~PlayerComponent() override = default;
-	void movment();
+
+	void setHealth(int health);
+	
 	
 	
 	//void move(const double dt, const float dir_x, const float dir_y);
@@ -23,6 +25,5 @@ public:
 protected:
 
 	int _health;
-	float _speed;
 
 };

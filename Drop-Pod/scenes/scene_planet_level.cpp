@@ -1,18 +1,18 @@
 #include "scene_planet_level.h"
 #include "engine.h"
-#include "../drop_pod_game.h"
 #include "../components/cmp_actor_movement.h"
 #include "../components/cmp_player.h"
+#include "../components/cmp_monster.h"
 #include "../components/cmp_shooting.h"
 #include "../components/cmp_sprite.h"
 #include "../components/cmp_text.h"
-#include "system_renderer.h"
 #include <LevelSystem.h>
 #include <system_resources.h>
 #include <iostream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
+
 
 /* Todo:
 * Return to menu
@@ -34,15 +34,22 @@ int xCount;
 int yCount;
 Vector2f startingCenter;
 bool viewToggle = false;
+bool pauseGame = false;
+string result = "Not Set";
 
 // Player Variables
 shared_ptr<Entity> player;
-auto temp = Texture::Texture();
-auto spritetemp = make_shared<Texture>(temp);
-//shared_ptr<sf::Texture> spritesheet;
+shared_ptr<Texture> playerSpriteIdle;
+shared_ptr<Texture> playerSpriteMoving;
+IntRect playerRect;
 
-SoundBuffer sound_buffer;
-Sound soundShoot;
+shared_ptr<SoundBuffer> soundShoot_buffer;
+shared_ptr<Sound> soundShoot;
+
+// Enemy Variables
+shared_ptr<Entity> enemy;
+shared_ptr<Texture> enemySprite;
+IntRect enemyRect;
 
 // Debug Hud variables
 Text viewText;
@@ -56,257 +63,322 @@ int minutes;
 int seconds;
 Text timer;
 
+Text endText;
+
 // Shooting Delay
 float fireTime = 0.f;
 
 void PlanetLevelScene::Load() {
+	ecm = Scene::getEcm();
 
-    ecm = Scene::getEcm();
+	ls::loadLevelFile("res/levels/smallFloorMap.txt");
 
-    ls::loadLevelFile("res/levels/floorMap.txt");
+	// print the level to the console
+	for (size_t y = 0; y < ls::getHeight(); y++) {
+		for (size_t x = 0; x < ls::getWidth(); x++) {
+			cout << ls::getTile({ x, y });
+		}
+		cout << endl;
+	}
 
-    // print the level to the console
-    for (size_t y = 0; y < ls::getHeight(); y++) {
-        for (size_t x = 0; x < ls::getWidth(); x++) {
-            cout << ls::getTile({ x, y });
-        }
-        cout << endl;
-    }
+	xCount = ls::getWidth();
+	yCount = ls::getHeight();
 
-    xCount = ls::getWidth();
-    yCount = ls::getHeight();
+	// Setting the center position and the size of the view.
+	gameView.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, Engine::GetWindow().getSize().x, Engine::GetWindow().getSize().y));
+	Engine::setView(gameView);
 
-    // Setting the center position and the size of the view.
-    gameView.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, Engine::GetWindow().getSize().x, Engine::GetWindow().getSize().y ));
-    Engine::setView(gameView);
+	startingCenter = gameView.getCenter();
 
-    startingCenter = gameView.getCenter();
+	// Setting the speed of the view.
+	speed = 200.f;
 
-    // Setting the speed of the view.
-    speed = 200.f;
+	// Sound -----------------------------------------------------------------------
 
-    IntRect spriteArea = { Vector2i(0, 0), Vector2i(150, 150) };
+	soundShoot_buffer = Resources::get<SoundBuffer>("Shoot_001.wav");
+	soundShoot = make_shared<Sound>(*soundShoot_buffer);
+	soundShoot->setVolume(20);
 
-    if (!spritetemp->loadFromFile("res/assets/man/Idle.png")) {
-        cerr << "Failed to load spritesheet!" << std::endl;
-    }
+	
 
-    // Sound -----------------------------------------------------------------------
+	// Player Entity ---------------------------------------------------------------
 
-    if (!sound_buffer.loadFromFile("res/assets/sfx/Laser-Shoot/Shoot_001.wav"))
-    {
-        printf("Sound effect broken");
-    }
-    soundShoot.setBuffer(sound_buffer);
-    soundShoot.setVolume(20);
+	playerRect = { Vector2i(0, 0), Vector2i(150, 150) };
 
-    // Player Entity ---------------------------------------------------------------
-    player = makeEntity();
-    //player->setPosition(Vector2f(view.getSize().x * 0.5, view.getSize().y * 0.5));
-    player->setPosition(startingCenter);
+	playerSpriteIdle = Resources::get<Texture>("Idle.png");
+	playerSpriteMoving = Resources::get<Texture>("Run.png");
 
-    auto psprite = player->addComponent<SpriteComponent>();
-    psprite->setTexture(spritetemp);
-    psprite->getSprite().setOrigin(psprite->getSprite().getLocalBounds().width * 0.5, psprite->getSprite().getLocalBounds().height * 0.5);
-    psprite->getSprite().setScale(2, 2);
+	player = makeEntity();
+	//player->setPosition(Vector2f(view.getSize().x * 0.5, view.getSize().y * 0.5));
+	player->setPosition(startingCenter);
 
-    auto panimation = player->addComponent<AnimationComponent>();
-    panimation->setAnimation(8, 0.1, "res/assets/man/idle.png");
+	auto psprite = player->addComponent<SpriteComponent>();
+	psprite->setTexture(playerSpriteIdle);
+	psprite->getSprite().setOrigin(psprite->getSprite().getLocalBounds().width * 0.5, psprite->getSprite().getLocalBounds().height * 0.5);
+	psprite->getSprite().setScale(2, 2);
 
-    auto pmove = player->addComponent<ActorMovementComponent>();
-    pmove->setSpeed(1000.f); // -----------------------------------------------------------------Player speed
+	auto panimation = player->addComponent<AnimationComponent>();
+	panimation->setAnimation(8, 0.1, playerSpriteIdle, playerRect);
 
-	auto pmovement = player->addComponent<PlayerComponent>();
+	auto pmove = player->addComponent<ActorMovementComponent>();
+	pmove->setSpeed(10.f); // -----------------------------------------------------------------Player speed
 
-    auto pshooting = player->addComponent<ShootingComponent>();
+	auto pattributes = player->addComponent<PlayerComponent>();
 
-    // Enemies entity -----------------------------------------------------------------
+	auto pshooting = player->addComponent<ShootingComponent>();
 
+	// Enemies entity -----------------------------------------------------------------
 
+	enemyRect = { Vector2i(0, 0), Vector2i(64, 64) };
 
-    // HUD ----------------------------------------------------------------------------
-    tempTime = 0.f;
-    seconds = 0;
-    timer.setString("Timer: 00:00");
-    timer.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
-    timer.setCharacterSize(20);
-    timer.setOrigin(timer.getGlobalBounds().width * 0.5, timer.getGlobalBounds().height * 0.5);
-    timer.setPosition(gameView.getSize().x * 0.5 - timer.getGlobalBounds().width * 0.5 - 50, 20);
-    
+	enemySprite = Resources::get<Texture>("Trash-Monster-Sprite-V2.png");
 
+	enemy = makeEntity();
 
+	enemy->setPosition(startingCenter + Vector2f(200, 0));
 
-    // Debug Text ---------------------------------------------------------------------
-    viewText.setPosition(20, 20);
-    viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
-    viewText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
-    viewText.setCharacterSize(20);
+	auto esprite = enemy->addComponent<SpriteComponent>();
+	esprite->setTexture(enemySprite);
+	esprite->getSprite().setOrigin(esprite->getSprite().getLocalBounds().width * 0.5, esprite->getSprite().getLocalBounds().height * 0.5);
+	esprite->getSprite().setScale(2, 2);
 
-    mousePosText.setPosition(20, 80);
-    mousePosText.setString("Mouse Pos: ");
-    mousePosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
-    mousePosText.setCharacterSize(20);
+	auto eanimation = enemy->addComponent<AnimationComponent>();
+	eanimation->setAnimation(6, 0.1, enemySprite, enemyRect);
 
-    playerPosText.setPosition(20, 150);
-    playerPosText.setString("Player Pos: ");
-    playerPosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
-    playerPosText.setCharacterSize(20);
+	auto emove = enemy->addComponent<ActorMovementComponent>();
+	auto eattributes = enemy->addComponent<MonsterComponent>(player);
 
-    centerPosText.setPosition(20, 200);
-    centerPosText.setString("Center Pos: ");
-    centerPosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
-    centerPosText.setCharacterSize(20);
+	// HUD ----------------------------------------------------------------------------
+	tempTime = 0.f;
+	// Todo: Make sure to change this back after testing.
+	seconds = 0;
+	minutes = 9;
+	timer.setString("Timer: 00:00");
+	timer.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
+	timer.setCharacterSize(20);
+	timer.setOrigin(timer.getGlobalBounds().width * 0.5, timer.getGlobalBounds().height * 0.5);
+	timer.setPosition(gameView.getSize().x * 0.5 - timer.getGlobalBounds().width * 0.5 - 50, 20);
 
-   // Add Entities to be updated/rendered
-    ecm.addEntity(player);
+	endText.setString("");
+	endText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
+	endText.setCharacterSize(50);
+	endText.setPosition(gameView.getSize().x / 2, gameView.getSize().y / 2);
 
-    // Set load to true when finished.
-    setLoaded(true);
+	// Debug Text ---------------------------------------------------------------------
+	viewText.setPosition(20, 20);
+	viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+	viewText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	viewText.setCharacterSize(20);
+
+	mousePosText.setPosition(20, 80);
+	mousePosText.setString("Mouse Pos: ");
+	mousePosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	mousePosText.setCharacterSize(20);
+
+	playerPosText.setPosition(20, 150);
+	playerPosText.setString("Player Pos: ");
+	playerPosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	playerPosText.setCharacterSize(20);
+
+	centerPosText.setPosition(20, 200);
+	centerPosText.setString("Center Pos: ");
+	centerPosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	centerPosText.setCharacterSize(20);
+
+	// Add Entities to be updated/rendered
+	ecm.addEntity(player);
+	ecm.addEntity(enemy);
+
+	// Set load to true when finished.
+	setLoaded(true);
 }
 
 void PlanetLevelScene::UnLoad() { }
 
 void PlanetLevelScene::Update(const double& dt) {
+	// This does not work as center does not change. FOR INFINITE MAP
+	//if (Engine::GetWindow().getView().getCenter().x > startingCenter.x + 100 || Engine::GetWindow().getView().getCenter().x < startingCenter.x - 100 ||
+	//    Engine::GetWindow().getView().getCenter().y > startingCenter.y + 100 || Engine::GetWindow().getView().getCenter().y < startingCenter.y - 100)
+	//{
+	//    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
+	//
+	//}
 
-    // This does not work as center does not change. FOR INFINITE MAP
-    //if (Engine::GetWindow().getView().getCenter().x > startingCenter.x + 100 || Engine::GetWindow().getView().getCenter().x < startingCenter.x - 100 ||
-    //    Engine::GetWindow().getView().getCenter().y > startingCenter.y + 100 || Engine::GetWindow().getView().getCenter().y < startingCenter.y - 100)
-    //{
-    //    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
-    //
-    //}
+	if (minutes >= 10)
+	{
+		pauseGame = true;
+		result = "win";
+	}
 
-    // Player updates -----------------------------------------------------------------------------------------------
-    fireTime -= dt;
+	if (player->isAlive() == false)
+	{
+		pauseGame = true;
+		result = "lose";
+	}
 
-    if (fireTime <= 0 && Mouse::isButtonPressed(Mouse::Left)) {
-        player->GetCompatibleComponent<ShootingComponent>()[0]->Fire();
-        fireTime = 0.5f;
-        soundShoot.play();
+	if (!pauseGame)
+	{
+		// Player updates -----------------------------------------------------------------------------------------------
+		fireTime -= dt;
 
-    }
+		if (fireTime <= 0 && Mouse::isButtonPressed(Mouse::Left)) {
+			player->GetCompatibleComponent<ShootingComponent>()[0]->Fire();
+			fireTime = 0.5f;
+			soundShoot->play();
+		}
 
-    // Switch between idle and moving animation for player moving.
-    if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getMoving())
-    {
-        player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, "res/assets/man/run.png");
-    }
-    else
-    {
-        player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, "res/assets/man/idle.png");
-    }
+		if (Keyboard::isKeyPressed(Keyboard::P))
+		{
+			player->GetCompatibleComponent<PlayerComponent>()[0]->setHealth(0);
+		}
 
-    // Flip the sprite if moving left.
-    if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getDirection())
-    {
-        auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
-        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
-        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(-2.f, 2.f);
-    } else
-    {
-        auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
-        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
-        player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(2.f, 2.f);
-    }
+		// Switch between idle and moving animation for player moving.
+		if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getMoving())
+		{
+			player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, playerSpriteMoving, playerRect);
+		}
+		else
+		{
+			player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, playerSpriteIdle, playerRect);
+		}
 
-    // Moving the window for testing. --------------------------------------------------------------------------------
-    float directY = 0.f;
-    float directX = 0.f;
+		// Flip the sprite if moving left.
+		if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getDirection())
+		{
+			auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
+			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
+			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(-2.f, 2.f);
+		}
+		else
+		{
+			auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
+			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
+			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(2.f, 2.f);
+		}
 
-    if (Keyboard::isKeyPressed(Keyboard::Left)) {
-        directX--;
-        //printf("Move left. \n");
-    }
-    if (Keyboard::isKeyPressed(Keyboard::Right)) {
-        directX++;
-        //printf("Move right. \n");
-    }
-    if (Keyboard::isKeyPressed(Keyboard::Up)) {
-        directY--;
-        //printf("Move up. \n");
-    }
-    if (Keyboard::isKeyPressed(Keyboard::Down)) {
-        directY++;
-        //printf("Move down. \n");
-    }
-    if (Keyboard::isKeyPressed(Keyboard::C)) {
-        if (viewToggle) {
-            viewToggle = false;
-        }
-        else {
-            viewToggle = true;
-        }
-    }
-    if (Keyboard::isKeyPressed(Keyboard::LShift)) {
-        speed = 400.f;
-    }
-    else {
-        speed = 200.f;
-    }
+		// Moving the window for testing. --------------------------------------------------------------------------------
+		float directY = 0.f;
+		float directX = 0.f;
 
-    // Toggle between fixed player cam and free cam.
-    if (viewToggle)
-    {
-        Engine::moveView(Vector2f(directX * speed * dt, directY * speed * dt));
-        viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
-    }
-    else {
-        gameView = Engine::GetWindow().getView();
+		if (Keyboard::isKeyPressed(Keyboard::Left)) {
+			directX--;
+			//printf("Move left. \n");
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Right)) {
+			directX++;
+			//printf("Move right. \n");
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Up)) {
+			directY--;
+			//printf("Move up. \n");
+		}
+		if (Keyboard::isKeyPressed(Keyboard::Down)) {
+			directY++;
+			//printf("Move down. \n");
+		}
+		if (Keyboard::isKeyPressed(Keyboard::C)) {
+			if (viewToggle) {
+				viewToggle = false;
+			}
+			else {
+				viewToggle = true;
+			}
+		}
+		if (Keyboard::isKeyPressed(Keyboard::LShift)) {
+			speed = 400.f;
+		}
+		else {
+			speed = 200.f;
+		}
 
-        gameView.setCenter(player->getPosition());
-        Engine::setView(gameView);
-        //Engine::moveView(Vector2f(player->getPosition()));
-        viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
-    }
+		// Toggle between fixed player cam and free cam.
+		if (viewToggle)
+		{
+			Engine::moveView(Vector2f(directX * speed * dt, directY * speed * dt));
+			viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+		}
+		else {
+			gameView = Engine::GetWindow().getView();
 
-    // HUD update ----------------------------------------------------------------------------- 
-    tempTime += dt;
-    if (tempTime >= 1) { seconds++; tempTime = 0.f; }
-    if (seconds == 60) { minutes++; seconds = 0; }
+			gameView.setCenter(player->getPosition());
+			Engine::setView(gameView);
+			//Engine::moveView(Vector2f(player->getPosition()));
+			viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+		}
 
-    string sec;
-    string min;
-    if (seconds < 10) { sec = "0" + to_string(seconds); }
-    else { sec = to_string(seconds); }
+		// HUD update -----------------------------------------------------------------------------
+		tempTime += dt;
+		if (tempTime >= 1) { seconds++; tempTime = 0.f; }
+		if (seconds == 60) { minutes++; seconds = 0; }
 
-    if (minutes < 10) { min = "0" + to_string(minutes); }
-    else { min = to_string(minutes); }
+		string sec;
+		string min;
+		if (seconds < 10) { sec = "0" + to_string(seconds); }
+		else { sec = to_string(seconds); }
 
-    string s = ("Timer: " + min + ":" + sec);
-    timer.setString(s);
+		if (minutes < 10) { min = "0" + to_string(minutes); }
+		else { min = to_string(minutes); }
 
-    // Debug text update ----------------------------------------------------------------------
-    auto mousePos = Mouse::getPosition(Engine::GetWindow());
-    string mouseTextx = to_string(mousePos.x);
-    string mouseTexty = to_string(mousePos.y);
-    mousePosText.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
-    
-    auto playerPos = player->getPosition();
-    string playerx = to_string(playerPos.x);
-    string playery = to_string(playerPos.y);
-    playerPosText.setString("Player pos: " + playerx + " " + playery);
+		string s = ("Timer: " + min + ":" + sec);
+		timer.setString(s);
 
-    auto centerPos = Engine::GetWindow().getView().getCenter();
-    string centerX = to_string(centerPos.x);
-    string centerY = to_string(centerPos.y);
-    centerPosText.setString("Center pos: " + centerX + " " + centerY);
+		// Debug text update ----------------------------------------------------------------------
+		auto mousePos = Mouse::getPosition(Engine::GetWindow());
+		string mouseTextx = to_string(mousePos.x);
+		string mouseTexty = to_string(mousePos.y);
+		mousePosText.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
 
-    Scene::Update(dt);
+		auto playerPos = player->getPosition();
+		string playerx = to_string(playerPos.x);
+		string playery = to_string(playerPos.y);
+		playerPosText.setString("Player pos: " + playerx + " " + playery);
+
+		auto centerPos = Engine::GetWindow().getView().getCenter();
+		string centerX = to_string(centerPos.x);
+		string centerY = to_string(centerPos.y);
+		centerPosText.setString("Center pos: " + centerX + " " + centerY);
+
+		Scene::Update(dt);
+	}
+	else
+	{
+		RenderEnd();
+	}
 }
 
-void PlanetLevelScene::Render() { 
+void PlanetLevelScene::Render() {
+	Engine::setView(gameView);
+	ls::renderFloor(Engine::GetWindow());
+	Scene::Render();
 
-    Engine::setView(gameView);
-    ls::renderFloor(Engine::GetWindow());
-    Scene::Render();
+	Engine::setView(hudView);
+	Engine::GetWindow().draw(viewText);
+	Engine::GetWindow().draw(mousePosText);
+	Engine::GetWindow().draw(playerPosText);
+	Engine::GetWindow().draw(centerPosText);
+	Engine::GetWindow().draw(timer);
+	Engine::GetWindow().draw(endText);
 
-    Engine::setView(hudView);
-    Engine::GetWindow().draw(viewText);
-    Engine::GetWindow().draw(mousePosText);
-    Engine::GetWindow().draw(playerPosText);
-    Engine::GetWindow().draw(centerPosText);
-    Engine::GetWindow().draw(timer);
-    
+	Engine::setView(gameView);
+}
 
-    Engine::setView(gameView);
+// Todo: Text does not render properly in the middle of the screen like i think it should.
+void PlanetLevelScene::RenderEnd()
+{
+	if (result == "win")
+	{
+		endText.setString("Victory!");
+		endText.setOutlineColor(Color::Black);
+		endText.setOutlineThickness(2);
+		endText.setOrigin(endText.getLocalBounds().width * 0.5, endText.getLocalBounds().height * 0.5);
+		endText.setPosition(gameView.getSize().x * 0.5, gameView.getSize().y * 0.5);
+	}
+	if (result == "lose")
+	{
+		endText.setString("Defeat!");
+		endText.setOutlineColor(Color::Black);
+		endText.setOutlineThickness(2);
+		endText.setPosition((gameView.getSize().x / 2.f) - endText.getGlobalBounds().width / 2.f, (gameView.getSize().y / 2.f) - endText.getGlobalBounds().height / 2.f);
+		endText.setOrigin(endText.getLocalBounds().width * 0.5, endText.getLocalBounds().height * 0.5);
+	}
 }

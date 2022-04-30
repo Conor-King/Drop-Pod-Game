@@ -7,39 +7,52 @@
 class PlanetLevelScene : public Scene {
 public:
 
-    EntityManager ecm;
+	EntityManager ecm;
 
-    // Views
+	// Views
 	sf::View gameView;
-    sf::View hudView;
+	sf::View hudView;
 
-    // Level
+	// Level
 	float speed;
-    int xCount;
-    int yCount;
-    sf::Vector2f startingCenter;
-    bool viewToggle;
+	int xCount;
+	int yCount;
+	sf::Vector2f startingCenter;
+	bool viewToggle;
+	bool pauseGame;
+	std::string result;
 
-    // Player
-    std::shared_ptr<Entity> player;
-    std::shared_ptr<sf::Texture> spritesheet;
-    sf::SoundBuffer sound_buffer;
-    sf::Sound soundShoot;
+	// Player
+	std::shared_ptr<Entity> player;
+	std::shared_ptr<sf::Texture> playerSpriteIdle;
+	std::shared_ptr<sf::Texture> playerSpriteMoving;
+	sf::IntRect playerRect;
 
-    // Actual HUD
-    float tempTime;
-    int minutes;
-    int seconds;
-    sf::Text timer;
+	std::shared_ptr<sf::SoundBuffer> soundShoot_buffer;
+	std::shared_ptr<sf::Sound> soundShoot;
 
-    float fireTime;
-    
+	// Enemies
+	std::shared_ptr<Entity> enemy;
+	std::shared_ptr<sf::Texture> enemySprite;
+	sf::IntRect enemyRect;
 
-  void Load() override;
+	// Actual HUD
+	float tempTime;
+	int minutes;
+	int seconds;
+	sf::Text timer;
 
-  void UnLoad() override;
+	sf::Text endText;
 
-  void Update(const double& dt) override;
+	float fireTime;
 
-  void Render() override;
+	void Load() override;
+
+	void UnLoad() override;
+
+	void Update(const double& dt) override;
+
+	void Render() override;
+
+	void RenderEnd();
 };

@@ -12,9 +12,18 @@ PlayerComponent::PlayerComponent(Entity* p) : ActorMovementComponent(p) {
 
 }
 
+void PlayerComponent::setHealth(int health)
+{
+	_health = health;
+}
+
 
 void PlayerComponent::update(const double dt)
 {
+	if (_health <= 0)
+	{
+		_parent->setAlive(false);
+	}
 
 	float directX = 0.f;
 	float directY = 0.f;

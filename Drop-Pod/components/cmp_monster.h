@@ -1,19 +1,21 @@
 #pragma once
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
 
-class Monster {
-private:
-	void initVariables();
+#include "cmp_actor_movement.h"
+#include <ecm.h>
 
+class MonsterComponent : public ActorMovementComponent {
 protected:
-	sf::Sprite sprite;
-	/*MovementComponent* movementComponent;*/
+	int _health;
+	std::shared_ptr<Entity> _player;
 
 public:
-	Monster();
-	virtual ~Monster();
+	MonsterComponent() = delete;
+	explicit MonsterComponent(Entity* p, std::shared_ptr<Entity> player);
 
-	//Component functions
-	void setTexture(sf::Texture& texture);
+	void update(double dt) override;
+	void render() override;
+	~MonsterComponent() override = default;
+
+	void setHealth(int health);
+
 };

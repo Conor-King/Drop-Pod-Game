@@ -61,5 +61,5 @@ public:
 	void addFrame(Frame& frame);
 	void render();
 
-	void setAnimation(int i, float duration, std::string path);
+	void setAnimation(int size, float duration, std::shared_ptr<sf::Texture> texture, sf::IntRect rect);
 };
