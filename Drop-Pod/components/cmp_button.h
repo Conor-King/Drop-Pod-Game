@@ -32,7 +32,7 @@ public:
 
 	Button() = delete;
 	
-	explicit Button(Entity* p, float x, float y, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
+	explicit Button(Entity* p, sf::Vector2f position, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor);
 	void update(double dt) override;
 	void render() override;
 	~Button() override = default;

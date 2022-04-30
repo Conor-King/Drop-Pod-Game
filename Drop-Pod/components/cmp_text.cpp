@@ -14,7 +14,8 @@ TextComponent::TextComponent(Entity* const p, float x, float y, const std::strin
     _text.setFont(*_font);
     _text.setCharacterSize(50);
     _text.setPosition(sf::Vector2f(x, y));
-    _text.setOrigin(_text.getLocalBounds().width / 2.0f, _text.getLocalBounds().height / 2.0f);
+    _text.setOrigin(_text.getLocalBounds().left + _text.getLocalBounds().width / 2.0f, 
+						_text.getLocalBounds().top + _text.getLocalBounds().height / 2.0f);
 }
 
 void TextComponent::SetText(const std::string& str) {

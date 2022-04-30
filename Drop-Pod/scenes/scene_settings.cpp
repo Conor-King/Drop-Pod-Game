@@ -12,6 +12,7 @@
 using namespace std;
 using namespace sf;
 
+View settingsView;
 
 shared_ptr<Entity> btn4;
 shared_ptr<Entity> btn5;
@@ -20,52 +21,58 @@ shared_ptr<Entity> btn7;
 shared_ptr<Entity> btn8;
 
 void SettingsScene::Load() {
-    cout << "Setting Load \n";
+	cout << "Setting Load \n";
 
-    auto txt2 = makeEntity();
-    auto t = txt2->addComponent<TextComponent>(490, 180, "Settings");
-
-     btn4 = makeEntity();
-    auto button = btn4->addComponent<Button>(380, 260,  "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
-
-     btn5 = makeEntity();
-    auto button2 = btn5->addComponent<Button>(600, 260,  "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
-
-    btn6 = makeEntity();
-    auto button3 = btn6->addComponent<Button>(380, 360,  "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
-
-    btn7 = makeEntity();
-    auto button4 = btn7->addComponent<Button>(600, 360,  "1920 x 1080", sf::Color::White, sf::Color::Green, sf::Color::Red);
-
-     btn8 = makeEntity();
-    auto button5 = btn8->addComponent<Button>(500, 460,  "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	settingsView = Engine::GetWindow().getView();
 
 
-    setLoaded(true);
+	// Todo: Change from hardcoded positions to dynamic versions.
+	auto txt2 = makeEntity();
+	auto t = txt2->addComponent<TextComponent>(490, 180, "Settings");
+
+	btn4 = makeEntity();
+	auto btn4Pos = Vector2f(380, 260);
+	auto button = btn4->addComponent<Button>(btn4Pos, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+	btn5 = makeEntity();
+	auto btn5Pos = Vector2f(600, 260);
+	auto button2 = btn5->addComponent<Button>(btn5Pos, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+	btn6 = makeEntity();
+	auto btn6Pos = Vector2f(380, 360);
+	auto button3 = btn6->addComponent<Button>(btn6Pos, "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+	btn7 = makeEntity();
+	auto btn7Pos = Vector2f(600, 360);
+	auto button4 = btn7->addComponent<Button>(btn7Pos, "1920 x 1080", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+	btn8 = makeEntity();
+	auto btn8Pos = Vector2f(500, 460);
+	auto button5 = btn8->addComponent<Button>(btn8Pos, "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
+
+	setLoaded(true);
 }
 void SettingsScene::Update(const double& dt) {
+	if (btn4->GetCompatibleComponent<Button>()[0]->isPressed()) {
+		switchState = Arrows;
+	}
+	else if (btn5->GetCompatibleComponent<Button>()[0]->isPressed()) {
+		switchState = WSAD;
+	}
+	else if (btn6->GetCompatibleComponent<Button>()[0]->isPressed()) {
+		Engine::changeResolution(1280, 720);
+	}
+	else if (btn7->GetCompatibleComponent<Button>()[0]->isPressed()) {
+		Engine::changeResolution(1920, 1080);
+	}
 
-    if (btn4->GetCompatibleComponent<Button>()[0]->isPressed()) {
-        switchState = Arrows;
-    }
-    else if (btn5->GetCompatibleComponent<Button>()[0]->isPressed()) {
-        switchState = WSAD;
-    }
-    else if (btn6->GetCompatibleComponent<Button>()[0]->isPressed()) {
-        Engine::changeResolution(1280, 720);
-    }
-    else if (btn7->GetCompatibleComponent<Button>()[0]->isPressed()) {
-       Engine::changeResolution(1920, 1080);
-    }
+	else if (btn8->GetCompatibleComponent<Button>()[0]->isPressed())
+	{
+		Engine::ChangeScene(&menu);
+	}
 
-    else if (btn8->GetCompatibleComponent<Button>()[0]->isPressed())
-    {
-        Engine::ChangeScene(&menu);
-    }
+	if (!sf::Mouse::isButtonPressed(Mouse::Button::Left))
+		Button::_mouseState = BUTTON_IDLE;
 
-    if (!sf::Mouse::isButtonPressed(Mouse::Button::Left))
-        Button::_mouseState = BUTTON_IDLE;
-
-    Scene::Update(dt);
+	Scene::Update(dt);
 }
-

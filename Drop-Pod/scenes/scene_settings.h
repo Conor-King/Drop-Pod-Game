@@ -3,6 +3,8 @@
 #include "engine.h"
 
 class SettingsScene : public Scene {
+protected:
+	sf::View settingsView;
 public:
     SettingsScene() = default;
     ~SettingsScene() override = default;
