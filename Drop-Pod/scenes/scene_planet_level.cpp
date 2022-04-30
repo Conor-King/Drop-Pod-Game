@@ -167,22 +167,22 @@ void PlanetLevelScene::Load() {
 	// Debug Text ---------------------------------------------------------------------
 	viewText.setPosition(20, 20);
 	viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
-	viewText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	viewText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
 	viewText.setCharacterSize(20);
 
 	mousePosText.setPosition(20, 80);
 	mousePosText.setString("Mouse Pos: ");
-	mousePosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	mousePosText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
 	mousePosText.setCharacterSize(20);
 
 	playerPosText.setPosition(20, 150);
 	playerPosText.setString("Player Pos: ");
-	playerPosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	playerPosText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
 	playerPosText.setCharacterSize(20);
 
 	centerPosText.setPosition(20, 200);
 	centerPosText.setString("Center Pos: ");
-	centerPosText.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
+	centerPosText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
 	centerPosText.setCharacterSize(20);
 
 	// Add Entities to be updated/rendered
@@ -378,7 +378,8 @@ void PlanetLevelScene::RenderEnd()
 		endText.setString("Defeat!");
 		endText.setOutlineColor(Color::Black);
 		endText.setOutlineThickness(2);
-		endText.setPosition((gameView.getSize().x / 2.f) - endText.getGlobalBounds().width / 2.f, (gameView.getSize().y / 2.f) - endText.getGlobalBounds().height / 2.f);
+		Vector2f pos = Vector2f((gameView.getSize().x / 2.f) - endText.getGlobalBounds().width / 2.f, (gameView.getSize().y / 2.f) - endText.getGlobalBounds().height / 2.f);
+		endText.setPosition(pos);
 		endText.setOrigin(endText.getLocalBounds().width * 0.5, endText.getLocalBounds().height * 0.5);
 	}
 }
