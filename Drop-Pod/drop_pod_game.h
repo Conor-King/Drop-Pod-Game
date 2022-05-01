@@ -21,6 +21,4 @@ extern PlanetLevelScene planetLevel;
 extern SpaceshipLevelScene spaceshipLevel;
 extern short unsigned switchState;
 extern short unsigned switchRes;
-
-
-
+extern int volume;

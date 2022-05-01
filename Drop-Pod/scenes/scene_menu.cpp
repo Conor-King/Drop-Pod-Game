@@ -53,7 +53,7 @@ void MenuScene::Load() {
     {
         if (!music.openFromFile("res/assets/background_music/Cold-Moon.ogg"))
             printf("music broken"); // error
-        music.setVolume(30);
+        music.setVolume(volume);
     	music.setLoop(true);
     	music.play();
     }

@@ -1,4 +1,5 @@
 #include "scene_planet_level.h"
+#include "../drop_pod_game.h"
 #include "engine.h"
 #include "../components/cmp_actor_movement.h"
 #include "../components/cmp_player.h"
@@ -96,7 +97,7 @@ void PlanetLevelScene::Load() {
 
 	soundShoot_buffer = Resources::get<SoundBuffer>("Shoot_001.wav");
 	soundShoot = make_shared<Sound>(*soundShoot_buffer);
-	soundShoot->setVolume(0); //------------------------------------------------------------------- Todo: change volume
+	soundShoot->setVolume(volume); //------------------------------------------------------------------- Todo: change volume
 
 	// Player Entity ---------------------------------------------------------------
 

@@ -13,7 +13,7 @@ button_states Button::_mouseState;
 //shared_ptr<SoundBuffer> soundClick_buffer;
 //shared_ptr<Sound> soundClick;
 
-SoundBuffer sound_buffer2;
+shared_ptr<SoundBuffer> sound_buffer2;
 Sound soundClick;
 
 //
@@ -33,7 +33,7 @@ void Button::update(double dt) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			buttonState = BUTTON_ACTIVED;
-			soundClick.setBuffer(sound_buffer2);
+			soundClick.setBuffer(*sound_buffer2);
 			soundClick.play();
 			if (_mouseState == BUTTON_IDLE)
 				_mouseState = BUTTON_ACTIVED;
@@ -101,6 +101,8 @@ Button::Button(Entity* p, sf::Vector2f position, std::string text, sf::Color idl
 	this->idleColor = idleColor;
 
 	shape.setFillColor(idleColor);
+
+	sound_buffer2 = Resources::get<SoundBuffer>("Click.wav");
 	
 }
 

@@ -13,6 +13,7 @@ using namespace std;
 using namespace sf;
 
 View settingsView;
+bool vsync = false;
 
 
 shared_ptr<Entity> btn4;
@@ -30,8 +31,8 @@ void SettingsScene::Load() {
 
 	// Todo: Change from hardcoded positions to dynamic versions.
 	auto txt2 = makeEntity();
-	auto pos = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 8.0f);
-	auto t = txt2->addComponent<TextComponent>(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 5.0f, "Settings");
+	auto pos = Vector2f(settingsView.getSize().x / 2.0f, 50);
+	auto t = txt2->addComponent<TextComponent>(pos.x , pos.y, "Settings");
 
 	btn4 = makeEntity();
 	auto btn4Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 3.0f);
@@ -84,7 +85,20 @@ void SettingsScene::Update(const double& dt) {
 	}
 
 	else if (btn8->GetCompatibleComponent<Button>()[0]->isPressed()) {
-		/*window.setVerticalSyncEnabled(true);*/
+		if (vsync)
+		{
+			Engine::GetWindow().setVerticalSyncEnabled(false);
+			btn8->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - OFF");
+			vsync = false;
+		}
+		else
+		{
+			Engine::GetWindow().setVerticalSyncEnabled(true);
+			btn8->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - ON");
+			vsync = true;
+		}
+
+		
 	}
 
 	else if (btn9->GetCompatibleComponent<Button>()[0]->isPressed()) {
