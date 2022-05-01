@@ -17,14 +17,14 @@ class Button : public Component {
 
 private:
 	sf::RectangleShape shape;
-	sf::Text _text;
+	
 	std::shared_ptr<sf::Font> font;
 
 	sf::Color idleColor;
 	sf::Color hoverColor;
 	sf::Color activeColor;
 public:
-
+sf::Text _text;
 	short unsigned buttonState;
 	//bool presed;
 	//bool hover;

@@ -16,10 +16,12 @@ LevelSelectScene levelSelect;
 PlanetLevelScene planetLevel;
 SpaceshipLevelScene spaceshipLevel;
 short unsigned switchState;
+int volume;
 
 
 int main() {
 	Engine::Start(1280, 720, "Drop Pod", &menu);
+	volume = 10;
 }
 /* Todo:
 * itch.io page
