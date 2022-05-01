@@ -166,7 +166,10 @@ void Engine::ChangeScene(Scene* s) {
 sf::Vector2f Engine::flocking(Entity* thisEnemy, Vector2f toPlayer)
 {
 	//shared_ptr<Entity> choosenEnemy = make_shared<Entity>(thisEnemy);
-	Vector2f movement = Vector2f(0,0);
+	Vector2f movement = Vector2f(0, 0);
+	Vector2f alignment = Vector2f(0,0);
+	Vector2f cohesion = Vector2f(0, 0);
+	Vector2f separation = Vector2f(0, 0);
 	int neighborCount = 0;
 
 	auto ecm = _activeScene->getEcm();
@@ -182,10 +185,10 @@ sf::Vector2f Engine::flocking(Entity* thisEnemy, Vector2f toPlayer)
 
 			auto distance = (xDistance * xDistance) + (yDistance * yDistance);
 
-			if (distance < 1500)
+			if (distance < 3000)
 			{
-				movement.x += toPlayer.x;
-				movement.y += toPlayer.y;
+				alignment.x += toPlayer.x;
+				alignment.y += toPlayer.y;
 				neighborCount++;
 			}
 		}
@@ -193,14 +196,65 @@ sf::Vector2f Engine::flocking(Entity* thisEnemy, Vector2f toPlayer)
 
 	if (neighborCount == 0)
 	{
-		return movement;
+		return alignment;
 	}
 
-	movement.x /= neighborCount;
-	movement.y /= neighborCount;
+	alignment.x /= neighborCount;
+	alignment.y /= neighborCount;
+	alignment = normalize(alignment);
+
+	// Cohesion ----------------------------------------------------------------------------------------------
+	for (shared_ptr<Entity>& enemy : enemies)
+	{
+		Entity* rawEnemy = enemy.get();
+		if (rawEnemy != thisEnemy)
+		{
+			float xDistance = enemy->getPosition().x - thisEnemy->getPosition().x;
+			float yDistance = enemy->getPosition().y - thisEnemy->getPosition().y;
+
+			auto distance = (xDistance * xDistance) + (yDistance * yDistance);
+
+			if (distance < 3000)
+			{
+				cohesion.x += enemy->getPosition().x;
+				cohesion.y += enemy->getPosition().y;
+			}
+		}
+	}
+
+	cohesion.x /= neighborCount;
+	cohesion.y /= neighborCount;
+
+	cohesion = Vector2f(cohesion.x - thisEnemy->getPosition().x, cohesion.y - thisEnemy->getPosition().y);
+	cohesion = normalize(cohesion);
+
+	// Separation -------------------------------------------------------------------------------------------
+	for (shared_ptr<Entity>& enemy : enemies)
+	{
+		Entity* rawEnemy = enemy.get();
+		if (rawEnemy != thisEnemy)
+		{
+			float xDistance = enemy->getPosition().x - thisEnemy->getPosition().x;
+			float yDistance = enemy->getPosition().y - thisEnemy->getPosition().y;
+
+			auto distance = (xDistance * xDistance) + (yDistance * yDistance);
+
+			if (distance < 3000)
+			{
+				separation.x += enemy->getPosition().x - thisEnemy->getPosition().x;
+				separation.y += enemy->getPosition().y - thisEnemy->getPosition().y;
+			}
+		}
+	}
+
+	separation.x *= -1;
+	separation.y *= -1;
+
+	movement.x = toPlayer.x + alignment.x + cohesion.x + separation.x;
+	movement.y = toPlayer.y + alignment.y + cohesion.y + separation.y;
+
 	movement = normalize(movement);
 	return movement;
-
 }
 
 
