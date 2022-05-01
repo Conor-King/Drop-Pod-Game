@@ -62,7 +62,7 @@ Button::Button(Entity* p, sf::Vector2f position, std::string text, sf::Color idl
 	: Component(p){
 
 	buttonState = BUTTON_IDLE;
-	shape.setSize(sf::Vector2f(220, 80));
+	shape.setSize(sf::Vector2f(200, 70));
 	shape.setPosition(position - (shape.getSize() / 2.f));
 	shape.setOrigin(0,0);
 	//_mouseState = BUTTON_IDLE;

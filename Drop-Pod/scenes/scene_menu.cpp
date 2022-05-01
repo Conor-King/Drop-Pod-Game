@@ -20,21 +20,15 @@ shared_ptr<Entity> btn2;
 shared_ptr<Entity> btn3;
 
 View menuView;
-View debugView;
 
-Text mousePosText2;
+
+
 
 
 void MenuScene::Load() {
     cout << "Menu Load \n";
 
     menuView = Engine::GetWindow().getView();
-
-    mousePosText2.setPosition(20, 20);
-    mousePosText2.setString("Mouse Pos: ");
-    mousePosText2.setFont(*Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
-    mousePosText2.setCharacterSize(20);
-
     RenderWindow& window = Engine::GetWindow();
     Vector2u windowSize = window.getSize();
 
@@ -87,10 +81,7 @@ void MenuScene::Update(const double& dt) {
     if(!sf::Mouse::isButtonPressed(Mouse::Button::Left))
         Button::_mouseState = BUTTON_IDLE;
 
-    auto mousePos = Mouse::getPosition(Engine::GetWindow());
-    string mouseTextx = to_string(mousePos.x);
-    string mouseTexty = to_string(mousePos.y);
-    mousePosText2.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
+    
     //cout << Button::_mouseState << endl;
    
   Scene::Update(dt);
@@ -98,9 +89,6 @@ void MenuScene::Update(const double& dt) {
 
 void MenuScene::Render()
 {
-    Engine::setView(debugView);
-    Engine::GetWindow().draw(mousePosText2);
-
     Engine::setView(menuView);
     Scene::Render();
 }
