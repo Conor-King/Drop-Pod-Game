@@ -76,9 +76,11 @@ void SettingsScene::Update(const double& dt) {
 	}
 	else if (btn6->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		Engine::changeResolution(1280, 720);
+		Engine::ChangeScene(&settings);
 	}
 	else if (btn7->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		Engine::changeResolution(1920, 1080);
+		Engine::ChangeScene(&settings);
 	}
 	else if (btn11->GetCompatibleComponent<Button>()[0]->isPressed())
 	{
