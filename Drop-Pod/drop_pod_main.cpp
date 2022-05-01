@@ -20,8 +20,8 @@ int volume;
 
 
 int main() {
-	Engine::Start(1280, 720, "Drop Pod", &menu);
 	volume = 10;
+	Engine::Start(1280, 720, "Drop Pod", &menu);
 }
 /* Todo:
 * itch.io page
