@@ -142,10 +142,7 @@ void Engine::changeResolution(int x, int y)
     _window->create(VideoMode(_newResolution.x, _newResolution.y), "Drop Pod");
 }
 
-//void Engine::reloadElements(int x, int y) {
-//
-//
-//}
+
 
 
 void Engine::ChangeScene(Scene* s) {

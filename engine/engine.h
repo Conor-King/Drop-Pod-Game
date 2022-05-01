@@ -43,7 +43,6 @@ public:
   static void setView(sf::View);
   static void moveView(sf::Vector2f);
   static void changeResolution(int x, int y);
-  static void reloadElements(int x, int y);
 
 private:
   static Scene* _activeScene;
