@@ -14,7 +14,7 @@ using namespace std;
 using namespace sf;
 
 sf::Music music;
-sf::Texture texture;
+
 shared_ptr<Entity> btnExit;
 shared_ptr<Entity> btnSetting;
 shared_ptr<Entity> btnStart;
@@ -35,10 +35,7 @@ void MenuScene::Load() {
     Vector2u windowSize = window.getSize();
 
 
-    // set background
-//if (!texture.loadFromFile("Ga.png")) {}
-//    sf::Sprite background(texture);
-//        window.draw(background);
+    
     
 
 
