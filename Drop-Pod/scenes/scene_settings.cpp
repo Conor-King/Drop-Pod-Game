@@ -15,7 +15,6 @@ using namespace sf;
 View settingsView;
 bool vsync = false;
 
-
 shared_ptr<Entity> btn4;
 shared_ptr<Entity> btn5;
 shared_ptr<Entity> btn6;

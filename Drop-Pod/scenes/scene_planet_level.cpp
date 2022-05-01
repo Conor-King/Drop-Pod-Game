@@ -47,9 +47,12 @@ shared_ptr<SoundBuffer> soundShoot_buffer;
 shared_ptr<Sound> soundShoot;
 
 // Enemy Variables
-shared_ptr<Entity> enemy;
-shared_ptr<Texture> enemySprite;
-IntRect enemyRect;
+
+vector<shared_ptr<Entity>> enemies;
+
+//shared_ptr<Entity> enemy;
+//shared_ptr<Texture> enemySprite;
+//IntRect enemyRect;
 
 // Debug Hud variables
 Text viewText;
@@ -97,7 +100,7 @@ void PlanetLevelScene::Load() {
 
 	soundShoot_buffer = Resources::get<SoundBuffer>("Shoot_001.wav");
 	soundShoot = make_shared<Sound>(*soundShoot_buffer);
-	soundShoot->setVolume(volume); //------------------------------------------------------------------- Todo: change volume
+	soundShoot->setVolume(volume);
 
 	// Player Entity ---------------------------------------------------------------
 
@@ -391,9 +394,13 @@ void PlanetLevelScene::SpawnEnemy()
 
 	auto emove = enemy->addComponent<ActorMovementComponent>();
 	emove->setMoving(true);
-	auto eattributes = enemy->addComponent<MonsterComponent>(player, enemySprite);
+	auto eattributes = enemy->addComponent<MonsterComponent>(player);
 
 	// This is needed to have the enemy end at the player sprite.
 	esprite->getSprite().setOrigin(32, 32);
-	this->addEntity(enemy);
+
+	enemy->addTag("enemy");
+
+	//enemies.push_back(enemy);
+	//this->addEntity(enemy);
 }

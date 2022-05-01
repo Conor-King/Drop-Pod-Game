@@ -33,11 +33,13 @@ public:
 
 	// Enemies
 
-	/*std::shared_ptr<Entity> enemy;
+	std::vector < std::shared_ptr<Entity>> enemies;
+
+	            /*std::shared_ptr<Entity> enemy;
 	std::shared_ptr<sf::Texture> enemySprite;
 	sf::IntRect enemyRect;*/
 
-	// Actual HUD
+	            // Actual HUD
 	float tempTime;
 	int minutes;
 	int seconds;
@@ -58,6 +60,7 @@ public:
 	void RenderEnd();
 
 	void SpawnEnemy();
+
 
 	sf::Vector2f RandomPosition();
 };
