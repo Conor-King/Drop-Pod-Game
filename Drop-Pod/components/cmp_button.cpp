@@ -10,6 +10,18 @@ using namespace std;
 unique_ptr<Button> button;
 button_states Button::_mouseState;
 
+//shared_ptr<SoundBuffer> soundClick_buffer;
+//shared_ptr<Sound> soundClick;
+
+SoundBuffer sound_buffer2;
+Sound soundClick;
+
+//
+//void Button::LoadMusic() {
+//	sound_buffer2 = Resources::get<SoundBuffer>("Click.wav");
+//	soundClick = make_shared<Sound>(*sound_buffer2);
+//	soundClick->setVolume(0);
+//}
 void Button::update(double dt) {
 
 	Vector2f point = Vector2f(Mouse::getPosition(Engine::GetWindow()));
@@ -21,7 +33,8 @@ void Button::update(double dt) {
 		if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
 		{
 			buttonState = BUTTON_ACTIVED;
-
+			soundClick.setBuffer(sound_buffer2);
+			soundClick.play();
 			if (_mouseState == BUTTON_IDLE)
 				_mouseState = BUTTON_ACTIVED;
 			else if (_mouseState == BUTTON_ACTIVED)
