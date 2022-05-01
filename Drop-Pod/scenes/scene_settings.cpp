@@ -80,6 +80,19 @@ void SettingsScene::Update(const double& dt) {
 	else if (btn7->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		Engine::changeResolution(1920, 1080);
 	}
+
+	else if (btn8->GetCompatibleComponent<Button>()[0]->isPressed()) {
+		
+	}
+
+	else if (btn9->GetCompatibleComponent<Button>()[0]->isPressed()) {
+		
+	}
+
+	else if (btn10->GetCompatibleComponent<Button>()[0]->isPressed()) {
+		
+	}
+
 	else if (btn11->GetCompatibleComponent<Button>()[0]->isPressed())
 	{
 		Engine::ChangeScene(&menu);
