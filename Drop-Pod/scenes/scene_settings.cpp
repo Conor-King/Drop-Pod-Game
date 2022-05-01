@@ -34,32 +34,32 @@ void SettingsScene::Load() {
 	auto t = txt2->addComponent<TextComponent>(pos.x , pos.y, "Settings");
 
 	btn4 = makeEntity();
-	auto btn4Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 3.0f);
+	auto btn4Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 5.0f);
 	auto button = btn4->addComponent<Button>(btn4Pos, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btn5 = makeEntity();
-	auto btn5Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 3.0f);
+	auto btn5Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 5.0f);
 	auto button2 = btn5->addComponent<Button>(btn5Pos, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btn6 = makeEntity();
-	auto btn6Pos = Vector2f(settingsView.getSize().x / 1.5f, settingsView.getSize().y / 2.0f);
+	auto btn6Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 3.0f);
 	auto button3 = btn6->addComponent<Button>(btn6Pos, "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btn7 = makeEntity();
-	auto btn7Pos = Vector2f(settingsView.getSize().x / 3.0f, settingsView.getSize().y / 2.0f);
+	auto btn7Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 3.0f);
 	auto button4 = btn7->addComponent<Button>(btn7Pos, "1920 x 1080", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btn8 = makeEntity();
-	auto btn8Pos = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 2.0f);
+	auto btn8Pos = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 1.5f);
 	auto button5 = btn8->addComponent<Button>(btn8Pos, "Controlling the framerate", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btn9 = makeEntity();
-	auto btn9Pos = Vector2f(settingsView.getSize().x / 3.0f, settingsView.getSize().y / 1.5f);
-	auto button6 = btn9->addComponent<Button>(btn9Pos, "Sound - 50", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto btn9Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 2.0f);
+	auto button6 = btn9->addComponent<Button>(btn9Pos, "Sound + 10", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btn10 = makeEntity();
-	auto btn10Pos = Vector2f(settingsView.getSize().x / 1.5f, settingsView.getSize().y / 1.5f);
-	auto button7 = btn10->addComponent<Button>(btn10Pos, "Sound - 100", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto btn10Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 2.0f);
+	auto button7 = btn10->addComponent<Button>(btn10Pos, "Sound - 10", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btn11 = makeEntity();
 	auto btn11Pos = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 1.2f);
@@ -101,11 +101,11 @@ void SettingsScene::Update(const double& dt) {
 	}
 
 	else if (btn9->GetCompatibleComponent<Button>()[0]->isPressed()) {
-		/*music.setVolume(20);*/
+		volume >= 100 ? volume = 100 : volume += 10;
 	}
 
 	else if (btn10->GetCompatibleComponent<Button>()[0]->isPressed()) {
-		/*music.setVolume(50);*/
+		volume <= 0 ? volume = 0 :  volume -= 10;
 	}
 
 	else if (btn11->GetCompatibleComponent<Button>()[0]->isPressed())

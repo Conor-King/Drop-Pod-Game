@@ -3,6 +3,7 @@
 #include <system_renderer.h>
 #include <system_resources.h>
 #include "engine.h"
+#include "../drop_pod_game.h"
 
 using namespace sf;
 using namespace std;
@@ -34,6 +35,7 @@ void Button::update(double dt) {
 		{
 			buttonState = BUTTON_ACTIVED;
 			soundClick.setBuffer(*sound_buffer2);
+			soundClick.setVolume(volume);
 			soundClick.play();
 			if (_mouseState == BUTTON_IDLE)
 				_mouseState = BUTTON_ACTIVED;
