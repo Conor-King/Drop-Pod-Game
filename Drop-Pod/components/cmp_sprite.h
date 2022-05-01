@@ -54,6 +54,7 @@ protected:
 	float totalProgress;
 	sf::Sprite* target;
 	int frameCount;
+	int _row;
 public:
 
 	AnimationComponent() = delete;
@@ -65,6 +66,9 @@ public:
 	void render();
 
 	void setAnimation(int size, float duration, std::shared_ptr<sf::Texture> texture, sf::IntRect rect);
-	void switchRow(int row);
+	
 	void setDuration(float duration);
+
+	void setRow(int row);
+	int getRow();
 };

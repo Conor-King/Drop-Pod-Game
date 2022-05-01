@@ -1,21 +1,31 @@
 #include "cmp_shooting.h"
+#include "../drop_pod_game.h"
 #include "cmp_actor_movement.h"
 #include "cmp_sprite.h"
 #include <SFML/Graphics.hpp>
+
+#include "cmp_monster.h"
 #include "system_renderer.h"
 #include "engine.h"
 
 using namespace std;
 using namespace sf;
 
+// ShootingComponent Variables
 unsigned int bulletCount;
 vector<Bullet> bullets(20);
-bool isVisible = false;
-float angle;
 
 float tempfloat = 0.f;
 shared_ptr<float> angleshot = make_unique<float>(tempfloat);
+
+// Bullet Variables
+bool isVisible = false;
+float angle;
 Vector2f mousePos;
+
+
+
+
 
 auto temp2 = Texture::Texture();
 auto spriteTexture = make_shared<Texture>(temp2);
@@ -39,12 +49,13 @@ void ShootingComponent::Fire() {
 	Bullet::fire(_parent->getPosition());
 }
 
-Bullet::Bullet() {}
+Bullet::Bullet()
+{
+	_damage = 50;
+}
 
 void Bullet::init() {
-	if (!spriteTexture->loadFromFile("res/assets/weapons/MainWeapons/bulletGlow.png")) {
-		cerr << "Failed to load spritesheet!" << std::endl;
-	}
+	spriteTexture = Resources::get<Texture>("bulletGlow.png");
 
 	for (auto& b : bullets) {
 		b.setPosition(Vector2f(-100, -100));
@@ -105,4 +116,32 @@ void Bullet::_update(const double dt) {
 		this->move(cos(this->angle) * 200.f * dt, 0);
 		this->move(0, sin(this->angle) * 200.f * dt);
 	}
+
+	auto ecm = planetLevel.getEcm();
+	auto enemies = ecm.find("enemy");
+	auto boundingBox = getGlobalBounds();
+
+	for (auto enemy : enemies)
+	{
+		auto sprite = enemy->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
+		auto spriteBounds = sprite.getGlobalBounds();
+		spriteBounds.top += 40;
+		spriteBounds.left += 40;
+		spriteBounds.width -= 70;
+		spriteBounds.height -= 70;
+		if (enemy->isAlive() && spriteBounds.intersects(boundingBox))
+		{
+			this->isVisible = false;
+			setPosition(-100, -100);
+
+			// Hit Sound effect?
+
+			auto currentHealth = enemy->GetCompatibleComponent<MonsterComponent>()[0]->getHealth();
+			enemy->GetCompatibleComponent<MonsterComponent>()[0]->setHealth(currentHealth - _damage);
+		}
+	}
+
+
+
+
 }

@@ -13,6 +13,9 @@ protected:
 	int _health;
 	std::shared_ptr<Entity> _player;
 	std::shared_ptr<sf::Texture> _texture;
+	float _attackTime;
+	float _deathTime;
+	int _damage;
 
 public:
 	MonsterComponent() = delete;
@@ -24,4 +27,7 @@ public:
 	~MonsterComponent() override = default;
 
 	void setHealth(int health);
+	int getHealth();
+
+	void attack(double dt);
 };

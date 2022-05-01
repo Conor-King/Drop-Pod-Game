@@ -47,7 +47,7 @@ ShapeComponent::ShapeComponent(Entity* p)
 Sprite& SpriteComponent::getSprite() const { return *_sprite; }
 
 // Animation ----------------------------------------------------------------------------------------------------------
-AnimationComponent::AnimationComponent(Entity* p) : Component(p) {
+AnimationComponent::AnimationComponent(Entity* p) : Component(p), _row(0) {
 	totalProgress = 0.f;
 	totalLength = 0.f;
 	frameCount = 0;
@@ -73,13 +73,22 @@ void AnimationComponent::setAnimation(int size, float duration, shared_ptr<Textu
 	}
 }
 
-void AnimationComponent::switchRow(int row) {
+void AnimationComponent::setRow(int row) {
+	frameCount = 0;
+	_row = row;
+
 	for (Frame& frame : frames)
 	{
 		auto top = frame.rect.height * row;
 		frame.rect.top = top;
 	}
 }
+
+int AnimationComponent::getRow()
+{
+	return _row;
+}
+
 
 void AnimationComponent::setDuration(float duration)
 {

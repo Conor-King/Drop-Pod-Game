@@ -17,6 +17,7 @@ public:
 	~PlayerComponent() override = default;
 
 	void setHealth(int health);
+	int getHealth();
 	
 	
 	

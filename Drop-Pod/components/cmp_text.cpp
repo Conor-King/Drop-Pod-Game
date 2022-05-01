@@ -7,7 +7,7 @@ void TextComponent::update(double dt) {}
 void TextComponent::render() { Renderer::queue(&_text); }
 
 TextComponent::TextComponent(Entity* const p, float x, float y, const std::string& str)
-    : Component(p), _string(str) { 
+    : Component(p), _string(str), sizeOfText(50) { 
     _text.setString(_string);
     // https://en.sfml-dev.org/forums/index.php?topic=15875.0 //
     _font = Resources::get<sf::Font>("RobotoMono-Regular.ttf");

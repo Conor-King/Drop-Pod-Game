@@ -10,6 +10,7 @@ protected:
 	bool isVisible;
 	sf::Vector2f mousePos;
 	float angle;
+	int _damage;
 	
 public:
 	static void update(const double dt);

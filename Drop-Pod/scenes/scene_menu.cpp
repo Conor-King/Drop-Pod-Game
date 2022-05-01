@@ -26,11 +26,17 @@ View menuView;
 
 
 void MenuScene::Load() {
+    volume = 20;
+
     cout << "Menu Load \n";
 
     menuView = Engine::GetWindow().getView();
     RenderWindow& window = Engine::GetWindow();
     Vector2u windowSize = window.getSize();
+
+
+    // set background
+
 
     auto txt = makeEntity();
     auto pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 5.0f);

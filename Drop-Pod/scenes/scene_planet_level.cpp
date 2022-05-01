@@ -132,10 +132,10 @@ void PlanetLevelScene::Load() {
 
 	// Enemies entity -----------------------------------------------------------------
 
-	SpawnEnemy();
-	SpawnEnemy();
-	SpawnEnemy();
-	SpawnEnemy();
+	for (int i = 0; i < 5; ++i)
+	{
+		SpawnEnemy();
+	}
 
 	// HUD ----------------------------------------------------------------------------
 	tempTime = 0.f;
@@ -400,7 +400,4 @@ void PlanetLevelScene::SpawnEnemy()
 	esprite->getSprite().setOrigin(32, 32);
 
 	enemy->addTag("enemy");
-
-	//enemies.push_back(enemy);
-	//this->addEntity(enemy);
 }

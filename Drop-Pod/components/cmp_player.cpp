@@ -19,6 +19,11 @@ void PlayerComponent::setHealth(int health)
 	_health = health;
 }
 
+int PlayerComponent::getHealth()
+{
+	return _health;
+}
+
 
 void PlayerComponent::update(const double dt)
 {
