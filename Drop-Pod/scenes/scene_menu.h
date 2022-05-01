@@ -12,9 +12,9 @@ public:
 
   void Update(const double& dt) override;
 
-  std::shared_ptr<Entity> btn;
-  std::shared_ptr<Entity> btn2;
-  std::shared_ptr<Entity> btn3;
+  std::shared_ptr<Entity> btnPlay;
+  std::shared_ptr<Entity> btnSetting;
+  std::shared_ptr<Entity> btnExit;
 
   
 

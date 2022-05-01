@@ -15,9 +15,9 @@ using namespace sf;
 
 //sf::Music music;
 
-shared_ptr<Entity> btn;
-shared_ptr<Entity> btn2;
-shared_ptr<Entity> btn3;
+shared_ptr<Entity> btnPlay;
+shared_ptr<Entity> btnSetting;
+shared_ptr<Entity> btnExit;
 
 View menuView;
 
@@ -36,33 +36,33 @@ void MenuScene::Load() {
     auto pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 5.0f);
     auto t = txt->addComponent<TextComponent>(menuView.getSize().x / 2.0f, menuView.getSize().y / 5.0f, "DROP POD");
 
-    btn = makeEntity();
+    btnPlay = makeEntity();
     auto btnPos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 1.5f);
-    auto button = btn->addComponent<Button>(btnPos,  "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button = btnPlay->addComponent<Button>(btnPos,  "Exit", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    btn2 = makeEntity();
+    btnSetting = makeEntity();
     auto btn2Pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 2.f);
-    auto button2 = btn2->addComponent<Button>(btn2Pos,  "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button2 = btnSetting->addComponent<Button>(btn2Pos,  "Setting", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    btn3 = makeEntity();
+    btnExit = makeEntity();
     auto btn3Pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 3.f);
-    auto button3 = btn3->addComponent<Button>(btn3Pos, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
+    auto button3 = btnExit->addComponent<Button>(btn3Pos, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
   
   setLoaded(true);
 }
 
 void MenuScene::Update(const double& dt) {
 
-    if (btn3->GetCompatibleComponent<Button>()[0]->isPressed())
+    if (btnExit->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::ChangeScene(&planetLevel);
         ls::setTextureMap(IntRect(Vector2i(0, 32), Vector2i(100, 100)), "res/assets/tiles/grass.png");
     }
-    else if (btn2->GetCompatibleComponent<Button>()[0]->isPressed())
+    else if (btnSetting->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::ChangeScene(&settings);
     }
-    else if (btn->GetCompatibleComponent<Button>()[0]->isPressed())
+    else if (btnPlay->GetCompatibleComponent<Button>()[0]->isPressed())
     {
         Engine::GetWindow().close();
     }
