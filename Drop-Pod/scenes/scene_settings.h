@@ -10,14 +10,14 @@ public:
     void Load() override;
 
     void Update(const double& dt) override;
-    std::shared_ptr<Entity> btn4;
-    std::shared_ptr<Entity> btn5;
-    std::shared_ptr<Entity> btn6;
-    std::shared_ptr<Entity> btn7;
-    std::shared_ptr<Entity> btn8;
-    std::shared_ptr<Entity> btn9;
-    std::shared_ptr<Entity> btn10;
-    std::shared_ptr<Entity> btn11;
+    std::shared_ptr<Entity> btnArrows;
+    std::shared_ptr<Entity> btnWsad;
+    std::shared_ptr<Entity> btn1280;
+    std::shared_ptr<Entity> btn1920;
+    std::shared_ptr<Entity> btnFrame;
+    std::shared_ptr<Entity> btnSoundUp;
+    std::shared_ptr<Entity> btnSoundDown;
+    std::shared_ptr<Entity> btnBack;
     /*void Render() override;*/
 };
 

@@ -16,11 +16,11 @@ View settingsView;
 bool vsync = false;
 
 
-shared_ptr<Entity> btn4;
-shared_ptr<Entity> btn5;
-shared_ptr<Entity> btn6;
-shared_ptr<Entity> btn7;
-shared_ptr<Entity> btn8;
+shared_ptr<Entity> btnArrows;
+shared_ptr<Entity> btnWsad;
+shared_ptr<Entity> btn1280;
+shared_ptr<Entity> btn1920;
+shared_ptr<Entity> btnFrame;
 
 void SettingsScene::Load() {
 	cout << "Setting Load \n";
@@ -34,82 +34,82 @@ void SettingsScene::Load() {
 	auto pos = Vector2f(settingsView.getSize().x / 2.0f, 50);
 	auto t = txt2->addComponent<TextComponent>(pos.x , pos.y, "Settings");
 
-	btn4 = makeEntity();
+	btnArrows = makeEntity();
 	auto btn4Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 5.0f);
-	auto button = btn4->addComponent<Button>(btn4Pos, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button = btnArrows->addComponent<Button>(btn4Pos, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-	btn5 = makeEntity();
+	btnWsad = makeEntity();
 	auto btn5Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 5.0f);
-	auto button2 = btn5->addComponent<Button>(btn5Pos, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button2 = btnWsad->addComponent<Button>(btn5Pos, "WSAD Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-	btn6 = makeEntity();
+	btn1280 = makeEntity();
 	auto btn6Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 3.0f);
-	auto button3 = btn6->addComponent<Button>(btn6Pos, "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button3 = btn1280->addComponent<Button>(btn6Pos, "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-	btn7 = makeEntity();
+	btn1920 = makeEntity();
 	auto btn7Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 3.0f);
-	auto button4 = btn7->addComponent<Button>(btn7Pos, "1920 x 1080", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button4 = btn1920->addComponent<Button>(btn7Pos, "1920 x 1080", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-	btn8 = makeEntity();
+	btnFrame = makeEntity();
 	auto btn8Pos = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 1.5f);
-	auto button5 = btn8->addComponent<Button>(btn8Pos, "Controlling the framerate", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button5 = btnFrame->addComponent<Button>(btn8Pos, "Controlling the framerate", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-	btn9 = makeEntity();
+	btnSoundUp = makeEntity();
 	auto btn9Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 2.0f);
-	auto button6 = btn9->addComponent<Button>(btn9Pos, "Sound + 10", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button6 = btnSoundUp->addComponent<Button>(btn9Pos, "Sound + 10", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-	btn10 = makeEntity();
+	btnSoundDown = makeEntity();
 	auto btn10Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 2.0f);
-	auto button7 = btn10->addComponent<Button>(btn10Pos, "Sound - 10", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button7 = btnSoundDown->addComponent<Button>(btn10Pos, "Sound - 10", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-	btn11 = makeEntity();
+	btnBack = makeEntity();
 	auto btn11Pos = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 1.2f);
-	auto button8 = btn11->addComponent<Button>(btn11Pos, "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button8 = btnBack->addComponent<Button>(btn11Pos, "Back", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	setLoaded(true);
 }
 void SettingsScene::Update(const double& dt) {
-	if (btn4->GetCompatibleComponent<Button>()[0]->isPressed()) {
+	if (btnArrows->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		switchState = Arrows;
 	}
-	else if (btn5->GetCompatibleComponent<Button>()[0]->isPressed()) {
+	else if (btnWsad->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		switchState = WSAD;
 	}
-	else if (btn6->GetCompatibleComponent<Button>()[0]->isPressed()) {
+	else if (btn1280->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		Engine::changeResolution(1280, 720);
 		Engine::ChangeScene(&settings);
 	}
-	else if (btn7->GetCompatibleComponent<Button>()[0]->isPressed()) {
+	else if (btn1920->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		Engine::changeResolution(1920, 1080);
 		Engine::ChangeScene(&settings);
 	}
 
-	else if (btn8->GetCompatibleComponent<Button>()[0]->isPressed()) {
+	else if (btnFrame->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		if (vsync)
 		{
 			Engine::GetWindow().setVerticalSyncEnabled(false);
-			btn8->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - OFF");
+			btnFrame->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - OFF");
 			vsync = false;
 		}
 		else
 		{
 			Engine::GetWindow().setVerticalSyncEnabled(true);
-			btn8->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - ON");
+			btnFrame->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - ON");
 			vsync = true;
 		}
 
 		
 	}
 
-	else if (btn9->GetCompatibleComponent<Button>()[0]->isPressed()) {
+	else if (btnSoundUp->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		volume >= 100 ? volume = 100 : volume += 10;
 	}
 
-	else if (btn10->GetCompatibleComponent<Button>()[0]->isPressed()) {
+	else if (btnSoundDown->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		volume <= 0 ? volume = 0 :  volume -= 10;
 	}
 
-	else if (btn11->GetCompatibleComponent<Button>()[0]->isPressed())
+	else if (btnBack->GetCompatibleComponent<Button>()[0]->isPressed())
 	{
 		Engine::ChangeScene(&menu);
 	}
