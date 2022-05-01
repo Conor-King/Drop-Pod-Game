@@ -16,7 +16,7 @@ protected:
 
 public:
 	MonsterComponent() = delete;
-	explicit MonsterComponent(Entity* p, std::shared_ptr<Entity> player, std::shared_ptr<sf::Texture> texture);
+	explicit MonsterComponent(Entity* p, std::shared_ptr<Entity> player);
 
 	void update(double dt) override;
 	void render() override;
@@ -24,5 +24,4 @@ public:
 	~MonsterComponent() override = default;
 
 	void setHealth(int health);
-
 };

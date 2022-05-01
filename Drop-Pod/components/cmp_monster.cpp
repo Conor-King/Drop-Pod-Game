@@ -1,18 +1,19 @@
 #include "cmp_monster.h"
-
+#include "../scenes/scene_planet_level.h"
 #include "cmp_sprite.h"
 #include "engine.h"
 
 using namespace std;
 using namespace sf;
 
-MonsterComponent::MonsterComponent(Entity* p, shared_ptr<Entity> player, shared_ptr<Texture> texture) : ActorMovementComponent(p),
-_health(100), _player(player), _texture(texture) { }
+MonsterComponent::MonsterComponent(Entity* p, shared_ptr<Entity> player) : ActorMovementComponent(p),
+_health(100), _player(player) { }
 
 void MonsterComponent::setHealth(int health)
 {
 	_health = health;
 }
+
 
 void MonsterComponent::update(double dt)
 {
@@ -47,6 +48,19 @@ void MonsterComponent::update(double dt)
 		auto speed = _parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getSpeed();
 
 		auto move = Vector2f(direction.x * speed * dt, direction.y * speed * dt);
+
+
+		auto flocking = Engine::flocking(_parent, move);
+
+		if (flocking == Vector2f(0,0))
+		{
+			_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->enemyMove(move);
+		}
+		else
+		{
+			_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->enemyMove(flocking);
+		}
+
 		_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->enemyMove(move);
 	}
 	else
@@ -69,7 +83,7 @@ void MonsterComponent::update(double dt)
 		_parent->GetCompatibleComponent<AnimationComponent>()[0]->setDuration(0.1);
 	}
 
-	// Flip the sprite if moving left.
+	// Flip the sprite if moving from left.
 	if (enemyPos.x < playerPos.x)
 	{
 		auto& p = _parent->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
