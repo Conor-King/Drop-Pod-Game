@@ -44,7 +44,7 @@ public:
 	static void setView(sf::View);
 	static void moveView(sf::Vector2f);
 	static void changeResolution(int x, int y);
-	static void reloadElements(int x, int y);
+
 
 	static sf::Vector2f flocking(Entity* thisEnemy, sf::Vector2f toPlayer);
 

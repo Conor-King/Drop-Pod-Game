@@ -18,7 +18,6 @@ public:
     std::shared_ptr<Entity> btnSoundUp;
     std::shared_ptr<Entity> btnSoundDown;
     std::shared_ptr<Entity> btnBack;
-    /*void Render() override;*/
 };
 
 

@@ -11,22 +11,16 @@ using namespace std;
 unique_ptr<Button> button;
 button_states Button::_mouseState;
 
-//shared_ptr<SoundBuffer> soundClick_buffer;
-//shared_ptr<Sound> soundClick;
+
 
 shared_ptr<SoundBuffer> sound_buffer2;
 Sound soundClick;
 
-//
-//void Button::LoadMusic() {
-//	sound_buffer2 = Resources::get<SoundBuffer>("Click.wav");
-//	soundClick = make_shared<Sound>(*sound_buffer2);
-//	soundClick->setVolume(0);
-//}
+
 void Button::update(double dt) {
 
 	Vector2f point = Vector2f(Mouse::getPosition(Engine::GetWindow()));
-	//window - to get position
+	
 	// Hover statement
 	if (shape.getGlobalBounds().contains(point))
 	{
@@ -80,7 +74,7 @@ Button::Button(Entity* p, sf::Vector2f position, std::string text, sf::Color idl
 	shape.setSize(sf::Vector2f(200, 70));
 	shape.setPosition(position - (shape.getSize() / 2.f));
 	shape.setOrigin(0,0);
-	//_mouseState = BUTTON_IDLE;
+	
 	
 	_text.setString(text);
 	_text.setFillColor(sf::Color::Black);
@@ -95,7 +89,7 @@ Button::Button(Entity* p, sf::Vector2f position, std::string text, sf::Color idl
 	auto bounds = _text.getLocalBounds();
 	auto box = shape.getSize();
 
-	//_text.setOrigin((bounds.width - box.x) / 2 + bounds.left, (bounds.height - box.y) / 2 + bounds.top);
+	
 	
 
 	this->activeColor = activeColor;
@@ -121,14 +115,4 @@ const bool Button::isPressed() const
 
 
 
-
-
-
-//}
-
-//void Button::render(sf::RenderTarget * target)
-//{
-//	target->draw(this->shape);
-//	target->draw(this->_text);
-//}
 

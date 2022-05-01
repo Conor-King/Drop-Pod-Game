@@ -29,7 +29,7 @@ void SettingsScene::Load() {
 	RenderWindow& window = Engine::GetWindow();
 	Vector2u windowSize = window.getSize();
 
-	// Todo: Change from hardcoded positions to dynamic versions.
+	
 	auto txt2 = makeEntity();
 	auto pos = Vector2f(settingsView.getSize().x / 2.0f, 50);
 	auto t = txt2->addComponent<TextComponent>(pos.x , pos.y, "Settings");
@@ -39,7 +39,6 @@ void SettingsScene::Load() {
 	auto button = btnArrows->addComponent<Button>(btn4Pos, "Arrows Movment", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	auto txt3 = makeEntity();
-	//auto pos3 = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 5.0f);
 	auto t3 = txt3->addComponent<TextComponent>(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 5.0f, switchState == WSAD ? "WSAD" : "Arrows");
 	t3->setTextSize(20);
 
@@ -52,7 +51,6 @@ void SettingsScene::Load() {
 	auto button3 = btn1280->addComponent<Button>(btn6Pos, "1280 x 720", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	auto txt4 = makeEntity();
-	//auto pos4 = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 8.0f);
 	auto t4 = txt4->addComponent<TextComponent>(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 3.0f, to_string(static_cast<int>(settingsView.getSize().x)) + "x" + to_string(static_cast<int>(settingsView.getSize().y)));
 	t4->setTextSize(20);
 
@@ -69,7 +67,6 @@ void SettingsScene::Load() {
 	auto button6 = btnSoundUp->addComponent<Button>(btn9Pos, "Sound + 10", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	auto txt5 = makeEntity();
-	//auto pos5 = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 8.0f);
 	auto t5 = txt5->addComponent<TextComponent>(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 2.0f, std::to_string(volume));
 	t5->setTextSize(20);
 
@@ -139,8 +136,3 @@ void SettingsScene::Update(const double& dt) {
 	Scene::Update(dt);
 }
 
-//void SettingsScene::Render()
-//{
-//	Engine::setView(settingsView);
-//	Scene::Render();
-//}

@@ -88,7 +88,7 @@ void MenuScene::Update(const double& dt) {
         Button::_mouseState = BUTTON_IDLE;
 
     
-    //cout << Button::_mouseState << endl;
+    
    
   Scene::Update(dt);
 }

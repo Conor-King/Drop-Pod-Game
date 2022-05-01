@@ -27,8 +27,6 @@ public:
 	sf::Text _text;
 
 	short unsigned buttonState;
-	//bool presed;
-	//bool hover;
 	sf::SoundBuffer sound_buffer;
 	sf::Sound soundClick;
 
