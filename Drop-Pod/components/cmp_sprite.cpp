@@ -4,10 +4,16 @@
 using namespace std;
 using namespace sf;
 
+// Sprite ---------------------------------------------------------------------------------------------------------------
 void SpriteComponent::setTexture(shared_ptr<Texture> tex)
 {
 	_texture = tex;
 	_sprite->setTexture(*_texture);
+}
+
+shared_ptr<Texture> SpriteComponent::getTexture()
+{
+	return _texture;
 }
 
 void SpriteComponent::setTextureRect(sf::IntRect rect)
@@ -23,6 +29,7 @@ void SpriteComponent::update(double dt) {
 	_sprite->setRotation(deg2rad(_parent->getRotation()));
 }
 
+// Shape ---------------------------------------------------------------------------------------------------------------
 void SpriteComponent::render() { Renderer::queue(_sprite.get()); }
 
 void ShapeComponent::update(double dt) {
@@ -39,12 +46,7 @@ ShapeComponent::ShapeComponent(Entity* p)
 
 Sprite& SpriteComponent::getSprite() const { return *_sprite; }
 
-vector<Frame> frames;
-double totalLength;
-double totalProgress;
-int frameCount;
-Sprite* target;
-
+// Animation ----------------------------------------------------------------------------------------------------------
 AnimationComponent::AnimationComponent(Entity* p) : Component(p) {
 	totalProgress = 0.f;
 	totalLength = 0.f;
@@ -68,6 +70,24 @@ void AnimationComponent::setAnimation(int size, float duration, shared_ptr<Textu
 		tempFrame.rect.left = width * i;
 		tempFrame.duration = duration;
 		addFrame(tempFrame);
+	}
+}
+
+void AnimationComponent::switchRow(int row) {
+	for (Frame& frame : frames)
+	{
+		auto top = frame.rect.height * row;
+		frame.rect.top = top;
+	}
+}
+
+void AnimationComponent::setDuration(float duration)
+{
+	totalLength = 0.f;
+	for (Frame& frame : frames)
+	{
+		frame.duration = duration;
+		totalLength += duration;
 	}
 }
 

@@ -1,5 +1,7 @@
 #include "cmp_player.h"
 #include <SFML/Window.hpp>
+
+#include "cmp_sprite.h"
 #include "../drop_pod_game.h"
 using namespace std;
 using namespace sf;
@@ -76,6 +78,34 @@ void PlayerComponent::update(const double dt)
 
 	auto speed = _parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getSpeed();
 	_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->move(Vector2f(directX * speed * dt, directY * speed * dt));
+
+
+
+	// Switch between idle and moving animation for player moving.
+	if (!_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getMoving())
+	{
+		IntRect playerRect = { Vector2i(0, 0), Vector2i(150, 150) };
+		_parent->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, Resources::get<Texture>("Idle.png"), playerRect);
+	}
+	else
+	{
+		IntRect playerRect = { Vector2i(0, 0), Vector2i(150, 150) };
+		_parent->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, Resources::get<Texture>("Run.png"), playerRect);
+	}
+
+	// Flip the sprite if moving left.
+	if (_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getDirection())
+	{
+		auto& p = _parent->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
+		_parent->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
+		_parent->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(-2.f, 2.f);
+	}
+	else
+	{
+		auto& p = _parent->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
+		_parent->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
+		_parent->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(2.f, 2.f);
+	}
 }
 
 void PlayerComponent::render() {}

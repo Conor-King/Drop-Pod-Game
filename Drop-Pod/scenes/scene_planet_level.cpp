@@ -13,7 +13,6 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 
-
 /* Todo:
 * Return to menu
 * Victory text
@@ -97,9 +96,7 @@ void PlanetLevelScene::Load() {
 
 	soundShoot_buffer = Resources::get<SoundBuffer>("Shoot_001.wav");
 	soundShoot = make_shared<Sound>(*soundShoot_buffer);
-	soundShoot->setVolume(20);
-
-	
+	soundShoot->setVolume(0); //------------------------------------------------------------------- Todo: change volume
 
 	// Player Entity ---------------------------------------------------------------
 
@@ -114,14 +111,16 @@ void PlanetLevelScene::Load() {
 
 	auto psprite = player->addComponent<SpriteComponent>();
 	psprite->setTexture(playerSpriteIdle);
-	psprite->getSprite().setOrigin(psprite->getSprite().getLocalBounds().width * 0.5, psprite->getSprite().getLocalBounds().height * 0.5);
+
+	auto pspriteBounds = Vector2f(psprite->getSprite().getTextureRect().width * 0.5f, psprite->getSprite().getTextureRect().height * 0.5f);
+	psprite->getSprite().setOrigin(75, 75);
 	psprite->getSprite().setScale(2, 2);
 
 	auto panimation = player->addComponent<AnimationComponent>();
 	panimation->setAnimation(8, 0.1, playerSpriteIdle, playerRect);
 
 	auto pmove = player->addComponent<ActorMovementComponent>();
-	pmove->setSpeed(10.f); // -----------------------------------------------------------------Player speed
+	pmove->setSpeed(1000.f); // -----------------------------------------------------------------Player speed
 
 	auto pattributes = player->addComponent<PlayerComponent>();
 
@@ -129,24 +128,10 @@ void PlanetLevelScene::Load() {
 
 	// Enemies entity -----------------------------------------------------------------
 
-	enemyRect = { Vector2i(0, 0), Vector2i(64, 64) };
-
-	enemySprite = Resources::get<Texture>("Trash-Monster-Sprite-V2.png");
-
-	enemy = makeEntity();
-
-	enemy->setPosition(startingCenter + Vector2f(200, 0));
-
-	auto esprite = enemy->addComponent<SpriteComponent>();
-	esprite->setTexture(enemySprite);
-	esprite->getSprite().setOrigin(esprite->getSprite().getLocalBounds().width * 0.5, esprite->getSprite().getLocalBounds().height * 0.5);
-	esprite->getSprite().setScale(2, 2);
-
-	auto eanimation = enemy->addComponent<AnimationComponent>();
-	eanimation->setAnimation(6, 0.1, enemySprite, enemyRect);
-
-	auto emove = enemy->addComponent<ActorMovementComponent>();
-	auto eattributes = enemy->addComponent<MonsterComponent>(player);
+	SpawnEnemy();
+	SpawnEnemy();
+	SpawnEnemy();
+	SpawnEnemy();
 
 	// HUD ----------------------------------------------------------------------------
 	tempTime = 0.f;
@@ -184,10 +169,6 @@ void PlanetLevelScene::Load() {
 	centerPosText.setString("Center Pos: ");
 	centerPosText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
 	centerPosText.setCharacterSize(20);
-
-	// Add Entities to be updated/rendered
-	ecm.addEntity(player);
-	ecm.addEntity(enemy);
 
 	// Set load to true when finished.
 	setLoaded(true);
@@ -230,30 +211,6 @@ void PlanetLevelScene::Update(const double& dt) {
 		if (Keyboard::isKeyPressed(Keyboard::P))
 		{
 			player->GetCompatibleComponent<PlayerComponent>()[0]->setHealth(0);
-		}
-
-		// Switch between idle and moving animation for player moving.
-		if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getMoving())
-		{
-			player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, playerSpriteMoving, playerRect);
-		}
-		else
-		{
-			player->GetCompatibleComponent<AnimationComponent>()[0]->setAnimation(8, 0.1, playerSpriteIdle, playerRect);
-		}
-
-		// Flip the sprite if moving left.
-		if (player->GetCompatibleComponent<ActorMovementComponent>()[0]->getDirection())
-		{
-			auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
-			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
-			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(-2.f, 2.f);
-		}
-		else
-		{
-			auto& p = player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite();
-			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setOrigin(p.getLocalBounds().width * 0.5, p.getLocalBounds().height * 0.5);
-			player->GetCompatibleComponent<SpriteComponent>()[0]->getSprite().setScale(2.f, 2.f);
 		}
 
 		// Moving the window for testing. --------------------------------------------------------------------------------
@@ -323,7 +280,8 @@ void PlanetLevelScene::Update(const double& dt) {
 		timer.setString(s);
 
 		// Debug text update ----------------------------------------------------------------------
-		auto mousePos = Mouse::getPosition(Engine::GetWindow());
+		auto mousePos = Engine::GetWindow().mapPixelToCoords(Mouse::getPosition(Engine::GetWindow()));
+		//auto mousePos = Mouse::getPosition(Engine::GetWindow());
 		string mouseTextx = to_string(mousePos.x);
 		string mouseTexty = to_string(mousePos.y);
 		mousePosText.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
@@ -380,6 +338,61 @@ void PlanetLevelScene::RenderEnd()
 		endText.setOutlineThickness(2);
 		Vector2f pos = Vector2f((gameView.getSize().x / 2.f) - endText.getGlobalBounds().width / 2.f, (gameView.getSize().y / 2.f) - endText.getGlobalBounds().height / 2.f);
 		endText.setPosition(pos);
-		endText.setOrigin(endText.getLocalBounds().width * 0.5, endText.getLocalBounds().height * 0.5);
+		endText.setOrigin(endText.getLocalBounds().left + endText.getLocalBounds().width / 2.0f,
+			endText.getLocalBounds().top + endText.getLocalBounds().height / 2.0f);
 	}
+}
+
+Vector2f PlanetLevelScene::RandomPosition()
+{
+	auto viewSize = gameView.getSize();
+	auto viewCenter = gameView.getCenter();
+
+	int xSize = viewSize.x;
+	auto randNumberX = rand() % xSize + (-viewSize.x * 0.5);
+
+	int ySize = viewSize.y;
+	auto randNumberY = rand() % ySize + (-viewSize.y * 0.5);
+
+	int number = rand() % 3;
+	switch (number)
+	{
+	case 0:
+		return Vector2f(viewCenter.x + randNumberX, viewCenter.y - viewSize.y * 0.5 - 100);
+	case 1:
+		return Vector2f(viewCenter.x + randNumberX, viewCenter.y + viewSize.y * 0.5 + 100);
+	case 2:
+		return Vector2f(viewCenter.x - viewSize.x * 0.5 - 100, viewCenter.y + randNumberY);
+	case 3:
+		return Vector2f(viewCenter.x + viewSize.x * 0.5 + 100, viewCenter.y + randNumberY);
+	}
+}
+
+
+// Todo: Stop the sprites from walking on top of each other.
+//Creates and enemy and adds it to the entity list for the scene.
+void PlanetLevelScene::SpawnEnemy()
+{
+	IntRect enemyRect = { Vector2i(0, 0), Vector2i(64, 64) };
+	shared_ptr<Texture> enemySprite = Resources::get<Texture>("Trash-Monster-Sheet.png");
+	shared_ptr<Entity> enemy = makeEntity();
+
+	// Set random position outside of view.
+	auto pos = RandomPosition();
+	enemy->setPosition(pos);
+
+	auto esprite = enemy->addComponent<SpriteComponent>();
+	esprite->setTexture(enemySprite);
+	esprite->getSprite().setScale(2, 2);
+
+	auto eanimation = enemy->addComponent<AnimationComponent>();
+	eanimation->setAnimation(6, 0.1, enemySprite, enemyRect);
+
+	auto emove = enemy->addComponent<ActorMovementComponent>();
+	emove->setMoving(true);
+	auto eattributes = enemy->addComponent<MonsterComponent>(player, enemySprite);
+
+	// This is needed to have the enemy end at the player sprite.
+	esprite->getSprite().setOrigin(32, 32);
+	this->addEntity(enemy);
 }

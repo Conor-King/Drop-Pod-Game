@@ -18,7 +18,9 @@ public:
 	sf::Sprite& getSprite() const;
 
 	void setTexture(std::shared_ptr<sf::Texture> tex);
+	std::shared_ptr<sf::Texture> getTexture();
 	void setTextureRect(sf::IntRect rect);
+
 };
 
 class ShapeComponent : public Component {
@@ -41,16 +43,17 @@ public:
 
 struct Frame {
 	sf::IntRect rect;
-	double duration;
+	float duration;
 };
 
 class AnimationComponent : public Component {
 	friend struct Frame;
 protected:
 	std::vector<Frame> frames;
-	double totalLength;
-	double totalProgress;
+	float totalLength;
+	float totalProgress;
 	sf::Sprite* target;
+	int frameCount;
 public:
 
 	AnimationComponent() = delete;
@@ -62,4 +65,6 @@ public:
 	void render();
 
 	void setAnimation(int size, float duration, std::shared_ptr<sf::Texture> texture, sf::IntRect rect);
+	void switchRow(int row);
+	void setDuration(float duration);
 };

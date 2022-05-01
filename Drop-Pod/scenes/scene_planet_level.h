@@ -32,9 +32,10 @@ public:
 	std::shared_ptr<sf::Sound> soundShoot;
 
 	// Enemies
-	std::shared_ptr<Entity> enemy;
+
+	/*std::shared_ptr<Entity> enemy;
 	std::shared_ptr<sf::Texture> enemySprite;
-	sf::IntRect enemyRect;
+	sf::IntRect enemyRect;*/
 
 	// Actual HUD
 	float tempTime;
@@ -55,4 +56,8 @@ public:
 	void Render() override;
 
 	void RenderEnd();
+
+	void SpawnEnemy();
+
+	sf::Vector2f RandomPosition();
 };

@@ -6,6 +6,14 @@ Entity::Entity(Scene* const s)
     : _position({0, 0}), _rotation(0), _alive(true), _visible(true),
       scene(s), _fordeletion(false) {}
 
+// Copy constructor
+Entity::Entity(const Entity& ent) : _position(ent._position), _rotation(ent._rotation), _alive(ent._alive), _visible(ent._visible),
+                                    _fordeletion(ent._fordeletion), scene(ent.scene)
+{
+    _components = ent._components;
+}
+
+
 void Entity::addTag(const std::string& t) { _tags.insert(t); }
 const std::set<std::string>& Entity::getTags() const { return _tags; }
 
@@ -42,6 +50,11 @@ void Entity::setPosition(const sf::Vector2f& _position) {
 float Entity::getRotation() const { return _rotation; }
 
 std::vector<std::shared_ptr<Component>> Entity::getComponents() { return _components; }
+
+void Entity::setComponents(std::vector<std::shared_ptr<Component>> components)
+{
+    _components = components;
+}
 
 void Entity::setRotation(float _rotation) { Entity::_rotation = _rotation; }
 

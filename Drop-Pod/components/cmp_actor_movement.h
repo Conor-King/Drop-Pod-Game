@@ -11,6 +11,7 @@ protected:
 public:
     void update(double dt) override;
     void move(const sf::Vector2f&);
+    void enemyMove(const sf::Vector2f&);
     void move(float x, float y);
     void render() override {}
     explicit ActorMovementComponent(Entity* p);
