@@ -5,7 +5,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <iostream>	
 #include"../components/cmp_button.h"
-#include "engine.cpp"
+#include "engine.h"
 #include <SFML/Audio.hpp>
 #include <iostream>
 

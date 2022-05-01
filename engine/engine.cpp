@@ -17,6 +17,9 @@ static bool loading = false;
 static float loadingspinner = 0.f;
 static float loadingTime;
 static RenderWindow* _window;
+static int current_x;
+static int current_y;
+
 
 void Loading_update(float dt, const Scene* const scn) {
 	//  cout << "Eng: Loading Screen\n";
@@ -88,6 +91,8 @@ void Engine::Start(unsigned int width, unsigned int height,
 	//window.setVerticalSyncEnabled(true);
 	_gameName = gameName;
 	_window = &window;
+	current_x = width;
+	current_y = height;
 	Renderer::initialise(window);
 	Physics::initialise();
 	ChangeScene(scn);
@@ -139,6 +144,8 @@ void Engine::moveView(Vector2f movement) {
 // CHANGE RES PART
 void Engine::changeResolution(int x, int y)
 {
+	current_x = x;
+	current_y = y;
 	Vector2f _newResolution(x, y);
 	_window->create(VideoMode(_newResolution.x, _newResolution.y), "Drop Pod");
 }
