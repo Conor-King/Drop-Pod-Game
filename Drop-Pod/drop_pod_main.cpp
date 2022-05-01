@@ -19,6 +19,7 @@ short unsigned switchState;
 int volume;
 
 int main() {
+	volume = 20;
 	Engine::Start(1280, 720, "Drop Pod", &menu);
 }
 /* Todo:

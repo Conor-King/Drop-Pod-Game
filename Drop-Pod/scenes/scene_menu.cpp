@@ -14,7 +14,7 @@ using namespace std;
 using namespace sf;
 
 sf::Music music;
-
+sf::Texture texture;
 shared_ptr<Entity> btnExit;
 shared_ptr<Entity> btnSetting;
 shared_ptr<Entity> btnStart;
@@ -26,7 +26,7 @@ View menuView;
 
 
 void MenuScene::Load() {
-    volume = 20;
+    
 
     cout << "Menu Load \n";
 
@@ -36,7 +36,13 @@ void MenuScene::Load() {
 
 
     // set background
+//if (!texture.loadFromFile("Ga.png")) {}
+//    sf::Sprite background(texture);
+//        window.draw(background);
+    
 
+
+    
 
     auto txt = makeEntity();
     auto pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 5.0f);
