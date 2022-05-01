@@ -87,9 +87,11 @@ void SettingsScene::Load() {
 void SettingsScene::Update(const double& dt) {
 	if (btnArrows->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		switchState = Arrows;
+		Engine::ChangeScene(&settings);
 	}
 	else if (btnWsad->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		switchState = WSAD;
+		Engine::ChangeScene(&settings);
 	}
 	else if (btn1280->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		Engine::changeResolution(1280, 720);
@@ -119,10 +121,12 @@ void SettingsScene::Update(const double& dt) {
 
 	else if (btnSoundUp->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		volume >= 100 ? volume = 100 : volume += 10;
+		Engine::ChangeScene(&settings);
 	}
 
 	else if (btnSoundDown->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		volume <= 0 ? volume = 0 :  volume -= 10;
+		Engine::ChangeScene(&settings);
 	}
 
 	else if (btnBack->GetCompatibleComponent<Button>()[0]->isPressed())
