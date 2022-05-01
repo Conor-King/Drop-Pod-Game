@@ -16,7 +16,7 @@ public:
   std::shared_ptr<Entity> btn2;
   std::shared_ptr<Entity> btn3;
 
-  sf::Text mousePosText;
+  
 
 	void Render() override;
 };

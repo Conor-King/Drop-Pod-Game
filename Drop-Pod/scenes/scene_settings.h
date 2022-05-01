@@ -3,8 +3,7 @@
 #include "engine.h"
 
 class SettingsScene : public Scene {
-protected:
-	sf::View settingsView;
+
 public:
     SettingsScene() = default;
     ~SettingsScene() override = default;
@@ -16,7 +15,10 @@ public:
     std::shared_ptr<Entity> btn6;
     std::shared_ptr<Entity> btn7;
     std::shared_ptr<Entity> btn8;
-    
+    std::shared_ptr<Entity> btn9;
+    std::shared_ptr<Entity> btn10;
+    std::shared_ptr<Entity> btn11;
+    /*void Render() override;*/
 };
 
 
