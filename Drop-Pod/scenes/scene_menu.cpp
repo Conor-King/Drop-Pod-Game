@@ -13,7 +13,6 @@
 using namespace std;
 using namespace sf;
 
-sf::Music music;
 
 shared_ptr<Entity> btn;
 shared_ptr<Entity> btn2;
@@ -48,15 +47,7 @@ void MenuScene::Load() {
     auto btn3Pos = Vector2f(menuView.getSize().x / 2.0f, menuView.getSize().y / 3.f);
     auto button3 = btn3->addComponent<Button>(btn3Pos, "Play", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
-    auto musicstatus = music.getStatus();
-    if (musicstatus == SoundSource::Stopped || musicstatus == SoundSource::Paused)
-    {
-        if (!music.openFromFile("res/assets/background_music/Cold-Moon.ogg"))
-            printf("music broken"); // error
-        music.setVolume(30);
-    	music.setLoop(true);
-    	music.play();
-    }
+   
   
   setLoaded(true);
 }
