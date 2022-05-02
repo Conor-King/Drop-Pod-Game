@@ -1,6 +1,12 @@
 # Drop-Pod-Game
 C++ game for games engineering coursework.
 
+##Install
+
+### Itch.io
+If you are wanting to just play the game without having to get the repo visit our Itch.Io page and follow the instructions there. https://stoketheflame.itch.io/drop-pod
+
+## Download Repo
 If starting on a new computer or redownloading the repo from scratch and lib/sfml and/or lib/b2d is empty. Open git bash shell in drop-pod-game directory and run command:
 
 git submodule update --init --recursive
