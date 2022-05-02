@@ -1,7 +1,7 @@
 # Drop-Pod-Game
 C++ game for games engineering coursework.
 
-## Install
+## Installation
 
 ### Itch.io
 If you are wanting to just play the game without having to get the repo visit our Itch.Io page and follow the instructions there. https://stoketheflame.itch.io/drop-pod
