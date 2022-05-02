@@ -27,8 +27,10 @@ public:
 	void move();
 	~MonsterComponent() override = default;
 
-	void setHealth(int health);
-	int getHealth();
+	void set_health(int health);
+	int get_health();
+
+	void set_damage(int damage);
 
 	void attack(double dt);
 };

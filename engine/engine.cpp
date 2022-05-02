@@ -6,7 +6,6 @@
 #include <SFML/Graphics.hpp>
 #include <future>
 #include <iostream>
-#include <stdexcept>
 
 using namespace sf;
 using namespace std;
@@ -18,8 +17,6 @@ static float loadingspinner = 0.f;
 static float loadingTime;
 static RenderWindow* _window;
 
-
-
 void Loading_update(float dt, const Scene* const scn) {
 	//  cout << "Eng: Loading Screen\n";
 	if (scn->isLoaded()) {
@@ -27,20 +24,33 @@ void Loading_update(float dt, const Scene* const scn) {
 		loading = false;
 	}
 	else {
-		loadingspinner += 220.0f * dt;
+		loadingspinner += 400.0f * dt;
 		loadingTime += dt;
 	}
 }
 void Loading_render() {
 	// cout << "Eng: Loading Screen Render\n";
-	static CircleShape octagon(80, 8);
-	octagon.setOrigin(Vector2f(80, 80));
+
+	static Sprite background;
+	auto backTexture = Resources::get<Texture>("Space_Background.png");
+	background.setTexture(*backTexture);
+
+	static CircleShape octagon(100);
+	octagon.setOrigin(Vector2f(100, 100));
 	octagon.setRotation(deg2rad(loadingspinner));
 	octagon.setPosition(Vcast<float>(Engine::getWindowSize()) * .5f);
+	auto tex = new Texture();
+	tex->loadFromFile("res/img/Terran.png");
 	octagon.setFillColor(Color(255, 255, 255, min(255.f, 40.f * loadingTime)));
+	octagon.setTexture(tex);
+
 	static Text t("Loading", *Resources::get<sf::Font>("RobotoMono-Regular.ttf"));
 	t.setFillColor(Color(255, 255, 255, min(255.f, 40.f * loadingTime)));
-	t.setPosition(Vcast<float>(Engine::getWindowSize()) * Vector2f(0.4f, 0.3f));
+	t.setOutlineThickness(2);
+	t.setPosition(Vcast<float>(Engine::getWindowSize()) * Vector2f(0.5f, 0.3f));
+	t.setOrigin(t.getLocalBounds().left + t.getLocalBounds().width / 2.0f,
+		t.getLocalBounds().top + t.getLocalBounds().height / 2.0f);
+	Renderer::queue(&background);
 	Renderer::queue(&t);
 	Renderer::queue(&octagon);
 }
@@ -145,8 +155,6 @@ void Engine::changeResolution(int x, int y)
 	_window->create(VideoMode(_newResolution.x, _newResolution.y), "Drop Pod");
 }
 
-
-
 void Engine::ChangeScene(Scene* s) {
 	cout << "Eng: changing scene: " << s << endl;
 	auto old = _activeScene;
@@ -159,8 +167,8 @@ void Engine::ChangeScene(Scene* s) {
 	if (!s->isLoaded()) {
 		cout << "Eng: Entering Loading Screen\n";
 		loadingTime = 0;
-		//_activeScene->LoadAsync(); // Possible change at the end.
-		_activeScene->Load();
+		_activeScene->LoadAsync(); 
+		//_activeScene->Load();
 		loading = true;
 	}
 }
@@ -169,7 +177,7 @@ sf::Vector2f Engine::flocking(Entity* thisEnemy, Vector2f toPlayer)
 {
 	//shared_ptr<Entity> choosenEnemy = make_shared<Entity>(thisEnemy);
 	Vector2f movement = Vector2f(0, 0);
-	Vector2f alignment = Vector2f(0,0);
+	Vector2f alignment = Vector2f(0, 0);
 	Vector2f cohesion = Vector2f(0, 0);
 	Vector2f separation = Vector2f(0, 0);
 	int neighborCount = 0;
@@ -259,7 +267,6 @@ sf::Vector2f Engine::flocking(Entity* thisEnemy, Vector2f toPlayer)
 	return movement;
 }
 
-
 void Scene::Update(const double& dt) { ents.update(dt); }
 
 void Scene::Render() { ents.render(); }
@@ -289,7 +296,7 @@ void Scene::setLoaded(bool b) {
 }
 
 void Scene::UnLoad() {
-	ents.list.clear(); //Todo: Fix the clearing of entities. Button problem.
+	ents.list.clear();
 	setLoaded(false);
 }
 

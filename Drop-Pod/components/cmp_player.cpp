@@ -12,7 +12,6 @@ int _health;
 //Constructor
 PlayerComponent::PlayerComponent(Entity* p) : ActorMovementComponent(p) {
 	_health = 100;
-
 }
 
 void PlayerComponent::setHealth(int health)
@@ -24,7 +23,6 @@ int PlayerComponent::getHealth()
 {
 	return _health;
 }
-
 
 void PlayerComponent::update(const double dt)
 {
@@ -85,8 +83,6 @@ void PlayerComponent::update(const double dt)
 
 	auto speed = _parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getSpeed();
 	_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->move(Vector2f(directX * speed * dt, directY * speed * dt));
-
-
 
 	// Switch between idle and moving animation for player moving.
 	if (!_parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getMoving())

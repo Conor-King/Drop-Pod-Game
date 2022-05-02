@@ -1,4 +1,4 @@
-// Sprite, Shape and Animation components C++ file 
+// Sprite, Shape and Animation components C++ file
 #include "cmp_sprite.h"
 #include "system_renderer.h"
 
@@ -48,10 +48,10 @@ ShapeComponent::ShapeComponent(Entity* p)
 Sprite& SpriteComponent::getSprite() const { return *_sprite; }
 
 // Animation ----------------------------------------------------------------------------------------------------------
-AnimationComponent::AnimationComponent(Entity* p) : Component(p), _row(0) {
+AnimationComponent::AnimationComponent(Entity* p) : Component(p), frameCount(0), _row(0)
+{
 	totalProgress = 0.f;
 	totalLength = 0.f;
-	frameCount = 0;
 }
 
 void AnimationComponent::addFrame(Frame& frame) {
@@ -85,11 +85,10 @@ void AnimationComponent::setRow(int row) {
 	}
 }
 
-int AnimationComponent::getRow()
+int AnimationComponent::getRow() const
 {
 	return _row;
 }
-
 
 void AnimationComponent::setDuration(float duration)
 {

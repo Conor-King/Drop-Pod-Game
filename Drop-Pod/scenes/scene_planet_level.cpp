@@ -9,80 +9,63 @@
 #include "../components/cmp_text.h"
 #include <LevelSystem.h>
 #include <system_resources.h>
-#include <iostream>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 
-/* Todo:
-* Return to menu
-* Victory text
-*/
-
 using namespace std;
 using namespace sf;
 
-EntityManager ecm;
+void PlanetLevelScene::init()
+{
+	ecm = new EntityManager();
 
-// Views
-View gameView;
-View hudView;
+	gameView = Engine::GetWindow().getView();
+	hudView = Engine::GetWindow().getView();
 
-// Level global variables
-float speed;
-int xCount;
-int yCount;
-Vector2f startingCenter;
-bool viewToggle = false;
-bool pauseGame = false;
-string result = "Not Set";
+	// Level global variables
+	speed = 0;
+	xCount = 0;
+	yCount = 0;
+	startingCenter = Vector2f(0, 0);
+	viewToggle = false;
+	pauseGame = false;
+	result = "Not Set";
 
-// Player Variables
-shared_ptr<Entity> player;
-shared_ptr<Texture> playerSpriteIdle;
-shared_ptr<Texture> playerSpriteMoving;
-IntRect playerRect;
+	// Player Variables
+	player = makeEntity();
+	playerSpriteIdle = make_shared<Texture>();
+	playerSpriteMoving = make_shared<Texture>();
+	playerRect = IntRect();
 
-shared_ptr<SoundBuffer> soundShoot_buffer;
-shared_ptr<Sound> soundShoot;
+	soundShoot_buffer = make_shared<SoundBuffer>();
+	soundShoot = make_shared<Sound>();
 
-// Enemy Variables
+	redBar = new RectangleShape();
+	greenBar = new RectangleShape();
+	healthText = new Text();
 
-vector<shared_ptr<Entity>> enemies;
+	// Enemy Variables
+	totalTime = 0.f;
 
-//shared_ptr<Entity> enemy;
-//shared_ptr<Texture> enemySprite;
-//IntRect enemyRect;
+	// Actual Hud
+	tempTime = 0;
+	minutes = 0;
+	seconds = 0;
 
-// Debug Hud variables
-Text viewText;
-Text mousePosText;
-Text playerPosText;
-Text centerPosText;
+	timer = new Text();
+	endText = new Text();
+	endExitText = new Text();
 
-// Actual Hud
-float tempTime;
-int minutes;
-int seconds;
-Text timer;
-
-Text endText;
-
-// Shooting Delay
-float fireTime = 0.f;
+	// Shooting Delay
+	fireTime = 0.f;
+}
 
 void PlanetLevelScene::Load() {
-	ecm = Scene::getEcm();
+	init();
+	*ecm = Scene::getEcm();
 
-	ls::loadLevelFile("res/levels/smallFloorMap.txt");
-
-	// print the level to the console
-	for (size_t y = 0; y < ls::getHeight(); y++) {
-		for (size_t x = 0; x < ls::getWidth(); x++) {
-			cout << ls::getTile({ x, y });
-		}
-		cout << endl;
-	}
+	ls::loadLevelFile("res/levels/floorMap.txt");
 
 	xCount = ls::getWidth();
 	yCount = ls::getHeight();
@@ -93,11 +76,7 @@ void PlanetLevelScene::Load() {
 
 	startingCenter = gameView.getCenter();
 
-	// Setting the speed of the view.
-	speed = 200.f;
-
 	// Sound -----------------------------------------------------------------------
-
 	soundShoot_buffer = Resources::get<SoundBuffer>("Shoot_001.wav");
 	soundShoot = make_shared<Sound>(*soundShoot_buffer);
 	soundShoot->setVolume(volume);
@@ -124,71 +103,66 @@ void PlanetLevelScene::Load() {
 	panimation->setAnimation(8, 0.1, playerSpriteIdle, playerRect);
 
 	auto pmove = player->addComponent<ActorMovementComponent>();
-	pmove->setSpeed(1000.f); // -----------------------------------------------------------------Player speed
+	pmove->setSpeed(200.f); // -----------------------------------------------------------------Player speed
 
 	auto pattributes = player->addComponent<PlayerComponent>();
 
 	auto pshooting = player->addComponent<ShootingComponent>();
 
-	// Enemies entity -----------------------------------------------------------------
+	// Health Bar ----------------------------------------------------------------------
 
-	for (int i = 0; i < 5; ++i)
+	redBar->setSize(Vector2f(300, 30));
+	redBar->setFillColor(Color::Red);
+	redBar->setPosition(20, hudView.getSize().y - 50);
+
+	greenBar->setSize(Vector2f(300, 30));
+	greenBar->setFillColor(Color::Green);
+	greenBar->setPosition(20, hudView.getSize().y - 50);
+
+	healthText->setString("Health: 100");
+	healthText->setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
+	healthText->setCharacterSize(18);
+	healthText->setOutlineThickness(2);
+	healthText->setPosition(160, hudView.getSize().y - 35);
+	healthText->setOrigin(healthText->getLocalBounds().left + healthText->getLocalBounds().width / 2.0f,
+		healthText->getLocalBounds().top + healthText->getLocalBounds().height / 2.0f);
+
+	// Enemies Load --------------------------------------------------------------------
+	monsterCount = 5;
+	damage = 2;
+	speed = 80;
+	for (int i = 0; i < monsterCount; ++i)
 	{
-		SpawnEnemy();
+		SpawnEnemy(damage, speed);
 	}
 
 	// HUD ----------------------------------------------------------------------------
-	tempTime = 0.f;
-	// Todo: Make sure to change this back after testing.
-	seconds = 0;
-	minutes = 9;
-	timer.setString("Timer: 00:00");
-	timer.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
-	timer.setCharacterSize(20);
-	timer.setOrigin(timer.getGlobalBounds().width * 0.5, timer.getGlobalBounds().height * 0.5);
-	timer.setPosition(gameView.getSize().x * 0.5 - timer.getGlobalBounds().width * 0.5 - 50, 20);
+	timer->setString("Timer: 00:00");
+	timer->setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
+	timer->setCharacterSize(20);
+	timer->setOutlineThickness(2);
+	timer->setOrigin(timer->getLocalBounds().left + timer->getLocalBounds().width / 2.0f,
+		timer->getLocalBounds().top + timer->getLocalBounds().height / 2.0f);
+	timer->setPosition(hudView.getSize().x * 0.5, 20);
 
-	endText.setString("");
-	endText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
-	endText.setCharacterSize(50);
-	endText.setPosition(gameView.getSize().x / 2, gameView.getSize().y / 2);
+	endText->setString("");
+	endText->setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
+	endText->setCharacterSize(50);
 
-	// Debug Text ---------------------------------------------------------------------
-	viewText.setPosition(20, 20);
-	viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
-	viewText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
-	viewText.setCharacterSize(20);
-
-	mousePosText.setPosition(20, 80);
-	mousePosText.setString("Mouse Pos: ");
-	mousePosText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
-	mousePosText.setCharacterSize(20);
-
-	playerPosText.setPosition(20, 150);
-	playerPosText.setString("Player Pos: ");
-	playerPosText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
-	playerPosText.setCharacterSize(20);
-
-	centerPosText.setPosition(20, 200);
-	centerPosText.setString("Center Pos: ");
-	centerPosText.setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
-	centerPosText.setCharacterSize(20);
+	endExitText->setString("");
+	endExitText->setFont(*Resources::get<Font>("RobotoMono-Regular.ttf"));
+	endExitText->setCharacterSize(30);
 
 	// Set load to true when finished.
 	setLoaded(true);
 }
 
-void PlanetLevelScene::UnLoad() { }
+void PlanetLevelScene::UnLoad()
+{
+	Scene::UnLoad();
+}
 
 void PlanetLevelScene::Update(const double& dt) {
-	// This does not work as center does not change. FOR INFINITE MAP
-	//if (Engine::GetWindow().getView().getCenter().x > startingCenter.x + 100 || Engine::GetWindow().getView().getCenter().x < startingCenter.x - 100 ||
-	//    Engine::GetWindow().getView().getCenter().y > startingCenter.y + 100 || Engine::GetWindow().getView().getCenter().y < startingCenter.y - 100)
-	//{
-	//    view.reset(sf::FloatRect(xCount * 100 * 0.5, yCount * 100 * 0.5, 1280.f, 720.f));
-	//
-	//}
-
 	if (minutes >= 10)
 	{
 		pauseGame = true;
@@ -217,54 +191,21 @@ void PlanetLevelScene::Update(const double& dt) {
 			player->GetCompatibleComponent<PlayerComponent>()[0]->setHealth(0);
 		}
 
-		// Moving the window for testing. --------------------------------------------------------------------------------
-		float directY = 0.f;
-		float directX = 0.f;
+		gameView.setCenter(player->getPosition());
 
-		if (Keyboard::isKeyPressed(Keyboard::Left)) {
-			directX--;
-			//printf("Move left. \n");
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Right)) {
-			directX++;
-			//printf("Move right. \n");
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Up)) {
-			directY--;
-			//printf("Move up. \n");
-		}
-		if (Keyboard::isKeyPressed(Keyboard::Down)) {
-			directY++;
-			//printf("Move down. \n");
-		}
-		if (Keyboard::isKeyPressed(Keyboard::C)) {
-			if (viewToggle) {
-				viewToggle = false;
-			}
-			else {
-				viewToggle = true;
-			}
-		}
-		if (Keyboard::isKeyPressed(Keyboard::LShift)) {
-			speed = 400.f;
-		}
-		else {
-			speed = 200.f;
-		}
+		// Enemies spawning Timeline -------------------------------------------------------------------------------------
 
-		// Toggle between fixed player cam and free cam.
-		if (viewToggle)
+		totalTime += dt;
+		if (totalTime >= 20)
 		{
-			Engine::moveView(Vector2f(directX * speed * dt, directY * speed * dt));
-			viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
-		}
-		else {
-			gameView = Engine::GetWindow().getView();
-
-			gameView.setCenter(player->getPosition());
-			Engine::setView(gameView);
-			//Engine::moveView(Vector2f(player->getPosition()));
-			viewText.setString(viewToggle ? "View Toggle: true" : "View Toggle: false");
+			monsterCount++;
+			damage++;
+			speed += 7;
+			for (int i = 0; i < monsterCount; ++i)
+			{
+				SpawnEnemy(damage, speed);
+			}
+			totalTime = 0;
 		}
 
 		// HUD update -----------------------------------------------------------------------------
@@ -281,30 +222,23 @@ void PlanetLevelScene::Update(const double& dt) {
 		else { min = to_string(minutes); }
 
 		string s = ("Timer: " + min + ":" + sec);
-		timer.setString(s);
+		timer->setString(s);
 
-		// Debug text update ----------------------------------------------------------------------
-		auto mousePos = Engine::GetWindow().mapPixelToCoords(Mouse::getPosition(Engine::GetWindow()));
-		//auto mousePos = Mouse::getPosition(Engine::GetWindow());
-		string mouseTextx = to_string(mousePos.x);
-		string mouseTexty = to_string(mousePos.y);
-		mousePosText.setString("Mouse pos: " + mouseTextx + " " + mouseTexty);
-
-		auto playerPos = player->getPosition();
-		string playerx = to_string(playerPos.x);
-		string playery = to_string(playerPos.y);
-		playerPosText.setString("Player pos: " + playerx + " " + playery);
-
-		auto centerPos = Engine::GetWindow().getView().getCenter();
-		string centerX = to_string(centerPos.x);
-		string centerY = to_string(centerPos.y);
-		centerPosText.setString("Center pos: " + centerX + " " + centerY);
+		auto playerHealth = player->GetCompatibleComponent<PlayerComponent>()[0]->getHealth();
+		greenBar->setSize(Vector2f(playerHealth * 3, 30));
+		healthText->setString("Health: " + to_string(playerHealth));
 
 		Scene::Update(dt);
 	}
 	else
 	{
-		RenderEnd();
+		if (Keyboard::isKeyPressed(Keyboard::Enter))
+		{
+			Engine::ChangeScene(&menu);
+			this->UnLoad();
+		}
+
+		render_end();
 	}
 }
 
@@ -314,40 +248,46 @@ void PlanetLevelScene::Render() {
 	Scene::Render();
 
 	Engine::setView(hudView);
-	Engine::GetWindow().draw(viewText);
-	Engine::GetWindow().draw(mousePosText);
-	Engine::GetWindow().draw(playerPosText);
-	Engine::GetWindow().draw(centerPosText);
-	Engine::GetWindow().draw(timer);
-	Engine::GetWindow().draw(endText);
+	Engine::GetWindow().draw(*timer);
+	Engine::GetWindow().draw(*endText);
+	Engine::GetWindow().draw(*endExitText);
+	Engine::GetWindow().draw(*redBar);
+	Engine::GetWindow().draw(*greenBar);
+	Engine::GetWindow().draw(*healthText);
 
 	Engine::setView(gameView);
 }
 
-// Todo: Text does not render properly in the middle of the screen like i think it should.
-void PlanetLevelScene::RenderEnd()
+void PlanetLevelScene::render_end() const
 {
 	if (result == "win")
 	{
-		endText.setString("Victory!");
-		endText.setOutlineColor(Color::Black);
-		endText.setOutlineThickness(2);
-		endText.setOrigin(endText.getLocalBounds().width * 0.5, endText.getLocalBounds().height * 0.5);
-		endText.setPosition(gameView.getSize().x * 0.5, gameView.getSize().y * 0.5);
+		endText->setString("Victory!");
+		endText->setOutlineColor(Color::Black);
+		endText->setOutlineThickness(4);
+		endText->setPosition(hudView.getSize().x / 2, 200);
+		endText->setOrigin(endText->getLocalBounds().left + endText->getLocalBounds().width / 2.0f,
+			endText->getLocalBounds().top + endText->getLocalBounds().height / 2.0f);
 	}
 	if (result == "lose")
 	{
-		endText.setString("Defeat!");
-		endText.setOutlineColor(Color::Black);
-		endText.setOutlineThickness(2);
-		Vector2f pos = Vector2f((gameView.getSize().x / 2.f) - endText.getGlobalBounds().width / 2.f, (gameView.getSize().y / 2.f) - endText.getGlobalBounds().height / 2.f);
-		endText.setPosition(pos);
-		endText.setOrigin(endText.getLocalBounds().left + endText.getLocalBounds().width / 2.0f,
-			endText.getLocalBounds().top + endText.getLocalBounds().height / 2.0f);
+		endText->setString("Defeat!");
+		endText->setOutlineColor(Color::Black);
+		endText->setOutlineThickness(4);
+		endText->setPosition(hudView.getSize().x / 2, 200);
+		endText->setOrigin(endText->getLocalBounds().left + endText->getLocalBounds().width / 2.0f,
+			endText->getLocalBounds().top + endText->getLocalBounds().height / 2.0f);
 	}
+
+	endExitText->setString("Press the ENTER button to go back to menu!");
+	endExitText->setOutlineColor(Color::Black);
+	endExitText->setOutlineThickness(4);
+	endExitText->setPosition(hudView.getSize().x * 0.5, 300);
+	endExitText->setOrigin(endExitText->getLocalBounds().left + endExitText->getLocalBounds().width / 2.0f,
+		endExitText->getLocalBounds().top + endExitText->getLocalBounds().height / 2.0f);
 }
 
-Vector2f PlanetLevelScene::RandomPosition()
+Vector2f PlanetLevelScene::random_position() const
 {
 	auto viewSize = gameView.getSize();
 	auto viewCenter = gameView.getCenter();
@@ -370,19 +310,18 @@ Vector2f PlanetLevelScene::RandomPosition()
 	case 3:
 		return Vector2f(viewCenter.x + viewSize.x * 0.5 + 100, viewCenter.y + randNumberY);
 	}
+	return {};
 }
 
-
-// Todo: Stop the sprites from walking on top of each other.
 //Creates and enemy and adds it to the entity list for the scene.
-void PlanetLevelScene::SpawnEnemy()
+void PlanetLevelScene::SpawnEnemy(int damage, float speed)
 {
 	IntRect enemyRect = { Vector2i(0, 0), Vector2i(64, 64) };
 	shared_ptr<Texture> enemySprite = Resources::get<Texture>("Trash-Monster-Sheet.png");
 	shared_ptr<Entity> enemy = makeEntity();
 
 	// Set random position outside of view.
-	auto pos = RandomPosition();
+	auto pos = random_position();
 	enemy->setPosition(pos);
 
 	auto esprite = enemy->addComponent<SpriteComponent>();
@@ -394,7 +333,10 @@ void PlanetLevelScene::SpawnEnemy()
 
 	auto emove = enemy->addComponent<ActorMovementComponent>();
 	emove->setMoving(true);
+	emove->setSpeed(speed);
+
 	auto eattributes = enemy->addComponent<MonsterComponent>(player);
+	eattributes->set_damage(damage);
 
 	// This is needed to have the enemy end at the player sprite.
 	esprite->getSprite().setOrigin(32, 32);

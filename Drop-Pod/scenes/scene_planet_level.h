@@ -6,8 +6,7 @@
 
 class PlanetLevelScene : public Scene {
 public:
-
-	EntityManager ecm;
+	EntityManager* ecm;
 
 	// Views
 	sf::View gameView;
@@ -31,23 +30,28 @@ public:
 	std::shared_ptr<sf::SoundBuffer> soundShoot_buffer;
 	std::shared_ptr<sf::Sound> soundShoot;
 
+	sf::RectangleShape* redBar;
+	sf::RectangleShape* greenBar;
+	sf::Text* healthText;
+
 	// Enemies
+	float totalTime;
+	int monsterCount;
+	int damage;
+	float monsterSpeed;
 
-	std::vector < std::shared_ptr<Entity>> enemies;
-
-	            /*std::shared_ptr<Entity> enemy;
-	std::shared_ptr<sf::Texture> enemySprite;
-	sf::IntRect enemyRect;*/
-
-	            // Actual HUD
+	// Actual HUD
 	float tempTime;
 	int minutes;
 	int seconds;
-	sf::Text timer;
+	sf::Text* timer;
+	sf::Text* endText;
+	sf::Text* endExitText;
 
-	sf::Text endText;
-
+	// Shooting Delay
 	float fireTime;
+
+	void init();
 
 	void Load() override;
 
@@ -57,10 +61,9 @@ public:
 
 	void Render() override;
 
-	void RenderEnd();
+	void render_end() const;
 
-	void SpawnEnemy();
+	void SpawnEnemy(int damage, float speed);
 
-
-	sf::Vector2f RandomPosition();
+	sf::Vector2f random_position() const;
 };

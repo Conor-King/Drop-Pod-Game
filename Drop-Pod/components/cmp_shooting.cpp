@@ -14,7 +14,7 @@ using namespace sf;
 
 // ShootingComponent Variables
 unsigned int bulletCount;
-vector<Bullet> bullets(20);
+vector<Bullet> bullets(256);
 
 float tempfloat = 0.f;
 shared_ptr<float> angleshot = make_unique<float>(tempfloat);
@@ -23,10 +23,6 @@ shared_ptr<float> angleshot = make_unique<float>(tempfloat);
 bool isVisible = false;
 float angle;
 Vector2f mousePos;
-
-
-
-
 
 auto temp2 = Texture::Texture();
 auto spriteTexture = make_shared<Texture>(temp2);
@@ -52,7 +48,7 @@ void ShootingComponent::Fire() {
 
 Bullet::Bullet()
 {
-	_damage = 50;
+	_damage = 34;
 }
 
 void Bullet::init() {
@@ -93,7 +89,7 @@ void Bullet::fire(const Vector2f& pos) {
 	auto mousePos = window.mapPixelToCoords(Mouse::getPosition(window));
 
 	bulletCount++;
-	bulletCount = bulletCount % 20;
+	bulletCount = bulletCount % 256;
 	bullets[bulletCount].setPosition(pos);
 	bullets[bulletCount].isVisible = true;
 
@@ -135,14 +131,14 @@ void Bullet::_update(const double dt) {
 			this->isVisible = false;
 			setPosition(-100, -100);
 
-			// Hit Sound effect?
+			// Hit Sound
+			soundHit_buffer = Resources::get<SoundBuffer>("Hit.wav");
+			soundHit = make_shared<Sound>(*soundHit_buffer);
+			soundHit->setVolume(volume);
+			soundHit->play();
 
-			auto currentHealth = enemy->GetCompatibleComponent<MonsterComponent>()[0]->getHealth();
-			enemy->GetCompatibleComponent<MonsterComponent>()[0]->setHealth(currentHealth - _damage);
+			auto currentHealth = enemy->GetCompatibleComponent<MonsterComponent>()[0]->get_health();
+			enemy->GetCompatibleComponent<MonsterComponent>()[0]->set_health(currentHealth - _damage);
 		}
 	}
-
-
-
-
 }

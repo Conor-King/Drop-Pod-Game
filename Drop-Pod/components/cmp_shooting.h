@@ -4,6 +4,7 @@
 #include "ecm.h"
 #include "cmp_actor_movement.h"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class Bullet : sf::Sprite {
 protected:
@@ -12,7 +13,10 @@ protected:
 	sf::Vector2f mousePos;
 	float angle;
 	int _damage;
-	
+
+	std::shared_ptr<sf::SoundBuffer> soundHit_buffer;
+	std::shared_ptr<sf::Sound> soundHit;
+
 public:
 	static void update(const double dt);
 	static void render();
@@ -39,6 +43,4 @@ public:
 	void Fire();
 	void update(double dt) override;
 	void render() override;
-
 };
-

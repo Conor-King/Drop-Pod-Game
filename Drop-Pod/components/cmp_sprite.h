@@ -21,7 +21,6 @@ public:
 	void setTexture(std::shared_ptr<sf::Texture> tex);
 	std::shared_ptr<sf::Texture> getTexture();
 	void setTextureRect(sf::IntRect rect);
-
 };
 
 class ShapeComponent : public Component {
@@ -56,6 +55,7 @@ protected:
 	sf::Sprite* target;
 	int frameCount;
 	int _row;
+
 public:
 
 	AnimationComponent() = delete;
@@ -67,9 +67,9 @@ public:
 	void render();
 
 	void setAnimation(int size, float duration, std::shared_ptr<sf::Texture> texture, sf::IntRect rect);
-	
+
 	void setDuration(float duration);
 
 	void setRow(int row);
-	int getRow();
+	int getRow() const;
 };

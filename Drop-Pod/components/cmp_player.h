@@ -6,7 +6,6 @@
 
 enum move_states { WSAD, Arrows };
 
-
 class PlayerComponent : public ActorMovementComponent {
 public:
 
@@ -19,13 +18,10 @@ public:
 
 	void setHealth(int health);
 	int getHealth();
-	
-	
-	
+
 	//void move(const double dt, const float dir_x, const float dir_y);
 
 protected:
 
 	int _health;
-
 };

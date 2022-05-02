@@ -5,7 +5,6 @@
 #include <iostream>
 #include"../components/cmp_button.h"
 #include "../components/cmp_text.h"
-#include <SFML/Window/Keyboard.hpp>
 #include <SFML/Window.hpp>
 #include <engine.h>
 #include "../components/cmp_player.h"
@@ -15,7 +14,6 @@ using namespace sf;
 
 View settingsView;
 bool vsync = false;
-
 
 shared_ptr<Entity> btnArrows;
 shared_ptr<Entity> btnWsad;
@@ -30,10 +28,9 @@ void SettingsScene::Load() {
 	RenderWindow& window = Engine::GetWindow();
 	Vector2u windowSize = window.getSize();
 
-	
 	auto txt2 = makeEntity();
 	auto pos = Vector2f(settingsView.getSize().x / 2.0f, 50);
-	auto t = txt2->addComponent<TextComponent>(pos.x , pos.y, "Settings");
+	auto t = txt2->addComponent<TextComponent>(pos.x, pos.y, "Settings");
 
 	btnArrows = makeEntity();
 	auto btn4Pos = Vector2f(settingsView.getSize().x / 1.6f, settingsView.getSize().y / 5.0f);
@@ -61,7 +58,7 @@ void SettingsScene::Load() {
 
 	btnFrame = makeEntity();
 	auto btn8Pos = Vector2f(settingsView.getSize().x / 2.0f, settingsView.getSize().y / 1.5f);
-	auto button5 = btnFrame->addComponent<Button>(btn8Pos, "Controlling the framerate", sf::Color::White, sf::Color::Green, sf::Color::Red);
+	auto button5 = btnFrame->addComponent<Button>(btn8Pos, "Vsync: OFF", sf::Color::White, sf::Color::Green, sf::Color::Red);
 
 	btnSoundUp = makeEntity();
 	auto btn9Pos = Vector2f(settingsView.getSize().x / 2.7f, settingsView.getSize().y / 2.0f);
@@ -92,11 +89,13 @@ void SettingsScene::Update(const double& dt) {
 		Engine::ChangeScene(&settings);
 	}
 	else if (btn1280->GetCompatibleComponent<Button>()[0]->isPressed()) {
-		Engine::changeResolution(1280, 720);
+		resolution = Vector2i(1280, 720);
+		Engine::changeResolution(resolution.x, resolution.y);
 		Engine::ChangeScene(&settings);
 	}
 	else if (btn1920->GetCompatibleComponent<Button>()[0]->isPressed()) {
-		Engine::changeResolution(1920, 1080);
+		resolution = Vector2i(1920, 1080);
+		Engine::changeResolution(resolution.x, resolution.y);
 		Engine::ChangeScene(&settings);
 	}
 
@@ -104,17 +103,15 @@ void SettingsScene::Update(const double& dt) {
 		if (vsync)
 		{
 			Engine::GetWindow().setVerticalSyncEnabled(false);
-			btnFrame->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - OFF");
+			btnFrame->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync: OFF");
 			vsync = false;
 		}
 		else
 		{
 			Engine::GetWindow().setVerticalSyncEnabled(true);
-			btnFrame->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync - ON");
+			btnFrame->GetCompatibleComponent<Button>()[0]->_text.setString("Vsync: ON");
 			vsync = true;
 		}
-
-		
 	}
 
 	else if (btnSoundUp->GetCompatibleComponent<Button>()[0]->isPressed()) {
@@ -123,7 +120,7 @@ void SettingsScene::Update(const double& dt) {
 	}
 
 	else if (btnSoundDown->GetCompatibleComponent<Button>()[0]->isPressed()) {
-		volume <= 0 ? volume = 0 :  volume -= 10;
+		volume <= 0 ? volume = 0 : volume -= 10;
 		Engine::ChangeScene(&settings);
 	}
 
@@ -137,4 +134,3 @@ void SettingsScene::Update(const double& dt) {
 
 	Scene::Update(dt);
 }
-

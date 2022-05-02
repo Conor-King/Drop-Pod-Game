@@ -2,14 +2,13 @@
 #include "cmp_actor_movement.h"
 #include <LevelSystem.h>
 #include <engine.h>
-#include <iostream>
 using namespace sf;
 using namespace std;
 
 void ActorMovementComponent::update(double dt) {}
 
 ActorMovementComponent::ActorMovementComponent(Entity* p)
-	: Component(p), _speed(100.0f), _moving(false), _direction(false) {}
+	: Component(p), _speed(80.0f), _moving(false), _direction(false) {}
 
 bool ActorMovementComponent::validMove(const sf::Vector2f& pos) {
 	return (LevelSystem::getTileAt(pos) != LevelSystem::WALL);

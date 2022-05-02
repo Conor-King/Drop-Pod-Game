@@ -11,16 +11,21 @@ using namespace sf;
 
 //Constructor
 MonsterComponent::MonsterComponent(Entity* p, shared_ptr<Entity> player) : ActorMovementComponent(p),
-_health(100), _player(player), _damage(2), _deathTime(0.f){ }
+_health(100), _player(player), _damage(2), _deathTime(0.f) { }
 
-void MonsterComponent::setHealth(int health)
+void MonsterComponent::set_health(int health)
 {
 	_health = health;
 }
 
-int MonsterComponent::getHealth()
+int MonsterComponent::get_health()
 {
 	return _health;
+}
+
+void MonsterComponent::set_damage(int damage)
+{
+	_damage = damage;
 }
 
 void MonsterComponent::attack(double dt)
@@ -34,9 +39,7 @@ void MonsterComponent::attack(double dt)
 
 		// Sound effect
 	}
-
 }
-
 
 void MonsterComponent::update(double dt)
 {
@@ -63,6 +66,7 @@ void MonsterComponent::update(double dt)
 		{
 			_parent->setAlive(false);
 			_parent->setVisible(false);
+			_parent->setPosition(Vector2f(-100, -100));
 		}
 	}
 	else
@@ -81,7 +85,6 @@ void MonsterComponent::update(double dt)
 			auto speed = _parent->GetCompatibleComponent<ActorMovementComponent>()[0]->getSpeed();
 
 			auto move = Vector2f(direction.x * speed * dt, direction.y * speed * dt);
-
 
 			auto flocking = Engine::flocking(_parent, move);
 
@@ -109,7 +112,6 @@ void MonsterComponent::update(double dt)
 				_parent->GetCompatibleComponent<AnimationComponent>()[0]->setRow(4);
 				_parent->GetCompatibleComponent<AnimationComponent>()[0]->setDuration(0.17);
 			}
-			
 
 			// Attack
 			attack(dt);
@@ -138,4 +140,3 @@ void MonsterComponent::update(double dt)
 }
 
 void MonsterComponent::render() { }
-
