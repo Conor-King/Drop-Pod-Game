@@ -1,3 +1,4 @@
+// Sprite, Shape and Animation components C++ file 
 #include "cmp_sprite.h"
 #include "system_renderer.h"
 

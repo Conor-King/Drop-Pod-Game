@@ -1,3 +1,4 @@
+//Shooting component header file
 #pragma once
 
 #include "ecm.h"

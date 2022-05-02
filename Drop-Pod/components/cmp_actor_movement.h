@@ -1,3 +1,4 @@
+// Header file that handles movement of entities
 #pragma once
 #include <ecm.h>
 

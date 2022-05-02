@@ -1,3 +1,4 @@
+// C++ file for creating enemies
 #include "cmp_monster.h"
 
 #include "cmp_player.h"
@@ -8,6 +9,7 @@
 using namespace std;
 using namespace sf;
 
+//Constructor
 MonsterComponent::MonsterComponent(Entity* p, shared_ptr<Entity> player) : ActorMovementComponent(p),
 _health(100), _player(player), _damage(2), _deathTime(0.f){ }
 
@@ -38,6 +40,7 @@ void MonsterComponent::attack(double dt)
 
 void MonsterComponent::update(double dt)
 {
+	//Runs process if monster is dead
 	if (_health <= 0)
 	{
 		_deathTime += dt;

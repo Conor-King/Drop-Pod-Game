@@ -1,3 +1,4 @@
+// Player component C++ file
 #include "cmp_player.h"
 #include <SFML/Window.hpp>
 
@@ -8,7 +9,7 @@ using namespace sf;
 
 int _health;
 
-
+//Constructor
 PlayerComponent::PlayerComponent(Entity* p) : ActorMovementComponent(p) {
 	_health = 100;
 
@@ -35,6 +36,7 @@ void PlayerComponent::update(const double dt)
 	float directX = 0.f;
 	float directY = 0.f;
 
+	//Checks which control scheme is used and checks if a movement key is being pressed
 	switch (switchState) {
 	case WSAD:
 

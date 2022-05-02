@@ -1,3 +1,4 @@
+// Scene for settings menu
 #include "scene_settings.h"
 #include "../drop_pod_game.h"
 #include <LevelSystem.h>
@@ -21,7 +22,7 @@ shared_ptr<Entity> btnWsad;
 shared_ptr<Entity> btn1280;
 shared_ptr<Entity> btn1920;
 shared_ptr<Entity> btnFrame;
-
+//  Loads the scene
 void SettingsScene::Load() {
 	cout << "Setting Load \n";
 
@@ -80,6 +81,7 @@ void SettingsScene::Load() {
 
 	setLoaded(true);
 }
+
 void SettingsScene::Update(const double& dt) {
 	if (btnArrows->GetCompatibleComponent<Button>()[0]->isPressed()) {
 		switchState = Arrows;

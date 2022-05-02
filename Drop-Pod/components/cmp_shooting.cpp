@@ -1,3 +1,4 @@
+// Shooting component C++ file
 #include "cmp_shooting.h"
 #include "../drop_pod_game.h"
 #include "cmp_actor_movement.h"

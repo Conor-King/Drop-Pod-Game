@@ -1,3 +1,4 @@
+// Sprite, Shape and Animation components header file
 #pragma once
 
 #include "ecm.h"

@@ -1,3 +1,4 @@
+// Button component C++ file
 #include"cmp_button.h"		
 #include<SFML/Window.hpp>
 #include <system_renderer.h>
@@ -16,7 +17,7 @@ button_states Button::_mouseState;
 shared_ptr<SoundBuffer> sound_buffer2;
 Sound soundClick;
 
-
+//Updates the button based on mouse position and mouse button press
 void Button::update(double dt) {
 
 	Vector2f point = Vector2f(Mouse::getPosition(Engine::GetWindow()));
@@ -61,12 +62,12 @@ void Button::update(double dt) {
 		break;
 	}
 }
-
+//Draws the button
 void Button::render() {
 	Renderer::queue(&shape);
 	Renderer::queue(&_text);
 }
-
+//Constructor
 Button::Button(Entity* p, sf::Vector2f position, std::string text, sf::Color idleColor, sf::Color hoverColor, sf::Color activeColor)
 	: Component(p){
 
@@ -102,6 +103,7 @@ Button::Button(Entity* p, sf::Vector2f position, std::string text, sf::Color idl
 	
 }
 
+// Returns true if button is pressed and false otherwise
 const bool Button::isPressed() const
 {
 	if (buttonState == BUTTON_ACTIVED)
